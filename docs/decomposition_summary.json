@@ -1,5 +1,5 @@
 {
- "total": 394,
+ "total": 395,
  "withTbd": 185,
  "openValues": 219,
  "maxDepth": 5,
@@ -11,7 +11,7 @@
   "StabilityReqs": 21,
   "OperationsReqs": 36,
   "ControlReqs": 30,
-  "AeroReqs": 24,
+  "AeroReqs": 25,
   "StructureReqs": 26,
   "AvionicsReqs": 27,
   "SoftwareReqs": 23,
@@ -22,18 +22,18 @@
  "byMethod": {
   "byAnalysis": 91,
   "byInspection": 73,
-  "byTest": 177,
+  "byTest": 178,
   "byDemonstration": 53
  },
  "byBasis": {
-  "projectChoice": 108,
+  "projectChoice": 109,
   "placeholder": 211,
   "adoptedDefault": 70,
   "directive": 5
  },
  "byPhase": {
   "PDR": 63,
-  "CDR": 254,
+  "CDR": 255,
   "ORR": 51,
   "SIR": 26
  }

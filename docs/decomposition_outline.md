@@ -14,7 +14,7 @@ Nested as in the model: each requirement sits under the requirement it refines.
     - **PWR-010** The battery pack shall provide at least one temperature sensor per [TBD] cells.
   - **PWR-024** The battery pack shall be transported and stored in a container that limits the effect of a cell fire, to be selected.
 - **PWR-002** The mission energy budget shall hold a landing reserve of 20 percent of pack usable energy.
-- **PWR-005** The battery pack mass, including wiring and enclosure, shall not exceed 4.1 kg.
+- **PWR-005** The battery pack mass, including wiring and enclosure, shall not exceed 6.5 kg.
 - **PWR-011** The battery management system shall report pack voltage, current and the lowest cell voltage to the flight controller at a rate of at least [TBD] Hz.
   - **PWR-012** The flight controller shall compute remaining usable energy and display it to the remote pilot.
     - **PWR-013** The ground station shall alert the remote pilot when remaining usable energy falls to the reserve in PWR-002.
@@ -39,8 +39,8 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **PRP-004** The sum of both rotor thrusts shall exceed hover weight by the control-authority margin of [TBD] percent.
 - **PRP-005** The propulsion system shall produce thrust at least equal to cruise drag at the cruise speed 49 kt with the nacelles at 0 deg.
 - **PRP-006** The flight controller shall limit commanded groundspeed to no more than 87 kt.
-- **PRP-007** The rotor disk loading at maximum takeoff weight shall not exceed 250 N/m2.
-- **PRP-008** The rotor diameter shall be 0.76 m.
+- **PRP-007** The rotor disk loading at maximum takeoff weight shall not exceed 150 N/m2.
+- **PRP-008** The rotor diameter shall be 1.0 m.
   - **PRP-009** Each rotor shall have [TBD] blades.
 - **PRP-010** The rotor tip speed shall not exceed [TBD] m/s in any flight condition.
 - **PRP-011** The rotor first-flap and in-plane natural frequencies shall differ from 1P, 2P and 3P by at least [TBD] percent across the operating rpm range.
@@ -243,11 +243,12 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **AER-015** Each control surface shall provide at least [TBD] of the control power needed for FCS-012.
 - **AER-016** The vehicle shall meet its stall and takeoff requirements in CTOL mode with the nacelles at the CTOL angle.
 - **AER-017** The program shall maintain a drag build-up for the vehicle with each supported payload sensor.
-- **AER-018** The electrical power in cruise shall be computed and recorded as 824 W.
-- **AER-019** The electrical power in hover shall be computed and recorded as 3545 W.
+- **AER-018** The electrical power in cruise shall be computed and recorded as 848 W.
+- **AER-019** The electrical power in hover shall be computed and recorded as 2812 W.
   - **AER-020** The electrical power in conversion shall be computed and recorded as [TBD] W.
-- **AER-021** The mission profile used for endurance shall be defined by 2 minutes of hover and conversion and 28 minutes of cruise.
+- **AER-021** The mission profile used for endurance shall be defined by 12 minutes of hover and conversion, which is 2 minutes for takeoff and landing and a 10 minute loiter, and 18 minutes of cruise.
 - **AER-022** The vehicle shall remain controllable in winds up to [TBD] kt in cruise.
+- **AER-025** The vehicle shall be able to loiter in hover for at least 10 minutes within the 30 minute flight time.
 
 ## StructureReqs
 

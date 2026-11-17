@@ -71,7 +71,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'PWR-005'> packMass : VehicleRequirement {
-            doc /* The battery pack mass, including wiring and enclosure, shall not exceed 4.1 kg. */
+            doc /* The battery pack mass, including wiring and enclosure, shall not exceed 6.5 kg. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Pack mass is the largest single item in the mass budget. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "SIR";
@@ -228,14 +228,14 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'PRP-007'> diskLoading : VehicleRequirement {
-            doc /* The rotor disk loading at maximum takeoff weight shall not exceed 250 N/m2. */
+            doc /* The rotor disk loading at maximum takeoff weight shall not exceed 150 N/m2. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Disk loading drives hover power and wake effects. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'PRP-008'> rotorDiameter : VehicleRequirement {
-            doc /* The rotor diameter shall be 0.76 m. */
+            doc /* The rotor diameter shall be 1.0 m. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Diameter sets disk loading and whirl flutter margin. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
@@ -1548,14 +1548,14 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'AER-018'> cruisePower : VehicleRequirement {
-            doc /* The electrical power in cruise shall be computed and recorded as 824 W. */
+            doc /* The electrical power in cruise shall be computed and recorded as 848 W. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Input to the endurance constraint. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'AER-019'> hoverPower : VehicleRequirement {
-            doc /* The electrical power in hover shall be computed and recorded as 3545 W. */
+            doc /* The electrical power in hover shall be computed and recorded as 2812 W. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Input to the endurance constraint. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
@@ -1569,7 +1569,7 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'AER-021'> missionProfile : VehicleRequirement {
-            doc /* The mission profile used for endurance shall be defined by 2 minutes of hover and conversion and 28 minutes of cruise. */
+            doc /* The mission profile used for endurance shall be defined by 12 minutes of hover and conversion, which is 2 minutes for takeoff and landing and a 10 minute loiter, and 18 minutes of cruise. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Endurance depends on the time in each phase. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
@@ -1580,6 +1580,13 @@ package TiltrotorVehicleDecomposition {
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Sets the wind limit for flight.";
             attribute :>> phase = "ORR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AER-025'> hoverLoiter : VehicleRequirement {
+            doc /* The vehicle shall be able to loiter in hover for at least 10 minutes within the 30 minute flight time. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Program owner set a 10 minute hover loiter; it dominates the energy budget (docs/sizing.md).";
+            attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
     }
@@ -2888,6 +2895,7 @@ package TiltrotorVehicleDecomposition {
     dependency from AeroReqs::hoverPower to TiltrotorVehicleRequirements::vehicleReqs::endurance;
     dependency from AeroReqs::missionProfile to TiltrotorVehicleRequirements::vehicleReqs::endurance;
     dependency from AeroReqs::windEnvelope to TiltrotorVehicleRequirements::vehicleReqs::part107::envelope;
+    dependency from AeroReqs::hoverLoiter to TiltrotorVehicleRequirements::vehicleReqs::endurance;
     dependency from StructureReqs::loadCases to TiltrotorVehicleRequirements::vehicleReqs::strength;
     dependency from StructureReqs::safetyFactor to TiltrotorVehicleRequirements::vehicleReqs::strength;
     dependency from StructureReqs::wingStrength to TiltrotorVehicleRequirements::vehicleReqs::strength;
