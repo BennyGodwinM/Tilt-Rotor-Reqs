@@ -1,8 +1,8 @@
 """Generate models/TiltrotorVehicleDecomposition.sysml and docs/checklists.md from tools/decomp/*."""
 import csv, glob, os
 D = os.path.dirname(os.path.abspath(__file__)); R = os.path.dirname(D)
-VEH = {'VEH-1':'configuration','VEH-2':'endurance','VEH-3':'part107','VEH-3.1':'maxMass','VEH-3.2':'envelope',
-       'VEH-3.3':'lineOfSight','VEH-4':'conversion','VEH-5':'whirlFlutterFree','VEH-6':'strength',
+VEH = {'VEH-1':'configuration','VEH-2':'endurance','VEH-3':'part107','VEH-3.1':'part107::maxMass','VEH-3.2':'part107::envelope',
+       'VEH-3.3':'part107::lineOfSight','VEH-4':'conversion','VEH-5':'whirlFlutterFree','VEH-6':'strength',
        'VEH-7':'modeLogic','VEH-8':'boundaryComplete'}
 GROUPS = [('pwr','PowerReqs'),('prop','PropulsionReqs'),('tilt','TiltReqs'),('payload','PayloadReqs'),
           ('stab','StabilityReqs'),('ops','OperationsReqs')]

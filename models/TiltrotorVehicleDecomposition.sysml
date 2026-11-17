@@ -1084,7 +1084,7 @@ package TiltrotorVehicleDecomposition {
     dependency from PowerReqs::energyReserve to TiltrotorVehicleRequirements::vehicleReqs::endurance;
     dependency from PowerReqs::packChemistry to PowerReqs::usableEnergy;
     dependency from PowerReqs::specificEnergy to PowerReqs::usableEnergy;
-    dependency from PowerReqs::packMass to TiltrotorVehicleRequirements::vehicleReqs::maxMass;
+    dependency from PowerReqs::packMass to TiltrotorVehicleRequirements::vehicleReqs::part107::maxMass;
     dependency from PowerReqs::peakDischarge to PowerReqs::usableEnergy;
     dependency from PowerReqs::peakPowerValue to PowerReqs::peakDischarge;
     dependency from PowerReqs::cellMinVoltage to PowerReqs::usableEnergy;
@@ -1101,7 +1101,7 @@ package TiltrotorVehicleDecomposition {
     dependency from PowerReqs::brownout to PowerReqs::avionicsBus;
     dependency from PowerReqs::armSwitch to TiltrotorVehicleRequirements::vehicleReqs::part107;
     dependency from PowerReqs::armIndication to PowerReqs::armSwitch;
-    dependency from PowerReqs::connectors to TiltrotorVehicleRequirements::vehicleReqs::maxMass;
+    dependency from PowerReqs::connectors to TiltrotorVehicleRequirements::vehicleReqs::part107::maxMass;
     dependency from PowerReqs::packRetention to TiltrotorVehicleRequirements::vehicleReqs::strength;
     dependency from PowerReqs::storageTransport to PowerReqs::usableEnergy;
     dependency from PowerReqs::chargeRecord to TiltrotorVehicleRequirements::vehicleReqs::endurance;
@@ -1110,7 +1110,7 @@ package TiltrotorVehicleDecomposition {
     dependency from PropulsionReqs::perRotorThrust to PropulsionReqs::hoverThrust;
     dependency from PropulsionReqs::thrustMargin to PropulsionReqs::hoverThrust;
     dependency from PropulsionReqs::cruiseThrust to TiltrotorVehicleRequirements::vehicleReqs::conversion;
-    dependency from PropulsionReqs::maxSpeedLimit to TiltrotorVehicleRequirements::vehicleReqs::envelope;
+    dependency from PropulsionReqs::maxSpeedLimit to TiltrotorVehicleRequirements::vehicleReqs::part107::envelope;
     dependency from PropulsionReqs::diskLoading to TiltrotorVehicleRequirements::vehicleReqs::whirlFlutterFree;
     dependency from PropulsionReqs::rotorDiameter to TiltrotorVehicleRequirements::vehicleReqs::whirlFlutterFree;
     dependency from PropulsionReqs::rotorBlades to PropulsionReqs::rotorDiameter;
@@ -1122,7 +1122,7 @@ package TiltrotorVehicleDecomposition {
     dependency from PropulsionReqs::bladeProof to TiltrotorVehicleRequirements::vehicleReqs::strength;
     dependency from PropulsionReqs::motorEfficiency to TiltrotorVehicleRequirements::vehicleReqs::endurance;
     dependency from PropulsionReqs::motorEfficiencyCruise to PropulsionReqs::motorEfficiency;
-    dependency from PropulsionReqs::motorMass to TiltrotorVehicleRequirements::vehicleReqs::maxMass;
+    dependency from PropulsionReqs::motorMass to TiltrotorVehicleRequirements::vehicleReqs::part107::maxMass;
     dependency from PropulsionReqs::motorTemp to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
     dependency from PropulsionReqs::escTemp to PropulsionReqs::motorTemp;
     dependency from PropulsionReqs::motorFault to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
@@ -1149,7 +1149,7 @@ package TiltrotorVehicleDecomposition {
     dependency from TiltReqs::tiltStiffness to TiltrotorVehicleRequirements::vehicleReqs::whirlFlutterFree;
     dependency from TiltReqs::tiltFreeplay to TiltReqs::tiltStiffness;
     dependency from TiltReqs::tiltStrength to TiltrotorVehicleRequirements::vehicleReqs::strength;
-    dependency from TiltReqs::tiltMass to TiltrotorVehicleRequirements::vehicleReqs::maxMass;
+    dependency from TiltReqs::tiltMass to TiltrotorVehicleRequirements::vehicleReqs::part107::maxMass;
     dependency from TiltReqs::tiltPower to TiltrotorVehicleRequirements::vehicleReqs::endurance;
     dependency from TiltReqs::tiltEndStops to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
     dependency from TiltReqs::tiltCalibrate to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
@@ -1167,7 +1167,7 @@ package TiltrotorVehicleDecomposition {
     dependency from PayloadReqs::maxMass to PayloadReqs::payloadSensor;
     dependency from PayloadReqs::maxEnvelope to PayloadReqs::maxMass;
     dependency from PayloadReqs::massRange to PayloadReqs::maxMass;
-    dependency from PayloadReqs::payloadMassBudget to TiltrotorVehicleRequirements::vehicleReqs::maxMass;
+    dependency from PayloadReqs::payloadMassBudget to TiltrotorVehicleRequirements::vehicleReqs::part107::maxMass;
     dependency from PayloadReqs::gimbalAxes to TiltrotorVehicleRequirements::vehicleReqs::configuration;
     dependency from PayloadReqs::gimbalAccuracy to PayloadReqs::gimbalAxes;
     dependency from PayloadReqs::gimbalStabilize to PayloadReqs::gimbalAxes;
@@ -1178,13 +1178,13 @@ package TiltrotorVehicleDecomposition {
     dependency from PayloadReqs::payloadRetain to TiltrotorVehicleRequirements::vehicleReqs::part107;
     dependency from PayloadReqs::payloadRecord to PayloadReqs::payloadSensor;
     dependency from PayloadReqs::payloadList to PayloadReqs::payloadSensor;
-    dependency from PayloadReqs::fpvCamera to TiltrotorVehicleRequirements::vehicleReqs::lineOfSight;
+    dependency from PayloadReqs::fpvCamera to TiltrotorVehicleRequirements::vehicleReqs::part107::lineOfSight;
     dependency from PayloadReqs::fpvFov to PayloadReqs::fpvCamera;
     dependency from PayloadReqs::fpvLatency to PayloadReqs::fpvCamera;
     dependency from PayloadReqs::fpvResolution to PayloadReqs::fpvCamera;
     dependency from PayloadReqs::fpvView to PayloadReqs::fpvCamera;
     dependency from PayloadReqs::fpvDownlink to PayloadReqs::fpvCamera;
-    dependency from PayloadReqs::fpvNotSubstitute to TiltrotorVehicleRequirements::vehicleReqs::lineOfSight;
+    dependency from PayloadReqs::fpvNotSubstitute to TiltrotorVehicleRequirements::vehicleReqs::part107::lineOfSight;
     dependency from PayloadReqs::fpvPower to PayloadReqs::fpvCamera;
     dependency from PayloadReqs::fpvOverlay to PayloadReqs::fpvCamera;
     dependency from PayloadReqs::fpvLoss to PayloadReqs::fpvCamera;
