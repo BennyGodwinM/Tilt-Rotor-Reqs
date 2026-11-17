@@ -63,6 +63,18 @@ package TiltrotorProgramModel {
                 doc /* Analysis predictions shall be recorded before each development test, and a test result outside the predicted uncertainty shall have its variance explained and its root cause reviewed. */
                 attribute :>> milestone = Milestone::CDR;
             }
+            requirement <'SE-12'> requirementForm : ProgramRequirement {
+                doc /* Each requirement shall be a complete statement with one shall, a quantitative measure where it states performance, and a recorded rationale that gives the reason, assumptions and link to the concept of operations. */
+                attribute :>> milestone = Milestone::SRR;
+            }
+            requirement <'SE-13'> requirementValidation : ProgramRequirement {
+                doc /* Requirements shall be validated before baselining: written correctly, technically correct with bidirectional traceability, accepted by stakeholders, feasible, verifiable, and neither redundant nor over-specified. */
+                attribute :>> milestone = Milestone::SRR;
+            }
+            requirement <'SE-14'> drivingRequirements : ProgramRequirement {
+                doc /* Key driving requirements, those with a large cost or schedule effect, shall be identified, and technical performance measures shall be tracked against planned values at each review. */
+                attribute :>> milestone = Milestone::PDR;
+            }
             requirement <'SE-4'> integrationPlan : ProgramRequirement {
                 doc /* The integration plan shall be updated. */
                 attribute :>> milestone = Milestone::SIR;
