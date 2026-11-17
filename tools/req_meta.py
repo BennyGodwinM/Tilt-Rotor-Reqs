@@ -92,5 +92,8 @@ M = {
 'SE-22':('adoptedDefault','FAA DOT/FAA/AR-08/32','Allocation without a boundary at each level loses accuracy and timing budget.'),
 'SE-23':('adoptedDefault','NASA SP-2010-3404','Work outside the structure goes unplanned, and a second structure splits cost and technical tracking.'),
 'SE-24':('adoptedDefault','NASA SP-2010-3404','A dictionary entry is what keeps two disciplines from each assuming the other does a task.'),
+'SE-25':('adoptedDefault','NASA SP-2016-6105','Only a statement with a stated way to close it can be verified.'),
+'SE-26':('adoptedDefault','NASA SP-2016-6105','Tracking planned against actual performance shows trouble before the next review.'),
+'SE-27':('adoptedDefault','NASA SP-2016-6105','The checklist catches vague words and open values while they are cheap to fix.'),
 }
 OWN={'SE':'systemsEngineering','AER':'aerodynamics','LDS':'loads','STR':'structures','SIN':'structuralIntegrity','ROT':'rotorEffects','FLU':'flutter','FTP':'flightTest','SOF':'safetyOfFlight','CMG':'configurationManagement'}

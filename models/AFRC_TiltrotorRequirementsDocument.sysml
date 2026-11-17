@@ -84,6 +84,9 @@ package AFRC_TiltrotorRequirementsDocument {
         alias <'4.1.22'> allocationToSubsystemsReq for TiltrotorProgramModel::programReqs::seReqs::allocationToSubsystems;
         alias <'4.1.23'> workBreakdownStructureReq for TiltrotorProgramModel::programReqs::seReqs::workBreakdownStructure;
         alias <'4.1.24'> wbsDictionaryReq for TiltrotorProgramModel::programReqs::seReqs::wbsDictionary;
+        alias <'4.1.25'> verificationMatrixReq for TiltrotorProgramModel::programReqs::seReqs::verificationMatrix;
+        alias <'4.1.26'> performanceMeasuresReq for TiltrotorProgramModel::programReqs::seReqs::performanceMeasures;
+        alias <'4.1.27'> requirementQualityReq for TiltrotorProgramModel::programReqs::seReqs::requirementQuality;
         alias <'4.2'> aerodynamicsPara for TiltrotorProgramModel::programReqs::aerodynamicsReqs;
         alias <'4.2.1'> aeroDatabaseReq for TiltrotorProgramModel::programReqs::aerodynamicsReqs::aeroDatabase;
         alias <'4.2.2'> aeroUpdateReq for TiltrotorProgramModel::programReqs::aerodynamicsReqs::aeroUpdate;

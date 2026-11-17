@@ -108,7 +108,7 @@ package TiltrotorProgramModel {
                 attribute :>> milestone = Milestone::SRR;
             }
             requirement <'SE-13'> requirementValidation : ProgramRequirement {
-                doc /* Requirements shall be validated before baselining: written correctly, technically correct with bidirectional traceability, accepted by stakeholders, feasible, verifiable, and neither redundant nor over-specified. */
+                doc /* Requirements shall be validated before baselining: written to the form in SE-12, technically correct with bidirectional traceability, accepted by stakeholders, feasible, verifiable, and neither redundant nor over-specified. */
                 attribute :>> basis = Basis::adoptedDefault;
                 attribute :>> owner = Discipline::systemsEngineering;
                 attribute :>> source = "NASA SE Handbook 4.2";
@@ -116,7 +116,7 @@ package TiltrotorProgramModel {
                 attribute :>> milestone = Milestone::SRR;
             }
             requirement <'SE-14'> drivingRequirements : ProgramRequirement {
-                doc /* Key driving requirements, those with a large cost or schedule effect, shall be identified, and technical performance measures shall be tracked against planned values at each review. */
+                doc /* Key driving requirements, those that would move cost or schedule by more than the amount the chief engineer sets, shall be identified, and technical performance measures shall be tracked against planned values at each review. */
                 attribute :>> basis = Basis::adoptedDefault;
                 attribute :>> owner = Discipline::systemsEngineering;
                 attribute :>> source = "NASA SE Handbook 4.2";
@@ -203,6 +203,30 @@ package TiltrotorProgramModel {
                 attribute :>> rationale = "A dictionary entry is what keeps two disciplines from each assuming the other does a task.";
                 attribute :>> milestone = Milestone::PDR;
             }
+            requirement <'SE-25'> verificationMatrix : ProgramRequirement {
+                doc /* A verification matrix shall list every shall statement by unique identifier, source document and paragraph, with its success criteria, method, facility or laboratory, phase, and whether it is also checked at acceptance and before each flight. */
+                attribute :>> basis = Basis::adoptedDefault;
+                attribute :>> owner = Discipline::systemsEngineering;
+                attribute :>> source = "NASA SP-2016-6105";
+                attribute :>> rationale = "Only a statement with a stated way to close it can be verified.";
+                attribute :>> milestone = Milestone::SRR;
+            }
+            requirement <'SE-26'> performanceMeasures : ProgramRequirement {
+                doc /* Measures of effectiveness shall be derived from the goals, measures of performance from those, and the technical performance measures that matter to flight success shall be tracked against their planned values at each review. */
+                attribute :>> basis = Basis::adoptedDefault;
+                attribute :>> owner = Discipline::systemsEngineering;
+                attribute :>> source = "NASA SP-2016-6105";
+                attribute :>> rationale = "Tracking planned against actual performance shows trouble before the next review.";
+                attribute :>> milestone = Milestone::PDR;
+            }
+            requirement <'SE-27'> requirementQuality : ProgramRequirement {
+                doc /* Each requirement shall be checked before baselining for: active form, a stated tolerance, no implementation, positive wording, no unverifiable terms, and traceability up to a parent and down to a verification; TBD values shall be kept few, each with a best estimate, an owner and a closing review. */
+                attribute :>> basis = Basis::adoptedDefault;
+                attribute :>> owner = Discipline::systemsEngineering;
+                attribute :>> source = "NASA SP-2016-6105";
+                attribute :>> rationale = "The checklist catches vague words and open values while they are cheap to fix.";
+                attribute :>> milestone = Milestone::SRR;
+            }
             requirement <'SE-4'> integrationPlan : ProgramRequirement {
                 doc /* The integration plan shall be updated. */
                 attribute :>> basis = Basis::projectChoice;
@@ -264,7 +288,7 @@ package TiltrotorProgramModel {
                 attribute :>> milestone = Milestone::SIR;
             }
             requirement <'AER-14'> codeCrossCheck : ProgramRequirement {
-                doc /* Two independent CFD codes shall be compared before the large-scale database runs, and each run shall be converged to the drag tolerance below. */
+                doc /* Two independent CFD codes shall be compared before the production database runs, and each run shall be converged to the drag tolerance below. */
                 attribute :>> basis = Basis::adoptedDefault;
                 attribute :>> owner = Discipline::aerodynamics;
                 attribute :>> source = "NTRS 20230009292";
@@ -604,7 +628,7 @@ package TiltrotorProgramModel {
                 attribute :>> milestone = Milestone::PDR;
             }
             requirement <'FLU-13'> modelSensitivity : ProgramRequirement {
-                doc /* Uncertain model parameters shall be varied to bound the flutter envelope, a large margin shall be confirmed under all variations, and critical parameter combinations shall be identified. */
+                doc /* Uncertain model parameters shall be varied to bound the flutter envelope, a margin of at least the largeMarginPercent value shall be confirmed under all variations, and critical parameter combinations shall be identified. */
                 attribute :>> basis = Basis::adoptedDefault;
                 attribute :>> owner = Discipline::flutter;
                 attribute :>> source = "NTRS 20170005548";

@@ -10,6 +10,9 @@ package TiltrotorVehicleRequirements {
         attribute verifyBy : VerificationMethod;
         attribute basis : Basis;
         attribute rationale : String;
+        attribute successCriteria : String;
+        attribute facility : String;
+        attribute phase : String;
     }
 
     // System boundary per FAA AR-08/32: what the aircraft senses, commands and must tolerate.
@@ -50,6 +53,9 @@ package TiltrotorVehicleRequirements {
             doc /* The vehicle shall be a twin-rotor tiltrotor with a GoPro camera on a gimbal in the nose. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Fixes the configuration every other requirement refers to.";
+            attribute :>> successCriteria = "Built aircraft matches the configuration drawing: two tilting rotors and a gimbal in the nose.";
+            attribute :>> facility = "Hangar";
+            attribute :>> phase = "SIR";
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
 
@@ -57,6 +63,9 @@ package TiltrotorVehicleRequirements {
             doc /* The vehicle shall have at least 30 minutes of flight time. Reserve policy to be set. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Sets the battery and power sizing.";
+            attribute :>> successCriteria = "Hover-and-cruise profile flown to battery cutoff reserve; elapsed flight time at least 30 minutes.";
+            attribute :>> facility = "Flight test range";
+            attribute :>> phase = "ORR";
             attribute minutes : Real = 30;
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
@@ -65,12 +74,18 @@ package TiltrotorVehicleRequirements {
             doc /* The vehicle shall be operable under 14 CFR Part 107. */
             attribute :>> basis = Basis::directive;
             attribute :>> rationale = "Operation under Part 107 is the project operating basis.";
+            attribute :>> successCriteria = "All Part 107 sub-requirements closed.";
+            attribute :>> facility = "Not applicable";
+            attribute :>> phase = "ORR";
             attribute :>> verifyBy = VerificationMethod::byInspection;
 
             requirement <'VEH-3.1'> maxMass : VehicleRequirement {
                 doc /* Takeoff mass including payload shall be less than the limit, with a sizing margin to be set. */
             attribute :>> basis = Basis::directive;
             attribute :>> rationale = "Part 107 limits takeoff mass; margin is a project decision.";
+            attribute :>> successCriteria = "Weighed takeoff mass with payload below 55 lb by the sizing margin.";
+            attribute :>> facility = "Hangar scale";
+            attribute :>> phase = "SIR";
                 attribute limitLb : Real = 55;
                 attribute :>> verifyBy = VerificationMethod::byTest;
             }
@@ -78,6 +93,9 @@ package TiltrotorVehicleRequirements {
                 doc /* Operation shall stay below the altitude limit and at or below the groundspeed limit. */
             attribute :>> basis = Basis::directive;
             attribute :>> rationale = "Part 107 sets the altitude and groundspeed limits.";
+            attribute :>> successCriteria = "Flight data shows altitude never above 400 ft AGL and groundspeed never above 87 kt across the demonstrated envelope.";
+            attribute :>> facility = "Flight test range";
+            attribute :>> phase = "ORR";
                 attribute maxAltitudeFtAgl : Real = 400;
                 attribute maxGroundspeedKt : Real = 87;
                 attribute :>> verifyBy = VerificationMethod::byDemonstration;
@@ -86,6 +104,9 @@ package TiltrotorVehicleRequirements {
                 doc /* Operation shall stay within visual line of sight of the remote pilot. */
             attribute :>> basis = Basis::directive;
             attribute :>> rationale = "Part 107 requires visual line of sight.";
+            attribute :>> successCriteria = "Pilot holds visual contact over all test legs.";
+            attribute :>> facility = "Flight test range";
+            attribute :>> phase = "ORR";
                 attribute :>> verifyBy = VerificationMethod::byDemonstration;
             }
         }
@@ -94,6 +115,9 @@ package TiltrotorVehicleRequirements {
             doc /* The vehicle shall convert between hover and cruise inside a conversion corridor to be defined. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "The corridor sets the aerodynamic and control design space.";
+            attribute :>> successCriteria = "Analysis shows controllable, stable conversion across the corridor with margins in the flight control requirements.";
+            attribute :>> facility = "Analysis";
+            attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
 
@@ -101,6 +125,9 @@ package TiltrotorVehicleRequirements {
             doc /* The vehicle shall be free of whirl flutter inside the flight envelope, with at least the margin required in the flutter program requirements. */
             attribute :>> basis = Basis::adoptedDefault;
             attribute :>> rationale = "Whirl flutter is the main aeroelastic risk of a tilting rotor.";
+            attribute :>> successCriteria = "No unstable mode inside the flight envelope with the margin in the flutter requirements.";
+            attribute :>> facility = "Analysis";
+            attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
 
@@ -108,6 +135,9 @@ package TiltrotorVehicleRequirements {
             doc /* The structure shall carry limit loads without detrimental deformation and ultimate loads without failure, with factors to be set. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Factors of safety are not chosen yet.";
+            attribute :>> successCriteria = "Positive margin of safety at limit and ultimate load for every load case.";
+            attribute :>> facility = "Analysis";
+            attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
 
@@ -116,6 +146,9 @@ package TiltrotorVehicleRequirements {
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
             attribute :>> basis = Basis::adoptedDefault;
             attribute :>> rationale = "Explicit modes keep the conversion from producing undefined behavior.";
+            attribute :>> successCriteria = "Analysis of the mode logic shows no transition outside the four defined.";
+            attribute :>> facility = "Analysis";
+            attribute :>> phase = "PDR";
         }
 
         requirement <'VEH-8'> boundaryComplete : VehicleRequirement {
@@ -123,6 +156,9 @@ package TiltrotorVehicleRequirements {
             attribute :>> verifyBy = VerificationMethod::byInspection;
             attribute :>> basis = Basis::adoptedDefault;
             attribute :>> rationale = "Outputs without latency and tolerance cannot be verified.";
+            attribute :>> successCriteria = "Each boundary variable carries a unit and range, and each controlled variable a latency and tolerance.";
+            attribute :>> facility = "Document review";
+            attribute :>> phase = "PDR";
         }
     }
 
@@ -165,5 +201,8 @@ package TiltrotorVehicleRequirements {
     dependency from vehicleReqs::conversion to TiltrotorProgramModel::programReqs::aerodynamicsReqs;
     dependency from vehicleReqs::whirlFlutterFree to TiltrotorProgramModel::programReqs::flutterReqs::prelimFlutter;
     dependency from vehicleReqs::whirlFlutterFree to TiltrotorProgramModel::programReqs::flutterReqs::flightFlutterTest;
+    dependency from vehicleReqs::configuration to TiltrotorProgramModel::programReqs::seReqs::trades;
+    dependency from vehicleReqs::modeLogic to TiltrotorProgramModel::programReqs::seReqs::modeLogic;
+    dependency from vehicleReqs::boundaryComplete to TiltrotorProgramModel::programReqs::seReqs::systemBoundary;
     dependency from vehicleReqs::strength to TiltrotorProgramModel::programReqs::structuresReqs::stressNotes;
 }
