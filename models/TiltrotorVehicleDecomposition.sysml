@@ -228,16 +228,16 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'PRP-007'> diskLoading : VehicleRequirement {
-            doc /* The rotor disk loading at maximum takeoff weight shall not exceed 150 N/m2. */
+            doc /* The rotor disk loading at maximum takeoff weight shall not exceed 550 N/m2. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Disk loading drives hover power and wake effects. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'PRP-008'> rotorDiameter : VehicleRequirement {
-            doc /* The rotor diameter shall be 1.0 m. */
+            doc /* The diameter of each rotor shall not exceed 0.508 m (20 in). */
             attribute :>> basis = Basis::projectChoice;
-            attribute :>> rationale = "Diameter sets disk loading and whirl flutter margin. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
+            attribute :>> rationale = "Program owner limit of 20 in. It sets disk loading, hover power and whirl flutter margin (docs/sizing.md).";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byInspection;
             requirement <'PRP-009'> rotorBlades : VehicleRequirement {
@@ -1548,14 +1548,14 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'AER-018'> cruisePower : VehicleRequirement {
-            doc /* The electrical power in cruise shall be computed and recorded as 848 W. */
+            doc /* The electrical power in cruise shall be computed and recorded as 847 W. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Input to the endurance constraint. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'AER-019'> hoverPower : VehicleRequirement {
-            doc /* The electrical power in hover shall be computed and recorded as 2812 W. */
+            doc /* The electrical power in hover shall be computed and recorded as 5523 W. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Input to the endurance constraint. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
@@ -1569,7 +1569,7 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'AER-021'> missionProfile : VehicleRequirement {
-            doc /* The mission profile used for endurance shall be defined by 12 minutes of hover and conversion, which is 2 minutes for takeoff and landing and a 10 minute loiter, and 18 minutes of cruise. */
+            doc /* The mission profile used for endurance shall be defined by 5 minutes of hover and conversion, which is 2 minutes for takeoff and landing and a 3 minute loiter, and 25 minutes of cruise. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Endurance depends on the time in each phase. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
@@ -1583,9 +1583,9 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'AER-025'> hoverLoiter : VehicleRequirement {
-            doc /* The vehicle shall be able to loiter in hover for at least 10 minutes within the 30 minute flight time. */
+            doc /* The vehicle shall be able to loiter in hover for at least 3 minutes within the 30 minute flight time. */
             attribute :>> basis = Basis::projectChoice;
-            attribute :>> rationale = "Program owner set a 10 minute hover loiter; it dominates the energy budget (docs/sizing.md).";
+            attribute :>> rationale = "Program owner set a hover loiter; the 20 in rotor limit cuts it from the 10 minutes first asked for (docs/sizing.md).";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }

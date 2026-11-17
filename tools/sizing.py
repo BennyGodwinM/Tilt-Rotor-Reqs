@@ -4,8 +4,8 @@ Takeoff mass is found by iteration because pack mass depends on takeoff mass.
 Writes docs/sizing.md and docs/sizing.json. Run from the repo root: python3 tools/sizing.py"""
 import json, math, os, sys
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-A = dict(g=9.81, rho=1.225, rotors=2, diameter_m=1.0, fm=0.65, eta_hover=0.80, eta_cruise_prop=0.70, eta_cruise_motor=0.85,
-         ld=10.0, cruise_ms=25.0, takeoff_landing_hover_min=2.0, hover_loiter_min=10.0, mission_min=30.0, avionics_w=30.0,
+A = dict(g=9.81, rho=1.225, rotors=2, diameter_m=0.508, fm=0.65, eta_hover=0.80, eta_cruise_prop=0.70, eta_cruise_motor=0.85,
+         ld=10.0, cruise_ms=25.0, takeoff_landing_hover_min=2.0, hover_loiter_min=3.0, mission_min=30.0, avionics_w=30.0,
          reserve_frac=0.20, pack_wh_kg=160.0, tw_peak=1.30, limit_lb=55.0, margin_frac=0.15)
 for arg in sys.argv[1:]:
     k, v = arg.split('='); A[k] = float(v)
