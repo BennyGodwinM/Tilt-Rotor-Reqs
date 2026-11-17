@@ -1,0 +1,22 @@
+SWR-001|VEH-7|softwareStandard|The flight software shall be developed according to a recorded process that defines requirements, design, review, test and configuration control.|I|PDR|projectChoice|Even small projects need a process; the level of rigor is a decision (AR-08/32 and the software plan).
+SWR-002|SWR-001|softwareLevel|The program shall assign a development assurance level to the flight software and record the reason.|I|PDR|placeholder|Level not yet assigned.
+SWR-003|SWR-001|softwareReq|Each software requirement shall trace to a vehicle requirement and to at least one test.|I|CDR|adoptedDefault|Traceability to tests.
+SWR-004|SWR-001|codeReview|All flight software changes shall be reviewed by a person other than the author before release.|I|CDR|adoptedDefault|Catches defects.
+SWR-005|SWR-001|staticAnalysis|The flight software shall pass static analysis with no open high-severity findings at release.|A|CDR|adoptedDefault|Finds defect classes.
+SWR-006|SWR-001|unitTest|Each flight software function that affects control or mode logic shall have a unit test.|T|CDR|adoptedDefault|Tests the logic directly.
+SWR-007|SWR-001|hil|The flight software shall pass a hardware-in-the-loop test of every mode transition before first flight.|T|SIR|projectChoice|Tests the real hardware path.
+SWR-008|SWR-007|simulation|A simulation with the aerodynamic model shall test each mode transition and each failure response.|A|CDR|projectChoice|Cheaper than flight tests.
+SWR-009|SWR-001|buildControl|Each flight software build shall carry a version identifier and a hash that the ground station displays.|I|ORR|adoptedDefault|Know what is flying.
+SWR-010|SWR-009|buildMatch|The preflight checklist shall confirm the software version matches the approved release.|D|ORR|adoptedDefault|Prevents the wrong version.
+SWR-011|SWR-001|parameters|Flight parameters shall be stored with a checksum and the flight controller shall refuse to arm with an invalid checksum.|T|CDR|projectChoice|Prevents corrupt parameters.
+SWR-012|SWR-011|parameterRecord|The parameter set used shall be recorded in the flight log.|I|ORR|adoptedDefault|Reproducibility.
+SWR-013|VEH-7|timing|The flight control task shall complete within its period with a margin of [TBD] percent.|T|CDR|placeholder|Missed deadlines add latency.
+SWR-014|SWR-013|cpuLoad|The processor load shall not exceed [TBD] percent in any flight mode.|T|CDR|placeholder|Leaves headroom.
+SWR-015|VEH-7|faultManagement|The flight software shall detect and report faults in sensors, actuators, power and link, each with a defined response.|T|CDR|projectChoice|Systematic failure handling.
+SWR-016|SWR-015|faultTable|The faults and responses shall be listed in a fault table that is reviewed at PDR and CDR.|I|PDR|adoptedDefault|Review point.
+SWR-017|VEH-7|alerting|The ground station shall show faults, cautions and alerts with a distinct display and sound for each level.|D|CDR|projectChoice|Pilot must tell levels apart.
+SWR-018|VEH-7|modeAnnunciation|The ground station shall display the flight mode and nacelle angle at all times.|D|CDR|adoptedDefault|Pilot situational awareness.
+SWR-019|VEH-7|preflightEnforce|The software shall implement the preflight checks defined in CHK-006 and prevent arming if any failed.|T|CDR|projectChoice|Implements automatic checks.
+SWR-020|VEH-8|boundaryDefaults|The software shall use only boundary variable values defined in the vehicle model for its limits.|I|CDR|adoptedDefault|Single source for limits.
+SWR-021|SWR-001|regression|The test suite shall run after each software change and shall pass before release.|T|CDR|adoptedDefault|Prevents regressions.
+SWR-022|SWR-001|dataLink|The ground station software shall be developed under the same process as the flight software or a recorded equivalent.|I|PDR|placeholder|Ground station errors can mislead the pilot.

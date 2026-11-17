@@ -1079,6 +1079,875 @@ package TiltrotorVehicleDecomposition {
         }
     }
 
+    package ControlReqs {
+        requirement <'FCS-001'> hoverControl : VehicleRequirement {
+            doc /* The flight controller shall stabilize attitude in hover using differential rotor thrust and nacelle tilt. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "A twin rotor aircraft has no other hover control effectors besides tilt and thrust, unless surfaces are added.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-002'> hoverPitchAuth : VehicleRequirement {
+            doc /* The control system shall produce a pitch moment of at least [TBD] N-m in hover at maximum takeoff weight. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Sets effector sizing for pitch.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'FCS-003'> hoverRollAuth : VehicleRequirement {
+            doc /* The control system shall produce a roll moment of at least [TBD] N-m in hover at maximum takeoff weight. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Roll comes from differential thrust.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'FCS-004'> hoverYawAuth : VehicleRequirement {
+            doc /* The control system shall produce a yaw moment of at least [TBD] N-m in hover at maximum takeoff weight. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Yaw comes from differential nacelle tilt.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'FCS-005'> hoverAttitudeAccuracy : VehicleRequirement {
+            doc /* The flight controller shall hold attitude within [TBD] deg in hover in steady wind up to the VTOL wind limit. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Tied to the wind limit in OPS-012.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-006'> hoverBandwidth : VehicleRequirement {
+            doc /* The attitude control loop in hover shall have a bandwidth of at least [TBD] rad/s. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Bandwidth must exceed the unstable pole of the airframe.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'FCS-007'> hoverGainMargin : VehicleRequirement {
+            doc /* The attitude loops in hover shall have a gain margin of at least [TBD] dB and a phase margin of at least [TBD] deg. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Robustness to model error.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'FCS-008'> conversionControl : VehicleRequirement {
+            doc /* The flight controller shall control attitude and altitude through the whole conversion corridor. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Conversion is the highest risk phase.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'FCS-009'> conversionMargins : VehicleRequirement {
+            doc /* The attitude loops shall meet the margins of FCS-007 at every nacelle angle in the corridor. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Gain scheduling must keep margins across the transition.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'FCS-010'> gainSchedule : VehicleRequirement {
+            doc /* The flight controller shall schedule control gains on nacelle angle and airspeed. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Plant dynamics change strongly with tilt angle.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'FCS-011'> conversionAltHold : VehicleRequirement {
+            doc /* The flight controller shall keep altitude within [TBD] m during conversion. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Altitude loss in conversion is a safety hazard near the ground.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-012'> cruiseControl : VehicleRequirement {
+            doc /* The flight controller shall stabilize attitude and airspeed in cruise using control surfaces and rotor thrust. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Control surfaces are assumed; confirm with the aerodynamics trade.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-013'> cruiseAirspeed : VehicleRequirement {
+            doc /* The flight controller shall hold airspeed within [TBD] kt in cruise. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Airspeed hold needed for energy-efficient cruise.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-014'> modeManager : VehicleRequirement {
+            doc /* The flight controller shall implement the FlightModes state definition and reject any transition not in it. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Implements VEH-7 in software.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'FCS-015'> modeStartup : VehicleRequirement {
+            doc /* The flight controller shall start in the hover mode after power-up with the nacelles at the hover angle or after the nacelles are driven there. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "A known starting mode.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-016'> pilotModes : VehicleRequirement {
+            doc /* The flight controller shall offer manual-attitude, assisted and automatic landing control modes to the remote pilot. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Different levels of pilot workload.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'FCS-017'> failsafeLink : VehicleRequirement {
+            doc /* The flight controller shall command the return and land mode if the control link is lost for more than [TBD] s. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Link loss response is a Part 107 operating practice.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-018'> failsafeLand : VehicleRequirement {
+            doc /* The landing mode shall bring the aircraft to the ground in the selected landing mode. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Lands as planned.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'FCS-019'> altitudeLimit : VehicleRequirement {
+            doc /* The flight controller shall prevent altitude above 400 ft AGL. */
+            attribute :>> basis = Basis::directive;
+            attribute :>> rationale = "Part 107 altitude limit applied in software.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-020'> geofence : VehicleRequirement {
+            doc /* The flight controller shall apply a geofence of [TBD] m horizontal radius around the takeoff point. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Keeps the aircraft within visual range.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-021'> losRange : VehicleRequirement {
+            doc /* The flight controller shall warn the pilot when the aircraft nears the visual range limit of [TBD] m. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Visual line of sight depends on distance.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'FCS-022'> stateEstimate : VehicleRequirement {
+            doc /* The flight controller shall estimate attitude, position, velocity and airspeed with the accuracies in the boundary variable table. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Estimates feed every control loop.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-023'> attitudeAccuracy : VehicleRequirement {
+            doc /* The attitude estimate shall be accurate to within [TBD] deg. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Sets control accuracy.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-024'> airspeedSensing : VehicleRequirement {
+            doc /* The aircraft shall measure airspeed using a sensor that works in hover and cruise. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Pitot-tube sensors do not work in hover.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-025'> sensorRedundancy : VehicleRequirement {
+            doc /* The flight controller shall use at least [TBD] independent sources for attitude and shall detect a failed source. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Single sensor failure must not lose attitude.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-026'> controlLatency : VehicleRequirement {
+            doc /* The time from sensor sample to actuator command shall not exceed [TBD] ms. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Latency reduces phase margin.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-027'> loopRate : VehicleRequirement {
+            doc /* The attitude control loop shall run at a rate of at least [TBD] Hz. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Sampling delay affects stability.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-028'> saturation : VehicleRequirement {
+            doc /* The flight controller shall prevent integrator windup when any effector is saturated. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Windup causes overshoot after saturation.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+    }
+
+    package AeroReqs {
+        requirement <'AER-001'> aeroModel : VehicleRequirement {
+            doc /* The program shall maintain an aerodynamic model of the vehicle valid over the nacelle angle range of 0 to 90 deg and the full flight envelope. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "The control, stability and flutter work all use it.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-002'> aeroModelSource : VehicleRequirement {
+            doc /* The aerodynamic model shall be built from computational analysis and corrected with wind tunnel or flight test data. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Models must be tied to measurements.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-003'> aeroUncertainty : VehicleRequirement {
+            doc /* The aerodynamic model shall state an uncertainty for every coefficient used in control design. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Control margins need the uncertainty.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-004'> cruiseLD : VehicleRequirement {
+            doc /* The vehicle lift-to-drag ratio at the cruise point shall be at least [TBD]. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Cruise efficiency drives endurance.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-005'> wingArea : VehicleRequirement {
+            doc /* The wing area shall be [TBD] m2. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Sizes the stall speed and cruise efficiency.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'AER-006'> wingSpan : VehicleRequirement {
+            doc /* The wing span shall be [TBD] m. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Sets induced drag and storage.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'AER-007'> stallSpeed : VehicleRequirement {
+            doc /* The stall speed at maximum takeoff weight shall not exceed [TBD] kt. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Sets the CTOL speeds and the conversion corridor floor.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AER-008'> corridorDefinition : VehicleRequirement {
+            doc /* The conversion corridor shall be defined as the airspeed range allowed at each nacelle angle, recorded as [TBD]. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Open item VEH-4.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-009'> corridorLower : VehicleRequirement {
+            doc /* The lower corridor boundary shall be set by the wing stall margin of [TBD] percent. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Avoids wing stall during conversion.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-010'> corridorUpper : VehicleRequirement {
+            doc /* The upper corridor boundary shall be set by the rotor loading and flutter margin limits. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Fast flow at high tilt loads the rotor.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-011'> wakeInteraction : VehicleRequirement {
+            doc /* The program shall assess the rotor wake effect on the wing, tail and FPV camera in hover and conversion. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Rotor wash changes forces on the wing.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-012'> fountain : VehicleRequirement {
+            doc /* The program shall assess the ground effect and recirculation in VTOL takeoff and landing. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Ground effect changes hover thrust and stability.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-013'> tailSizing : VehicleRequirement {
+            doc /* The tail and control surface sizes shall give a static margin within the limits of STB-009 at every nacelle angle. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Ties stability limits to sizing.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-014'> trim : VehicleRequirement {
+            doc /* The aircraft shall be trimmable in pitch at every nacelle angle within the corridor. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Out-of-trim conversion is unflyable.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-015'> controlSurfaces : VehicleRequirement {
+            doc /* Each control surface shall provide at least [TBD] of the control power needed for FCS-012. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Sizes the surfaces.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-016'> ctolAero : VehicleRequirement {
+            doc /* The vehicle shall meet its stall and takeoff requirements in CTOL mode with the nacelles at the CTOL angle. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "CTOL mode needs lift from the wing.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-017'> dragCount : VehicleRequirement {
+            doc /* The program shall maintain a drag build-up for the vehicle with each supported payload sensor. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Sensors change the drag and the endurance.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-018'> cruisePower : VehicleRequirement {
+            doc /* The electrical power in cruise shall be computed and recorded as [TBD] W. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Input to the endurance constraint.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-019'> hoverPower : VehicleRequirement {
+            doc /* The electrical power in hover shall be computed and recorded as [TBD] W. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Input to the endurance constraint.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-020'> conversionPower : VehicleRequirement {
+            doc /* The electrical power in conversion shall be computed and recorded as [TBD] W. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Input to the endurance constraint.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-021'> missionProfile : VehicleRequirement {
+            doc /* The mission profile used for endurance shall be defined by hover, conversion and cruise durations of [TBD]. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Endurance depends on the time in each phase.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-022'> windEnvelope : VehicleRequirement {
+            doc /* The vehicle shall remain controllable in winds up to [TBD] kt in cruise. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Sets the wind limit for flight.";
+            attribute :>> phase = "ORR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+    }
+
+    package StructureReqs {
+        requirement <'STR-001'> loadCases : VehicleRequirement {
+            doc /* The program shall define the structural load cases for hover, conversion, cruise, gusts, landing and ground handling. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Strength is checked per case.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-002'> limitFactor : VehicleRequirement {
+            doc /* The limit load factors shall be [TBD] in the positive and [TBD] in the negative direction. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Open item: factors are not chosen.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-003'> safetyFactor : VehicleRequirement {
+            doc /* The ultimate factor of safety shall be [TBD] times limit load. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Open item: factor not chosen.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-004'> marginReporting : VehicleRequirement {
+            doc /* Every structural margin of safety shall be reported with the load case and failure mode. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Makes the margins traceable.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-005'> wingStrength : VehicleRequirement {
+            doc /* The wing and its attachment shall carry the limit loads without detrimental deformation and the ultimate loads without failure. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Primary lift structure.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-006'> nacelleStrength : VehicleRequirement {
+            doc /* The nacelle support structure shall carry the limit and ultimate loads, including rotor thrust, torque and gyroscopic moments. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "The nacelle carries the rotor loads into the wing.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-007'> fuselageStrength : VehicleRequirement {
+            doc /* The fuselage shall carry the limit and ultimate loads, including battery and payload inertia loads. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Carries internal masses.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-008'> gimbalMount : VehicleRequirement {
+            doc /* The gimbal mount shall carry the limit and ultimate loads with the heaviest supported sensor. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Sensor swaps change the load.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-009'> jointAllowables : VehicleRequirement {
+            doc /* Joint and fastener allowables shall be based on test data or the material source recorded in the stress report. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Prevents unsupported allowables.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-010'> materialAllowables : VehicleRequirement {
+            doc /* Material allowables shall be taken from a recorded source and a knockdown for [TBD]. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Composite allowables need knockdowns.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-011'> staticTest : VehicleRequirement {
+            doc /* The structure shall be tested to limit load before first flight. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Verifies the analysis before flight.";
+            attribute :>> phase = "SIR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'STR-012'> testToUltimate : VehicleRequirement {
+            doc /* The structure test article shall be tested to ultimate load, or to a reduced level of [TBD] percent of ultimate if a full test is not practical. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Decision needed on the test depth.";
+            attribute :>> phase = "SIR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'STR-013'> testInstrumentation : VehicleRequirement {
+            doc /* The structural test shall record strain and deflection at [TBD] locations. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Checks the analysis against test.";
+            attribute :>> phase = "SIR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'STR-014'> fatigue : VehicleRequirement {
+            doc /* The primary structure shall have a fatigue life of at least [TBD] flight hours. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Sets the inspection interval.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-015'> vibration : VehicleRequirement {
+            doc /* The structure shall have no resonance within [TBD] percent of the rotor harmonics. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Resonance causes fatigue and noise.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'STR-016'> groundVibTest : VehicleRequirement {
+            doc /* A ground vibration test shall measure the natural frequencies and mode shapes of the assembled aircraft. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Verifies the analysis model for flutter.";
+            attribute :>> phase = "SIR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'STR-017'> flutterMargin : VehicleRequirement {
+            doc /* Whirl flutter margin shall be at least [TBD] percent on airspeed or rotor speed. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Adopted margin is open in the flutter program.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-018'> flutterModel : VehicleRequirement {
+            doc /* The flutter analysis model shall include the stiffness of the nacelle, tilt mechanism and wing, with the rotor and gyroscopic effects. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "These drive the whirl flutter mode.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-019'> flutterModelUpdate : VehicleRequirement {
+            doc /* The flutter analysis model shall be updated with the ground vibration test results before flight. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Test data corrects the model.";
+            attribute :>> phase = "SIR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-020'> flutterAllAngles : VehicleRequirement {
+            doc /* The flutter analysis shall cover every nacelle tilt angle from 0 to 90 deg. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Stiffness and rotor axis change with tilt.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-021'> flutterPayload : VehicleRequirement {
+            doc /* The flutter analysis shall cover the lightest and heaviest supported payload sensor. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Payload changes nose mass and the modes.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-022'> massBudget : VehicleRequirement {
+            doc /* The program shall maintain a mass budget with a margin of [TBD] percent at PDR, reduced at later reviews. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Mass margin policy is open.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-023'> massProperties : VehicleRequirement {
+            doc /* The program shall record the mass, center of gravity and inertia of each component. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Input to the stability and control analyses.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'STR-024'> impactLanding : VehicleRequirement {
+            doc /* The structure shall withstand a landing at a descent rate of [TBD] m/s in VTOL mode without damage to the battery or sensor. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Hard landing is a likely event.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'STR-025'> rotorStrike : VehicleRequirement {
+            doc /* The structure shall limit the damage from a blade strike on the ground to a repairable level. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Probable event in early flight testing.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+    }
+
+    package AvionicsReqs {
+        requirement <'AVN-001'> controlLink : VehicleRequirement {
+            doc /* The aircraft shall have a control link between the ground station and the flight controller. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Pilot control path.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-002'> linkRange : VehicleRequirement {
+            doc /* The control link shall operate at a range of at least [TBD] m with the margin of [TBD] dB. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Must cover the visual line of sight range.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-003'> linkLatency : VehicleRequirement {
+            doc /* The control link latency shall not exceed [TBD] ms. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Latency limits manual control.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-004'> linkFrequency : VehicleRequirement {
+            doc /* The control link shall operate on a frequency band permitted for unlicensed use in the area of operation. */
+            attribute :>> basis = Basis::directive;
+            attribute :>> rationale = "Operating on a legal band is required.";
+            attribute :>> phase = "SIR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'AVN-005'> linkEncryption : VehicleRequirement {
+            doc /* The control link shall authenticate commands so that only the paired ground station can control the aircraft. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Prevents accidental or hostile control.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-006'> linkLossDetect : VehicleRequirement {
+            doc /* The flight controller shall detect control link loss within [TBD] ms. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Starts the failsafe in FCS-017.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-007'> telemetryDown : VehicleRequirement {
+            doc /* The aircraft shall send telemetry to the ground station at a rate of at least [TBD] Hz. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Supports the displays.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-008'> gps : VehicleRequirement {
+            doc /* The aircraft shall have a satellite navigation receiver that reports position to the flight controller. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Position and geofence.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-009'> gpsAccuracy : VehicleRequirement {
+            doc /* The satellite navigation position shall be accurate to within [TBD] m. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Geofence and landing accuracy.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-010'> gpsLoss : VehicleRequirement {
+            doc /* The flight controller shall continue to fly attitude control when the satellite navigation is lost and shall alert the pilot. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Attitude control must not depend on GPS.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-011'> imu : VehicleRequirement {
+            doc /* The aircraft shall have an inertial measurement unit with a gyro range of at least [TBD] deg/s and an accelerometer range of at least [TBD] g. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Sets attitude estimation capability.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-012'> imuVibration : VehicleRequirement {
+            doc /* The inertial measurement unit shall be mounted with vibration isolation that gives noise below [TBD] at rotor harmonics. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Rotor vibration corrupts the sensor.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-013'> magnetometer : VehicleRequirement {
+            doc /* The aircraft shall measure heading and shall tolerate magnetic interference from the motors by [TBD]. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Motors disturb magnetometers.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-014'> baro : VehicleRequirement {
+            doc /* The aircraft shall have a barometric altitude sensor protected from rotor wash. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Altitude estimation.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-015'> altitudeAgl : VehicleRequirement {
+            doc /* The aircraft shall measure height above ground to within [TBD] m below [TBD] m altitude. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Needed for VTOL landing.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-016'> watchdog : VehicleRequirement {
+            doc /* The flight controller shall have a watchdog that resets the processor and returns to a safe state within [TBD] ms of a software hang. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Hang recovery.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-017'> killSwitch : VehicleRequirement {
+            doc /* The remote pilot shall be able to stop all motors from the ground station in at most [TBD] s. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Emergency stop on the ground.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'AVN-018'> killInFlight : VehicleRequirement {
+            doc /* The motor stop in flight shall require a deliberate action by the pilot. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "A stray press must not drop the aircraft.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'AVN-019'> remoteId : VehicleRequirement {
+            doc /* The aircraft shall broadcast remote identification where required by the rules of the area of operation. */
+            attribute :>> basis = Basis::directive;
+            attribute :>> rationale = "FAA remote ID rule for unmanned aircraft.";
+            attribute :>> phase = "ORR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'AVN-020'> antiCollision : VehicleRequirement {
+            doc /* The aircraft shall carry lights visible for [TBD] statute miles if operated at night. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Part 107 night operation rule if used.";
+            attribute :>> phase = "ORR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'AVN-021'> dataLogger : VehicleRequirement {
+            doc /* The aircraft shall log flight data at a rate of at least [TBD] Hz for the whole flight. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Needed for review and model correction.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-022'> logStorage : VehicleRequirement {
+            doc /* The data logger shall hold at least [TBD] hours of data and keep it after a power loss. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Crash data must survive.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-023'> avionicsMass : VehicleRequirement {
+            doc /* The avionics shall have a total mass of not more than [TBD] kg. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Part of the mass budget.";
+            attribute :>> phase = "SIR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-024'> avionicsPower : VehicleRequirement {
+            doc /* The avionics shall draw no more than [TBD] W on average. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Part of the power budget.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-025'> emc : VehicleRequirement {
+            doc /* The avionics shall tolerate the electromagnetic emissions of the motors and speed controllers during operation. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Motor noise upsets sensors.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+    }
+
+    package SoftwareReqs {
+        requirement <'SWR-001'> softwareStandard : VehicleRequirement {
+            doc /* The flight software shall be developed according to a recorded process that defines requirements, design, review, test and configuration control. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Even small projects need a process; the level of rigor is a decision (AR-08/32 and the software plan).";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'SWR-002'> softwareLevel : VehicleRequirement {
+            doc /* The program shall assign a development assurance level to the flight software and record the reason. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Level not yet assigned.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'SWR-003'> softwareReq : VehicleRequirement {
+            doc /* Each software requirement shall trace to a vehicle requirement and to at least one test. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Traceability to tests.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'SWR-004'> codeReview : VehicleRequirement {
+            doc /* All flight software changes shall be reviewed by a person other than the author before release. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Catches defects.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'SWR-005'> staticAnalysis : VehicleRequirement {
+            doc /* The flight software shall pass static analysis with no open high-severity findings at release. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Finds defect classes.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'SWR-006'> unitTest : VehicleRequirement {
+            doc /* Each flight software function that affects control or mode logic shall have a unit test. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Tests the logic directly.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'SWR-007'> hil : VehicleRequirement {
+            doc /* The flight software shall pass a hardware-in-the-loop test of every mode transition before first flight. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Tests the real hardware path.";
+            attribute :>> phase = "SIR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'SWR-008'> simulation : VehicleRequirement {
+            doc /* A simulation with the aerodynamic model shall test each mode transition and each failure response. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Cheaper than flight tests.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'SWR-009'> buildControl : VehicleRequirement {
+            doc /* Each flight software build shall carry a version identifier and a hash that the ground station displays. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Know what is flying.";
+            attribute :>> phase = "ORR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'SWR-010'> buildMatch : VehicleRequirement {
+            doc /* The preflight checklist shall confirm the software version matches the approved release. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Prevents the wrong version.";
+            attribute :>> phase = "ORR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'SWR-011'> parameters : VehicleRequirement {
+            doc /* Flight parameters shall be stored with a checksum and the flight controller shall refuse to arm with an invalid checksum. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Prevents corrupt parameters.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'SWR-012'> parameterRecord : VehicleRequirement {
+            doc /* The parameter set used shall be recorded in the flight log. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Reproducibility.";
+            attribute :>> phase = "ORR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'SWR-013'> timing : VehicleRequirement {
+            doc /* The flight control task shall complete within its period with a margin of [TBD] percent. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Missed deadlines add latency.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'SWR-014'> cpuLoad : VehicleRequirement {
+            doc /* The processor load shall not exceed [TBD] percent in any flight mode. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Leaves headroom.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'SWR-015'> faultManagement : VehicleRequirement {
+            doc /* The flight software shall detect and report faults in sensors, actuators, power and link, each with a defined response. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Systematic failure handling.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'SWR-016'> faultTable : VehicleRequirement {
+            doc /* The faults and responses shall be listed in a fault table that is reviewed at PDR and CDR. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Review point.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'SWR-017'> alerting : VehicleRequirement {
+            doc /* The ground station shall show faults, cautions and alerts with a distinct display and sound for each level. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Pilot must tell levels apart.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'SWR-018'> modeAnnunciation : VehicleRequirement {
+            doc /* The ground station shall display the flight mode and nacelle angle at all times. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Pilot situational awareness.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'SWR-019'> preflightEnforce : VehicleRequirement {
+            doc /* The software shall implement the preflight checks defined in CHK-006 and prevent arming if any failed. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Implements automatic checks.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'SWR-020'> boundaryDefaults : VehicleRequirement {
+            doc /* The software shall use only boundary variable values defined in the vehicle model for its limits. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Single source for limits.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'SWR-021'> regression : VehicleRequirement {
+            doc /* The test suite shall run after each software change and shall pass before release. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Prevents regressions.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'SWR-022'> dataLink : VehicleRequirement {
+            doc /* The ground station software shall be developed under the same process as the flight software or a recorded equivalent. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Ground station errors can mislead the pilot.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+    }
+
     // Derivation: each requirement depends on the parent it refines
     dependency from PowerReqs::usableEnergy to TiltrotorVehicleRequirements::vehicleReqs::endurance;
     dependency from PowerReqs::energyReserve to TiltrotorVehicleRequirements::vehicleReqs::endurance;
@@ -1231,4 +2100,126 @@ package TiltrotorVehicleDecomposition {
     dependency from OperationsReqs::chkAutoItems to OperationsReqs::preflightChecklist;
     dependency from OperationsReqs::chkPaper to OperationsReqs::preflightChecklist;
     dependency from OperationsReqs::chkRevision to OperationsReqs::preflightChecklist;
+    dependency from ControlReqs::hoverControl to TiltrotorVehicleRequirements::vehicleReqs::conversion;
+    dependency from ControlReqs::hoverPitchAuth to ControlReqs::hoverControl;
+    dependency from ControlReqs::hoverRollAuth to ControlReqs::hoverControl;
+    dependency from ControlReqs::hoverYawAuth to ControlReqs::hoverControl;
+    dependency from ControlReqs::hoverAttitudeAccuracy to ControlReqs::hoverControl;
+    dependency from ControlReqs::hoverBandwidth to ControlReqs::hoverControl;
+    dependency from ControlReqs::hoverGainMargin to ControlReqs::hoverBandwidth;
+    dependency from ControlReqs::conversionControl to TiltrotorVehicleRequirements::vehicleReqs::conversion;
+    dependency from ControlReqs::conversionMargins to ControlReqs::conversionControl;
+    dependency from ControlReqs::gainSchedule to ControlReqs::conversionControl;
+    dependency from ControlReqs::conversionAltHold to ControlReqs::conversionControl;
+    dependency from ControlReqs::cruiseControl to TiltrotorVehicleRequirements::vehicleReqs::conversion;
+    dependency from ControlReqs::cruiseAirspeed to ControlReqs::cruiseControl;
+    dependency from ControlReqs::modeManager to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
+    dependency from ControlReqs::modeStartup to ControlReqs::modeManager;
+    dependency from ControlReqs::pilotModes to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
+    dependency from ControlReqs::failsafeLink to ControlReqs::pilotModes;
+    dependency from ControlReqs::failsafeLand to ControlReqs::failsafeLink;
+    dependency from ControlReqs::altitudeLimit to TiltrotorVehicleRequirements::vehicleReqs::part107::envelope;
+    dependency from ControlReqs::geofence to ControlReqs::altitudeLimit;
+    dependency from ControlReqs::losRange to TiltrotorVehicleRequirements::vehicleReqs::part107::lineOfSight;
+    dependency from ControlReqs::stateEstimate to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from ControlReqs::attitudeAccuracy to ControlReqs::stateEstimate;
+    dependency from ControlReqs::airspeedSensing to ControlReqs::stateEstimate;
+    dependency from ControlReqs::sensorRedundancy to ControlReqs::stateEstimate;
+    dependency from ControlReqs::controlLatency to ControlReqs::hoverControl;
+    dependency from ControlReqs::loopRate to ControlReqs::hoverControl;
+    dependency from ControlReqs::saturation to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from AeroReqs::aeroModel to TiltrotorVehicleRequirements::vehicleReqs::conversion;
+    dependency from AeroReqs::aeroModelSource to AeroReqs::aeroModel;
+    dependency from AeroReqs::aeroUncertainty to AeroReqs::aeroModel;
+    dependency from AeroReqs::cruiseLD to TiltrotorVehicleRequirements::vehicleReqs::endurance;
+    dependency from AeroReqs::wingArea to TiltrotorVehicleRequirements::vehicleReqs::endurance;
+    dependency from AeroReqs::wingSpan to AeroReqs::wingArea;
+    dependency from AeroReqs::stallSpeed to AeroReqs::wingArea;
+    dependency from AeroReqs::corridorDefinition to TiltrotorVehicleRequirements::vehicleReqs::conversion;
+    dependency from AeroReqs::corridorLower to AeroReqs::corridorDefinition;
+    dependency from AeroReqs::corridorUpper to AeroReqs::corridorDefinition;
+    dependency from AeroReqs::wakeInteraction to TiltrotorVehicleRequirements::vehicleReqs::conversion;
+    dependency from AeroReqs::fountain to AeroReqs::wakeInteraction;
+    dependency from AeroReqs::tailSizing to TiltrotorVehicleRequirements::vehicleReqs::conversion;
+    dependency from AeroReqs::trim to AeroReqs::tailSizing;
+    dependency from AeroReqs::controlSurfaces to AeroReqs::tailSizing;
+    dependency from AeroReqs::ctolAero to TiltrotorVehicleRequirements::vehicleReqs::conversion;
+    dependency from AeroReqs::dragCount to TiltrotorVehicleRequirements::vehicleReqs::conversion;
+    dependency from AeroReqs::cruisePower to TiltrotorVehicleRequirements::vehicleReqs::endurance;
+    dependency from AeroReqs::hoverPower to TiltrotorVehicleRequirements::vehicleReqs::endurance;
+    dependency from AeroReqs::conversionPower to AeroReqs::hoverPower;
+    dependency from AeroReqs::missionProfile to TiltrotorVehicleRequirements::vehicleReqs::endurance;
+    dependency from AeroReqs::windEnvelope to TiltrotorVehicleRequirements::vehicleReqs::part107::envelope;
+    dependency from StructureReqs::loadCases to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::limitFactor to StructureReqs::loadCases;
+    dependency from StructureReqs::safetyFactor to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::marginReporting to StructureReqs::safetyFactor;
+    dependency from StructureReqs::wingStrength to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::nacelleStrength to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::fuselageStrength to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::gimbalMount to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::jointAllowables to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::materialAllowables to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::staticTest to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::testToUltimate to StructureReqs::staticTest;
+    dependency from StructureReqs::testInstrumentation to StructureReqs::staticTest;
+    dependency from StructureReqs::fatigue to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::vibration to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::groundVibTest to StructureReqs::vibration;
+    dependency from StructureReqs::flutterMargin to TiltrotorVehicleRequirements::vehicleReqs::whirlFlutterFree;
+    dependency from StructureReqs::flutterModel to StructureReqs::flutterMargin;
+    dependency from StructureReqs::flutterModelUpdate to StructureReqs::flutterMargin;
+    dependency from StructureReqs::flutterAllAngles to StructureReqs::flutterMargin;
+    dependency from StructureReqs::flutterPayload to StructureReqs::flutterMargin;
+    dependency from StructureReqs::massBudget to TiltrotorVehicleRequirements::vehicleReqs::part107::maxMass;
+    dependency from StructureReqs::massProperties to StructureReqs::massBudget;
+    dependency from StructureReqs::impactLanding to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::rotorStrike to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from AvionicsReqs::controlLink to TiltrotorVehicleRequirements::vehicleReqs::part107::lineOfSight;
+    dependency from AvionicsReqs::linkRange to AvionicsReqs::controlLink;
+    dependency from AvionicsReqs::linkLatency to AvionicsReqs::controlLink;
+    dependency from AvionicsReqs::linkFrequency to AvionicsReqs::controlLink;
+    dependency from AvionicsReqs::linkEncryption to AvionicsReqs::controlLink;
+    dependency from AvionicsReqs::linkLossDetect to AvionicsReqs::controlLink;
+    dependency from AvionicsReqs::telemetryDown to AvionicsReqs::controlLink;
+    dependency from AvionicsReqs::gps to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from AvionicsReqs::gpsAccuracy to AvionicsReqs::gps;
+    dependency from AvionicsReqs::gpsLoss to AvionicsReqs::gps;
+    dependency from AvionicsReqs::imu to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from AvionicsReqs::imuVibration to AvionicsReqs::imu;
+    dependency from AvionicsReqs::magnetometer to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from AvionicsReqs::baro to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from AvionicsReqs::altitudeAgl to TiltrotorVehicleRequirements::vehicleReqs::part107::envelope;
+    dependency from AvionicsReqs::watchdog to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
+    dependency from AvionicsReqs::killSwitch to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
+    dependency from AvionicsReqs::killInFlight to AvionicsReqs::killSwitch;
+    dependency from AvionicsReqs::remoteId to TiltrotorVehicleRequirements::vehicleReqs::part107;
+    dependency from AvionicsReqs::antiCollision to TiltrotorVehicleRequirements::vehicleReqs::part107;
+    dependency from AvionicsReqs::dataLogger to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from AvionicsReqs::logStorage to AvionicsReqs::dataLogger;
+    dependency from AvionicsReqs::avionicsMass to TiltrotorVehicleRequirements::vehicleReqs::part107::maxMass;
+    dependency from AvionicsReqs::avionicsPower to TiltrotorVehicleRequirements::vehicleReqs::endurance;
+    dependency from AvionicsReqs::emc to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from SoftwareReqs::softwareStandard to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
+    dependency from SoftwareReqs::softwareLevel to SoftwareReqs::softwareStandard;
+    dependency from SoftwareReqs::softwareReq to SoftwareReqs::softwareStandard;
+    dependency from SoftwareReqs::codeReview to SoftwareReqs::softwareStandard;
+    dependency from SoftwareReqs::staticAnalysis to SoftwareReqs::softwareStandard;
+    dependency from SoftwareReqs::unitTest to SoftwareReqs::softwareStandard;
+    dependency from SoftwareReqs::hil to SoftwareReqs::softwareStandard;
+    dependency from SoftwareReqs::simulation to SoftwareReqs::hil;
+    dependency from SoftwareReqs::buildControl to SoftwareReqs::softwareStandard;
+    dependency from SoftwareReqs::buildMatch to SoftwareReqs::buildControl;
+    dependency from SoftwareReqs::parameters to SoftwareReqs::softwareStandard;
+    dependency from SoftwareReqs::parameterRecord to SoftwareReqs::parameters;
+    dependency from SoftwareReqs::timing to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
+    dependency from SoftwareReqs::cpuLoad to SoftwareReqs::timing;
+    dependency from SoftwareReqs::faultManagement to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
+    dependency from SoftwareReqs::faultTable to SoftwareReqs::faultManagement;
+    dependency from SoftwareReqs::alerting to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
+    dependency from SoftwareReqs::modeAnnunciation to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
+    dependency from SoftwareReqs::preflightEnforce to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
+    dependency from SoftwareReqs::boundaryDefaults to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from SoftwareReqs::regression to SoftwareReqs::softwareStandard;
+    dependency from SoftwareReqs::dataLink to SoftwareReqs::softwareStandard;
 }

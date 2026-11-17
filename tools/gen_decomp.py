@@ -5,7 +5,8 @@ VEH = {'VEH-1':'configuration','VEH-2':'endurance','VEH-3':'part107','VEH-3.1':'
        'VEH-3.3':'part107::lineOfSight','VEH-4':'conversion','VEH-5':'whirlFlutterFree','VEH-6':'strength',
        'VEH-7':'modeLogic','VEH-8':'boundaryComplete'}
 GROUPS = [('pwr','PowerReqs'),('prop','PropulsionReqs'),('tilt','TiltReqs'),('payload','PayloadReqs'),
-          ('stab','StabilityReqs'),('ops','OperationsReqs')]
+          ('stab','StabilityReqs'),('ops','OperationsReqs'),
+          ('fcs','ControlReqs'),('aero','AeroReqs'),('str','StructureReqs'),('avn','AvionicsReqs'),('swr','SoftwareReqs')]
 VM = {'T':'byTest','A':'byAnalysis','D':'byDemonstration','I':'byInspection'}
 rows = []
 for f, pk in GROUPS:

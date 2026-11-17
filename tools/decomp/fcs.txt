@@ -1,0 +1,28 @@
+FCS-001|VEH-4|hoverControl|The flight controller shall stabilize attitude in hover using differential rotor thrust and nacelle tilt.|T|CDR|projectChoice|A twin rotor aircraft has no other hover control effectors besides tilt and thrust, unless surfaces are added.
+FCS-002|FCS-001|hoverPitchAuth|The control system shall produce a pitch moment of at least [TBD] N-m in hover at maximum takeoff weight.|A|PDR|placeholder|Sets effector sizing for pitch.
+FCS-003|FCS-001|hoverRollAuth|The control system shall produce a roll moment of at least [TBD] N-m in hover at maximum takeoff weight.|A|PDR|placeholder|Roll comes from differential thrust.
+FCS-004|FCS-001|hoverYawAuth|The control system shall produce a yaw moment of at least [TBD] N-m in hover at maximum takeoff weight.|A|PDR|placeholder|Yaw comes from differential nacelle tilt.
+FCS-005|FCS-001|hoverAttitudeAccuracy|The flight controller shall hold attitude within [TBD] deg in hover in steady wind up to the VTOL wind limit.|T|CDR|placeholder|Tied to the wind limit in OPS-012.
+FCS-006|FCS-001|hoverBandwidth|The attitude control loop in hover shall have a bandwidth of at least [TBD] rad/s.|A|CDR|placeholder|Bandwidth must exceed the unstable pole of the airframe.
+FCS-007|FCS-006|hoverGainMargin|The attitude loops in hover shall have a gain margin of at least [TBD] dB and a phase margin of at least [TBD] deg.|A|CDR|placeholder|Robustness to model error.
+FCS-008|VEH-4|conversionControl|The flight controller shall control attitude and altitude through the whole conversion corridor.|A|CDR|projectChoice|Conversion is the highest risk phase.
+FCS-009|FCS-008|conversionMargins|The attitude loops shall meet the margins of FCS-007 at every nacelle angle in the corridor.|A|CDR|placeholder|Gain scheduling must keep margins across the transition.
+FCS-010|FCS-008|gainSchedule|The flight controller shall schedule control gains on nacelle angle and airspeed.|A|CDR|projectChoice|Plant dynamics change strongly with tilt angle.
+FCS-011|FCS-008|conversionAltHold|The flight controller shall keep altitude within [TBD] m during conversion.|T|CDR|placeholder|Altitude loss in conversion is a safety hazard near the ground.
+FCS-012|VEH-4|cruiseControl|The flight controller shall stabilize attitude and airspeed in cruise using control surfaces and rotor thrust.|T|CDR|placeholder|Control surfaces are assumed; confirm with the aerodynamics trade.
+FCS-013|FCS-012|cruiseAirspeed|The flight controller shall hold airspeed within [TBD] kt in cruise.|T|CDR|placeholder|Airspeed hold needed for energy-efficient cruise.
+FCS-014|VEH-7|modeManager|The flight controller shall implement the FlightModes state definition and reject any transition not in it.|A|PDR|adoptedDefault|Implements VEH-7 in software.
+FCS-015|FCS-014|modeStartup|The flight controller shall start in the hover mode after power-up with the nacelles at the hover angle or after the nacelles are driven there.|T|CDR|projectChoice|A known starting mode.
+FCS-016|VEH-7|pilotModes|The flight controller shall offer manual-attitude, assisted and automatic landing control modes to the remote pilot.|D|CDR|projectChoice|Different levels of pilot workload.
+FCS-017|FCS-016|failsafeLink|The flight controller shall command the return and land mode if the control link is lost for more than [TBD] s.|T|CDR|placeholder|Link loss response is a Part 107 operating practice.
+FCS-018|FCS-017|failsafeLand|The landing mode shall bring the aircraft to the ground in the selected landing mode.|D|CDR|projectChoice|Lands as planned.
+FCS-019|VEH-3.2|altitudeLimit|The flight controller shall prevent altitude above 400 ft AGL.|T|CDR|directive|Part 107 altitude limit applied in software.
+FCS-020|FCS-019|geofence|The flight controller shall apply a geofence of [TBD] m horizontal radius around the takeoff point.|T|CDR|placeholder|Keeps the aircraft within visual range.
+FCS-021|VEH-3.3|losRange|The flight controller shall warn the pilot when the aircraft nears the visual range limit of [TBD] m.|D|CDR|placeholder|Visual line of sight depends on distance.
+FCS-022|VEH-8|stateEstimate|The flight controller shall estimate attitude, position, velocity and airspeed with the accuracies in the boundary variable table.|T|CDR|placeholder|Estimates feed every control loop.
+FCS-023|FCS-022|attitudeAccuracy|The attitude estimate shall be accurate to within [TBD] deg.|T|CDR|placeholder|Sets control accuracy.
+FCS-024|FCS-022|airspeedSensing|The aircraft shall measure airspeed using a sensor that works in hover and cruise.|T|CDR|projectChoice|Pitot-tube sensors do not work in hover.
+FCS-025|FCS-022|sensorRedundancy|The flight controller shall use at least [TBD] independent sources for attitude and shall detect a failed source.|T|CDR|placeholder|Single sensor failure must not lose attitude.
+FCS-026|FCS-001|controlLatency|The time from sensor sample to actuator command shall not exceed [TBD] ms.|T|CDR|placeholder|Latency reduces phase margin.
+FCS-027|FCS-001|loopRate|The attitude control loop shall run at a rate of at least [TBD] Hz.|T|CDR|placeholder|Sampling delay affects stability.
+FCS-028|VEH-8|saturation|The flight controller shall prevent integrator windup when any effector is saturated.|T|CDR|adoptedDefault|Windup causes overshoot after saturation.

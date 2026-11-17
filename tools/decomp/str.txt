@@ -1,0 +1,25 @@
+STR-001|VEH-6|loadCases|The program shall define the structural load cases for hover, conversion, cruise, gusts, landing and ground handling.|A|PDR|projectChoice|Strength is checked per case.
+STR-002|STR-001|limitFactor|The limit load factors shall be [TBD] in the positive and [TBD] in the negative direction.|A|PDR|placeholder|Open item: factors are not chosen.
+STR-003|VEH-6|safetyFactor|The ultimate factor of safety shall be [TBD] times limit load.|A|PDR|placeholder|Open item: factor not chosen.
+STR-004|STR-003|marginReporting|Every structural margin of safety shall be reported with the load case and failure mode.|A|CDR|adoptedDefault|Makes the margins traceable.
+STR-005|VEH-6|wingStrength|The wing and its attachment shall carry the limit loads without detrimental deformation and the ultimate loads without failure.|A|CDR|adoptedDefault|Primary lift structure.
+STR-006|VEH-6|nacelleStrength|The nacelle support structure shall carry the limit and ultimate loads, including rotor thrust, torque and gyroscopic moments.|A|CDR|adoptedDefault|The nacelle carries the rotor loads into the wing.
+STR-007|VEH-6|fuselageStrength|The fuselage shall carry the limit and ultimate loads, including battery and payload inertia loads.|A|CDR|adoptedDefault|Carries internal masses.
+STR-008|VEH-6|gimbalMount|The gimbal mount shall carry the limit and ultimate loads with the heaviest supported sensor.|A|CDR|adoptedDefault|Sensor swaps change the load.
+STR-009|VEH-6|jointAllowables|Joint and fastener allowables shall be based on test data or the material source recorded in the stress report.|A|CDR|adoptedDefault|Prevents unsupported allowables.
+STR-010|VEH-6|materialAllowables|Material allowables shall be taken from a recorded source and a knockdown for [TBD].|A|CDR|placeholder|Composite allowables need knockdowns.
+STR-011|VEH-6|staticTest|The structure shall be tested to limit load before first flight.|T|SIR|projectChoice|Verifies the analysis before flight.
+STR-012|STR-011|testToUltimate|The structure test article shall be tested to ultimate load, or to a reduced level of [TBD] percent of ultimate if a full test is not practical.|T|SIR|placeholder|Decision needed on the test depth.
+STR-013|STR-011|testInstrumentation|The structural test shall record strain and deflection at [TBD] locations.|T|SIR|placeholder|Checks the analysis against test.
+STR-014|VEH-6|fatigue|The primary structure shall have a fatigue life of at least [TBD] flight hours.|A|CDR|placeholder|Sets the inspection interval.
+STR-015|VEH-6|vibration|The structure shall have no resonance within [TBD] percent of the rotor harmonics.|T|CDR|placeholder|Resonance causes fatigue and noise.
+STR-016|STR-015|groundVibTest|A ground vibration test shall measure the natural frequencies and mode shapes of the assembled aircraft.|T|SIR|projectChoice|Verifies the analysis model for flutter.
+STR-017|VEH-5|flutterMargin|Whirl flutter margin shall be at least [TBD] percent on airspeed or rotor speed.|A|CDR|placeholder|Adopted margin is open in the flutter program.
+STR-018|STR-017|flutterModel|The flutter analysis model shall include the stiffness of the nacelle, tilt mechanism and wing, with the rotor and gyroscopic effects.|A|PDR|adoptedDefault|These drive the whirl flutter mode.
+STR-019|STR-017|flutterModelUpdate|The flutter analysis model shall be updated with the ground vibration test results before flight.|A|SIR|adoptedDefault|Test data corrects the model.
+STR-020|STR-017|flutterAllAngles|The flutter analysis shall cover every nacelle tilt angle from 0 to 90 deg.|A|CDR|adoptedDefault|Stiffness and rotor axis change with tilt.
+STR-021|STR-017|flutterPayload|The flutter analysis shall cover the lightest and heaviest supported payload sensor.|A|CDR|projectChoice|Payload changes nose mass and the modes.
+STR-022|VEH-3.1|massBudget|The program shall maintain a mass budget with a margin of [TBD] percent at PDR, reduced at later reviews.|A|PDR|placeholder|Mass margin policy is open.
+STR-023|STR-022|massProperties|The program shall record the mass, center of gravity and inertia of each component.|I|CDR|adoptedDefault|Input to the stability and control analyses.
+STR-024|VEH-6|impactLanding|The structure shall withstand a landing at a descent rate of [TBD] m/s in VTOL mode without damage to the battery or sensor.|T|CDR|placeholder|Hard landing is a likely event.
+STR-025|VEH-6|rotorStrike|The structure shall limit the damage from a blade strike on the ground to a repairable level.|A|CDR|placeholder|Probable event in early flight testing.
