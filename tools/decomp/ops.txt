@@ -3,12 +3,12 @@ OPS-002|OPS-001|ctolDef|CTOL shall mean takeoff and landing with the nacelles at
 OPS-003|OPS-001|vtolDef|VTOL shall mean takeoff and landing with the nacelles at 90 deg and no ground roll, with conversion to cruise in flight.|I|PDR|projectChoice|Defines the term for the requirements below.
 OPS-004|OPS-001|cvtolDef|C/VTOL shall mean a flight that includes transition between hover and cruise and that can take off in one of CTOL or VTOL and land in the other.|I|PDR|projectChoice|Defined by the program owner: transition, with takeoff and landing possible in alternate modes.
 OPS-005|OPS-002|ctolGear|The vehicle shall have landing gear that supports the aircraft on the ground in CTOL mode.|I|PDR|projectChoice|Program owner chose landing gear for CTOL.
-OPS-006|OPS-005|ctolRunway|The takeoff ground roll in CTOL mode shall not exceed [TBD] m on [TBD] surface.|T|CDR|placeholder|Sets the runway the operator needs.
-OPS-007|OPS-005|ctolLandingRoll|The landing ground roll in CTOL mode shall not exceed [TBD] m on [TBD] surface.|T|CDR|placeholder|Sets the runway the operator needs.
-OPS-008|OPS-002|ctolClear|The rotors shall clear the ground by at least [TBD] mm in CTOL takeoff and landing attitudes.|A|PDR|placeholder|Strike risk on rotation and flare.
+OPS-006|OPS-005|ctolRunway|The takeoff ground roll in CTOL mode shall not exceed [TBD] ft on [TBD] surface.|T|CDR|placeholder|Sets the runway the operator needs.
+OPS-007|OPS-005|ctolLandingRoll|The landing ground roll in CTOL mode shall not exceed [TBD] ft on [TBD] surface.|T|CDR|placeholder|Sets the runway the operator needs.
+OPS-008|OPS-002|ctolClear|The rotors shall clear the ground by at least [TBD] in in CTOL takeoff and landing attitudes.|A|PDR|placeholder|Strike risk on rotation and flare.
 OPS-009|OPS-002|ctolSpeeds|The rotation speed and approach speed for CTOL mode shall be determined by flight test and recorded in the flight manual.|T|ORR|placeholder|Needed before CTOL flights are made.
-OPS-010|OPS-002|ctolGearLoad|The landing gear shall carry the limit load of a landing at a descent rate of [TBD] m/s without detrimental deformation.|A|CDR|placeholder|Structural sizing of the gear.
-OPS-011|OPS-003|vtolPad|The vehicle shall take off and land vertically from a flat surface within a [TBD] m diameter circle.|D|ORR|placeholder|Sets the VTOL area needed.
+OPS-010|OPS-002|ctolGearLoad|The landing gear shall carry the limit load of a landing at a descent rate of [TBD] ft/s without detrimental deformation.|A|CDR|placeholder|Structural sizing of the gear.
+OPS-011|OPS-003|vtolPad|The vehicle shall take off and land vertically from a flat surface within a [TBD] ft diameter circle.|D|ORR|placeholder|Sets the VTOL area needed.
 OPS-012|OPS-003|vtolWindLimit|VTOL takeoff and landing shall be possible in steady wind up to [TBD] kt and gusts up to [TBD] kt.|D|ORR|placeholder|Environmental limit for the checklist.
 OPS-013|OPS-004|cvtolTransitionGround|In C/VTOL mode the flight controller shall accept the landing mode selection in flight and configure the nacelles to match.|D|CDR|projectChoice|Lets the pilot change mode in flight.
 OPS-014|OPS-001|modeSelect|The remote pilot shall select CTOL, STOL, VTOL or C/VTOL before takeoff.|D|CDR|projectChoice|Mode drives the checklist and limits.
@@ -27,10 +27,10 @@ OPS-018|OPS-014|modeLock|The flight controller shall not change the takeoff and 
 CHK-009|CHK-008|chkRevDisplay|The ground station shall show the revision of the checklist in use.|D|ORR|adoptedDefault|The user can see which revision is in use.
 OPS-019|OPS-001|stolDef|STOL shall mean takeoff and landing with the nacelles at a partially tilted angle between the CTOL and VTOL angles and a ground roll shorter than the CTOL ground roll.|I|PDR|projectChoice|Program owner added STOL: partial tilt shortens the roll and the thrust carries part of the weight.
 OPS-020|OPS-019|stolAngleRange|The flight controller shall allow the remote pilot to select a STOL nacelle angle between [TBD] deg and [TBD] deg.|D|CDR|placeholder|Range of partial tilt allowed for takeoff and landing.
-OPS-021|OPS-019|stolTakeoffRoll|The takeoff ground roll in STOL mode shall not exceed [TBD] m on [TBD] surface at the maximum STOL takeoff mass.|T|CDR|placeholder|Defines the short runway.
-OPS-022|OPS-019|stolLandingRoll|The landing ground roll in STOL mode shall not exceed [TBD] m on [TBD] surface.|T|CDR|placeholder|Defines the short runway.
-OPS-023|OPS-005|stolGearLoad|The landing gear shall carry the limit load of a STOL landing at a descent rate of [TBD] m/s and a forward speed of [TBD] kt without detrimental deformation.|A|CDR|placeholder|STOL landings are at higher speed than VTOL landings.
-OPS-024|OPS-019|stolRotorClear|The rotors shall clear the ground by at least [TBD] mm at every STOL nacelle angle and takeoff and landing attitude.|A|PDR|placeholder|Partially tilted rotors sweep nearer the ground.
+OPS-021|OPS-019|stolTakeoffRoll|The takeoff ground roll in STOL mode shall not exceed [TBD] ft on [TBD] surface at the maximum STOL takeoff mass.|T|CDR|placeholder|Defines the short runway.
+OPS-022|OPS-019|stolLandingRoll|The landing ground roll in STOL mode shall not exceed [TBD] ft on [TBD] surface.|T|CDR|placeholder|Defines the short runway.
+OPS-023|OPS-005|stolGearLoad|The landing gear shall carry the limit load of a STOL landing at a descent rate of [TBD] ft/s and a forward speed of [TBD] kt without detrimental deformation.|A|CDR|placeholder|STOL landings are at higher speed than VTOL landings.
+OPS-024|OPS-019|stolRotorClear|The rotors shall clear the ground by at least [TBD] in at every STOL nacelle angle and takeoff and landing attitude.|A|PDR|placeholder|Partially tilted rotors sweep nearer the ground.
 OPS-025|OPS-019|stolSchedule|The flight controller shall schedule nacelle angle with airspeed during the STOL ground roll and approach.|A|CDR|projectChoice|Tilt changes thrust direction as the wing takes the load.
 OPS-026|OPS-019|stolSpeeds|The rotation speed and approach speed for STOL mode shall be determined by flight test and recorded in the flight manual.|T|ORR|placeholder|Needed before STOL flights are made.
 OPS-027|OPS-019|stolEnvelopeLimits|The flight controller shall apply the STOL envelope limits for speed, attitude and nacelle angle when STOL is selected.|T|CDR|projectChoice|Limits differ from CTOL and VTOL.

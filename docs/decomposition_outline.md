@@ -7,14 +7,14 @@ Nested as in the model: each requirement sits under the requirement it refines.
 
 - **PWR-001** The battery pack shall deliver at least the usable energy computed by EnduranceConstraint for a 30-minute mission plus the reserve in PWR-002.
   - **PWR-003** The battery pack shall use lithium-polymer or lithium-ion cells [TBD chemistry].
-  - **PWR-004** The battery pack shall have a pack-level specific energy of at least 160 Wh/kg.
+  - **PWR-004** The battery pack shall have a pack-level specific energy of at least 72.6 Wh/lb.
   - **PWR-006** The battery pack shall supply the peak electrical power demand of hover at maximum takeoff mass without cell voltage falling below the cell minimum voltage.
   - **PWR-008** The battery management system shall command landing when any cell voltage falls to [TBD] V under load.
-  - **PWR-009** The battery management system shall command landing when any cell temperature reaches [TBD] degC.
+  - **PWR-009** The battery management system shall command landing when any cell temperature reaches [TBD] degF.
     - **PWR-010** The battery pack shall provide at least one temperature sensor per [TBD] cells.
   - **PWR-024** The battery pack shall be transported and stored in a container that limits the effect of a cell fire, to be selected.
 - **PWR-002** The mission energy budget shall hold a landing reserve of 20 percent of pack usable energy.
-- **PWR-005** The battery pack mass, including wiring and enclosure, shall not exceed 6.5 kg.
+- **PWR-005** The battery pack weight, including wiring and enclosure, shall not exceed 14.2 lb.
 - **PWR-011** The battery management system shall report pack voltage, current and the lowest cell voltage to the flight controller at a rate of at least [TBD] Hz.
   - **PWR-012** The flight controller shall compute remaining usable energy and display it to the remote pilot.
     - **PWR-013** The ground station shall alert the remote pilot when remaining usable energy falls to the reserve in PWR-002.
@@ -25,7 +25,7 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **PWR-018** The avionics bus shall hold voltage within [TBD] percent during a motor current step from idle to maximum.
   - **PWR-019** The flight controller shall continue operating for at least [TBD] ms after the avionics bus falls below its minimum voltage.
 - **PWR-020** The vehicle shall provide a physical means of disconnecting battery power to the propulsion system on the ground.
-  - **PWR-021** The vehicle shall indicate the propulsion armed state with a visible indicator readable at [TBD] m.
+  - **PWR-021** The vehicle shall indicate the propulsion armed state with a visible indicator readable at [TBD] ft.
 - **PWR-022** Every power connector shall be keyed so that it cannot be mated with reverse polarity.
 - **PWR-023** The battery pack retention shall hold the pack against the limit load factors in the strength requirements without release.
 - **PWR-025** Each battery pack shall carry a logged cycle count.
@@ -39,10 +39,10 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **PRP-004** The sum of both rotor thrusts shall exceed hover weight by the control-authority margin of [TBD] percent.
 - **PRP-005** The propulsion system shall produce thrust at least equal to cruise drag at the cruise speed 49 kt with the nacelles at 0 deg.
 - **PRP-006** The flight controller shall limit commanded groundspeed to no more than 87 kt.
-- **PRP-007** The rotor disk loading at maximum takeoff weight shall not exceed 550 N/m2.
-- **PRP-008** The diameter of each rotor shall not exceed 0.508 m (20 in).
+- **PRP-007** The rotor disk loading at maximum takeoff weight shall not exceed 11.5 lbf/ft2.
+- **PRP-008** The diameter of each rotor shall not exceed 20 in.
   - **PRP-009** Each rotor shall have [TBD] blades.
-- **PRP-010** The rotor tip speed shall not exceed [TBD] m/s in any flight condition.
+- **PRP-010** The rotor tip speed shall not exceed [TBD] ft/s in any flight condition.
 - **PRP-011** The rotor first-flap and in-plane natural frequencies shall differ from 1P, 2P and 3P by at least [TBD] percent across the operating rpm range.
 - **PRP-012** Each rotor shall be balanced so that residual hub vibration stays below [TBD] g at operating rpm.
 - **PRP-013** The rotor hub and blade retention shall carry centrifugal load at [TBD] percent overspeed with ultimate factor of safety.
@@ -50,16 +50,16 @@ Nested as in the model: each requirement sits under the requirement it refines.
 - **PRP-015** Each rotor blade shall be proof tested to [TBD] times its design centrifugal load before first flight.
 - **PRP-016** The motor and speed controller together shall have an efficiency of at least 80 percent at the hover operating point.
   - **PRP-017** The motor and speed controller together shall have an efficiency of at least 85 percent at the cruise operating point.
-- **PRP-018** Each motor, mount and speed controller shall have a combined mass not exceeding [TBD] kg.
-- **PRP-019** The motor winding temperature shall not exceed [TBD] degC during the mission profile.
-  - **PRP-020** The speed controller temperature shall not exceed [TBD] degC during the mission profile.
+- **PRP-018** Each motor, mount and speed controller shall have a combined mass not exceeding [TBD] lb.
+- **PRP-019** The motor winding temperature shall not exceed [TBD] degF during the mission profile.
+  - **PRP-020** The speed controller temperature shall not exceed [TBD] degF during the mission profile.
 - **PRP-021** The flight controller shall detect loss of thrust on one motor within [TBD] ms.
   - **PRP-022** The flight controller shall command the landing mode after a single motor failure is detected.
 - **PRP-023** The speed controller shall accept thrust commands at a rate of at least [TBD] Hz.
   - **PRP-024** The speed controller shall change motor torque within [TBD] ms of a command.
 - **PRP-025** The speed controller shall report rpm, current and temperature to the flight controller at at least [TBD] Hz.
 - **PRP-026** The vehicle shall have a means of keeping persons away from the rotors during ground handling, to be selected.
-- **PRP-027** The vehicle sound level at 15 m in hover shall not exceed [TBD] dBA.
+- **PRP-027** The vehicle sound level at 50 ft in hover shall not exceed [TBD] dBA.
 - **PRP-028** The rotor shall not windmill into an unstable condition when the motor is unpowered in cruise.
 - **PRP-029** Each rotor shall operate continuously at every nacelle angle in the STOL range with the in-plane inflow of that condition.
 
@@ -74,16 +74,16 @@ Nested as in the model: each requirement sits under the requirement it refines.
 - **TLT-005** The two nacelle angles shall differ by no more than [TBD] deg at any time during conversion.
   - **TLT-006** The flight controller shall detect a nacelle angle split above the limit in TLT-005 within [TBD] ms.
     - **TLT-007** The flight controller shall hold both nacelles at their current angles when a split above the limit is detected.
-- **TLT-008** Each tilt actuator shall produce a holding and driving torque of at least [TBD] N-m at the worst-case load of the conversion corridor.
-  - **TLT-009** The worst-case tilt load shall be determined from rotor thrust, gyroscopic moment and aerodynamic hinge moment, with the result recorded as [TBD] N-m.
+- **TLT-008** Each tilt actuator shall produce a holding and driving torque of at least [TBD] lbf-ft at the worst-case load of the conversion corridor.
+  - **TLT-009** The worst-case tilt load shall be determined from rotor thrust, gyroscopic moment and aerodynamic hinge moment, with the result recorded as [TBD] lbf-ft.
 - **TLT-010** Each nacelle shall have a position sensor that reports tilt angle to the flight controller at a rate of at least [TBD] Hz.
   - **TLT-011** The nacelle position sensor shall measure angle within [TBD] deg.
 - **TLT-012** On loss of tilt actuator power the nacelle shall hold its last angle.
   - **TLT-013** The tilt actuator shall resist back-driving by aerodynamic load with the power off up to the load of TLT-009.
-- **TLT-014** The nacelle tilt mechanism stiffness shall be at least [TBD] N-m/rad about the pitch axis.
+- **TLT-014** The nacelle tilt mechanism stiffness shall be at least [TBD] lbf-ft/rad about the pitch axis.
   - **TLT-015** The tilt mechanism free play shall not exceed [TBD] deg.
 - **TLT-016** The nacelle tilt mechanism shall carry the limit load without detrimental deformation and the ultimate load without failure.
-- **TLT-017** The tilt actuator and mechanism, per side, shall have a mass not exceeding [TBD] kg.
+- **TLT-017** The tilt actuator and mechanism, per side, shall have a mass not exceeding [TBD] lb.
 - **TLT-018** Each tilt actuator shall draw no more than [TBD] W averaged over the mission profile.
 - **TLT-019** Each nacelle shall have mechanical end stops at the limits of the tilt range of TLT-001.
 - **TLT-020** The flight controller shall verify nacelle angle against known end stop positions during preflight checks.
@@ -101,8 +101,8 @@ Nested as in the model: each requirement sits under the requirement it refines.
     - **PLD-006** The flight controller shall identify the installed sensor type within [TBD] s of power-up.
       - **PLD-007** The flight controller shall load a stored profile for the identified sensor containing its mass, center of gravity offset and power draw.
         - **PLD-008** The flight controller shall block takeoff when the installed sensor has no stored profile and no manual mass entry.
-  - **PLD-009** The gimbal shall support a payload sensor of mass up to [TBD] kg.
-    - **PLD-010** The gimbal shall support a payload sensor within an envelope of [TBD] mm by [TBD] mm by [TBD] mm.
+  - **PLD-009** The gimbal shall support a payload sensor of mass up to [TBD] lb.
+    - **PLD-010** The gimbal shall support a payload sensor within an envelope of [TBD] in by [TBD] in by [TBD] in.
     - **PLD-011** The gimbal control shall tune to any sensor mass within the range in PLD-009 using the stored profile.
   - **PLD-021** The aircraft shall record the sensor identifier in the flight log for each flight.
   - **PLD-022** The program shall maintain a list of supported sensors, each with a completed profile and a verification record.
@@ -155,14 +155,14 @@ Nested as in the model: each requirement sits under the requirement it refines.
 - **OPS-001** The vehicle shall operate in four takeoff and landing modes: CTOL, STOL, VTOL and C/VTOL.
   - **OPS-002** CTOL shall mean takeoff and landing with the nacelles at a fixed forward angle of [TBD] deg and a ground roll.
     - **OPS-005** The vehicle shall have landing gear that supports the aircraft on the ground in CTOL mode.
-      - **OPS-006** The takeoff ground roll in CTOL mode shall not exceed [TBD] m on [TBD] surface.
-      - **OPS-007** The landing ground roll in CTOL mode shall not exceed [TBD] m on [TBD] surface.
-      - **OPS-023** The landing gear shall carry the limit load of a STOL landing at a descent rate of [TBD] m/s and a forward speed of [TBD] kt without detrimental deformation.
-    - **OPS-008** The rotors shall clear the ground by at least [TBD] mm in CTOL takeoff and landing attitudes.
+      - **OPS-006** The takeoff ground roll in CTOL mode shall not exceed [TBD] ft on [TBD] surface.
+      - **OPS-007** The landing ground roll in CTOL mode shall not exceed [TBD] ft on [TBD] surface.
+      - **OPS-023** The landing gear shall carry the limit load of a STOL landing at a descent rate of [TBD] ft/s and a forward speed of [TBD] kt without detrimental deformation.
+    - **OPS-008** The rotors shall clear the ground by at least [TBD] in in CTOL takeoff and landing attitudes.
     - **OPS-009** The rotation speed and approach speed for CTOL mode shall be determined by flight test and recorded in the flight manual.
-    - **OPS-010** The landing gear shall carry the limit load of a landing at a descent rate of [TBD] m/s without detrimental deformation.
+    - **OPS-010** The landing gear shall carry the limit load of a landing at a descent rate of [TBD] ft/s without detrimental deformation.
   - **OPS-003** VTOL shall mean takeoff and landing with the nacelles at 90 deg and no ground roll, with conversion to cruise in flight.
-    - **OPS-011** The vehicle shall take off and land vertically from a flat surface within a [TBD] m diameter circle.
+    - **OPS-011** The vehicle shall take off and land vertically from a flat surface within a [TBD] ft diameter circle.
     - **OPS-012** VTOL takeoff and landing shall be possible in steady wind up to [TBD] kt and gusts up to [TBD] kt.
   - **OPS-004** C/VTOL shall mean a flight that includes transition between hover and cruise and that can take off in one of CTOL or VTOL and land in the other.
     - **OPS-013** In C/VTOL mode the flight controller shall accept the landing mode selection in flight and configure the nacelles to match.
@@ -173,9 +173,9 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **OPS-017** The flight controller shall apply the envelope limits for the selected mode.
   - **OPS-019** STOL shall mean takeoff and landing with the nacelles at a partially tilted angle between the CTOL and VTOL angles and a ground roll shorter than the CTOL ground roll.
     - **OPS-020** The flight controller shall allow the remote pilot to select a STOL nacelle angle between [TBD] deg and [TBD] deg.
-    - **OPS-021** The takeoff ground roll in STOL mode shall not exceed [TBD] m on [TBD] surface at the maximum STOL takeoff mass.
-    - **OPS-022** The landing ground roll in STOL mode shall not exceed [TBD] m on [TBD] surface.
-    - **OPS-024** The rotors shall clear the ground by at least [TBD] mm at every STOL nacelle angle and takeoff and landing attitude.
+    - **OPS-021** The takeoff ground roll in STOL mode shall not exceed [TBD] ft on [TBD] surface at the maximum STOL takeoff mass.
+    - **OPS-022** The landing ground roll in STOL mode shall not exceed [TBD] ft on [TBD] surface.
+    - **OPS-024** The rotors shall clear the ground by at least [TBD] in at every STOL nacelle angle and takeoff and landing attitude.
     - **OPS-025** The flight controller shall schedule nacelle angle with airspeed during the STOL ground roll and approach.
     - **OPS-026** The rotation speed and approach speed for STOL mode shall be determined by flight test and recorded in the flight manual.
     - **OPS-027** The flight controller shall apply the STOL envelope limits for speed, attitude and nacelle angle when STOL is selected.
@@ -192,9 +192,9 @@ Nested as in the model: each requirement sits under the requirement it refines.
 ## ControlReqs
 
 - **FCS-001** The flight controller shall stabilize attitude in hover using differential rotor thrust and nacelle tilt.
-  - **FCS-002** The control system shall produce a pitch moment of at least [TBD] N-m in hover at maximum takeoff weight.
-  - **FCS-003** The control system shall produce a roll moment of at least [TBD] N-m in hover at maximum takeoff weight.
-  - **FCS-004** The control system shall produce a yaw moment of at least [TBD] N-m in hover at maximum takeoff weight.
+  - **FCS-002** The control system shall produce a pitch moment of at least [TBD] lbf-ft in hover at maximum takeoff weight.
+  - **FCS-003** The control system shall produce a roll moment of at least [TBD] lbf-ft in hover at maximum takeoff weight.
+  - **FCS-004** The control system shall produce a yaw moment of at least [TBD] lbf-ft in hover at maximum takeoff weight.
   - **FCS-005** The flight controller shall hold attitude within [TBD] deg in hover in steady wind up to the VTOL wind limit.
   - **FCS-006** The attitude control loop in hover shall have a bandwidth of at least [TBD] rad/s.
     - **FCS-007** The attitude loops in hover shall have a gain margin of at least [TBD] dB and a phase margin of at least [TBD] deg.
@@ -204,7 +204,7 @@ Nested as in the model: each requirement sits under the requirement it refines.
 - **FCS-008** The flight controller shall control attitude and altitude through the whole conversion corridor.
   - **FCS-009** The attitude loops shall meet the margins of FCS-007 at every nacelle angle in the corridor.
   - **FCS-010** The flight controller shall schedule control gains on nacelle angle and airspeed.
-  - **FCS-011** The flight controller shall keep altitude within [TBD] m during conversion.
+  - **FCS-011** The flight controller shall keep altitude within [TBD] ft during conversion.
 - **FCS-012** The flight controller shall stabilize attitude and airspeed in cruise using control surfaces and rotor thrust.
   - **FCS-013** The flight controller shall hold airspeed within [TBD] kt in cruise.
 - **FCS-014** The flight controller shall implement the FlightModes state definition and reject any transition not in it.
@@ -213,8 +213,8 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **FCS-017** The flight controller shall command the return and land mode if the control link is lost for more than [TBD] s.
     - **FCS-018** The landing mode shall bring the aircraft to the ground in the selected landing mode.
 - **FCS-019** The flight controller shall prevent altitude above 400 ft AGL.
-  - **FCS-020** The flight controller shall apply a geofence of [TBD] m horizontal radius around the takeoff point.
-- **FCS-021** The flight controller shall warn the pilot when the aircraft nears the visual range limit of [TBD] m.
+  - **FCS-020** The flight controller shall apply a geofence of [TBD] ft horizontal radius around the takeoff point.
+- **FCS-021** The flight controller shall warn the pilot when the aircraft nears the visual range limit of [TBD] ft.
 - **FCS-022** The flight controller shall estimate attitude, position, velocity and airspeed with the accuracies in the boundary variable table.
   - **FCS-023** The attitude estimate shall be accurate to within [TBD] deg.
   - **FCS-024** The aircraft shall measure airspeed using a sensor that works in hover and cruise.
@@ -228,10 +228,10 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **AER-002** The aerodynamic model shall be built from computational analysis and corrected with wind tunnel or flight test data.
   - **AER-003** The aerodynamic model shall state an uncertainty for every coefficient used in control design.
   - **AER-023** The aerodynamic model shall be valid for the STOL angle range, including rotor wake on the wing and ground effect.
-    - **AER-024** The STOL takeoff and landing distances shall be computed and recorded as [TBD] m.
+    - **AER-024** The STOL takeoff and landing distances shall be computed and recorded as [TBD] ft.
 - **AER-004** The vehicle lift-to-drag ratio at the cruise point shall be at least 10.
-- **AER-005** The wing area shall be [TBD] m2.
-  - **AER-006** The wing span shall be [TBD] m.
+- **AER-005** The wing area shall be [TBD] ft2.
+  - **AER-006** The wing span shall be [TBD] ft.
   - **AER-007** The stall speed at maximum takeoff weight shall not exceed [TBD] kt.
 - **AER-008** The conversion corridor shall be defined as the airspeed range allowed at each nacelle angle, recorded as [TBD].
   - **AER-009** The lower corridor boundary shall be set by the wing stall margin of [TBD] percent.
@@ -243,8 +243,8 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **AER-015** Each control surface shall provide at least [TBD] of the control power needed for FCS-012.
 - **AER-016** The vehicle shall meet its stall and takeoff requirements in CTOL mode with the nacelles at the CTOL angle.
 - **AER-017** The program shall maintain a drag build-up for the vehicle with each supported payload sensor.
-- **AER-018** The electrical power in cruise shall be computed and recorded as 847 W.
-- **AER-019** The electrical power in hover shall be computed and recorded as 5523 W.
+- **AER-018** The electrical power in cruise shall be computed and recorded as 841 W.
+- **AER-019** The electrical power in hover shall be computed and recorded as 5465 W.
   - **AER-020** The electrical power in conversion shall be computed and recorded as [TBD] W.
 - **AER-021** The mission profile used for endurance shall be defined by 5 minutes of hover and conversion, which is 2 minutes for takeoff and landing and a 3 minute loiter, and 25 minutes of cruise.
 - **AER-022** The vehicle shall remain controllable in winds up to [TBD] kt in cruise.
@@ -276,20 +276,20 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **STR-026** The flutter analysis shall cover sustained operation at every nacelle angle in the STOL range, including the ground roll.
 - **STR-022** The program shall maintain a mass budget with a margin of 15 percent at PDR, reduced at later reviews.
   - **STR-023** The program shall record the mass, center of gravity and inertia of each component.
-- **STR-024** The structure shall withstand a landing at a descent rate of [TBD] m/s in VTOL mode without damage to the battery or sensor.
+- **STR-024** The structure shall withstand a landing at a descent rate of [TBD] ft/s in VTOL mode without damage to the battery or sensor.
 - **STR-025** The structure shall limit the damage from a blade strike on the ground to a repairable level.
 
 ## AvionicsReqs
 
 - **AVN-001** The aircraft shall have a control link between the ground station and the flight controller.
-  - **AVN-002** The control link shall operate at a range of at least [TBD] m with the margin of [TBD] dB.
+  - **AVN-002** The control link shall operate at a range of at least [TBD] ft with the margin of [TBD] dB.
   - **AVN-003** The control link latency shall not exceed [TBD] ms.
   - **AVN-004** The control link shall operate on a frequency band permitted for unlicensed use in the area of operation.
   - **AVN-005** The control link shall authenticate commands so that only the paired ground station can control the aircraft.
   - **AVN-006** The flight controller shall detect control link loss within [TBD] ms.
   - **AVN-007** The aircraft shall send telemetry to the ground station at a rate of at least [TBD] Hz.
 - **AVN-008** The aircraft shall have a satellite navigation receiver that reports position to the flight controller.
-  - **AVN-009** The satellite navigation position shall be accurate to within [TBD] m.
+  - **AVN-009** The satellite navigation position shall be accurate to within [TBD] ft.
   - **AVN-010** The flight controller shall continue attitude control when the satellite navigation is lost.
     - **AVN-026** The flight controller shall alert the remote pilot within [TBD] s of satellite navigation loss.
 - **AVN-011** The aircraft shall have an inertial measurement unit with a gyro range of at least [TBD] deg/s and an accelerometer range of at least [TBD] g.
@@ -297,7 +297,7 @@ Nested as in the model: each requirement sits under the requirement it refines.
 - **AVN-013** The aircraft shall measure heading.
   - **AVN-027** The heading measurement shall stay accurate to within [TBD] deg with the motors at full power.
 - **AVN-014** The aircraft shall have a barometric altitude sensor protected from rotor wash.
-- **AVN-015** The aircraft shall measure height above ground to within [TBD] m below [TBD] m altitude.
+- **AVN-015** The aircraft shall measure height above ground to within [TBD] ft below [TBD] ft altitude.
 - **AVN-016** The flight controller shall have a watchdog that resets the processor and returns to a safe state within [TBD] ms of a software hang.
 - **AVN-017** The remote pilot shall be able to stop all motors from the ground station in at most [TBD] s.
   - **AVN-018** The motor stop in flight shall require a deliberate action by the pilot.
@@ -305,7 +305,7 @@ Nested as in the model: each requirement sits under the requirement it refines.
 - **AVN-020** The aircraft shall carry lights visible for [TBD] statute miles if operated at night.
 - **AVN-021** The aircraft shall log flight data at a rate of at least [TBD] Hz for the whole flight.
   - **AVN-022** The data logger shall hold at least [TBD] hours of data and keep it after a power loss.
-- **AVN-023** The avionics shall have a total mass of not more than [TBD] kg.
+- **AVN-023** The avionics shall have a total mass of not more than [TBD] lb.
 - **AVN-024** The avionics shall draw no more than [TBD] W on average.
 - **AVN-025** The avionics shall tolerate the electromagnetic emissions of the motors and speed controllers during operation.
 
@@ -367,7 +367,7 @@ Nested as in the model: each requirement sits under the requirement it refines.
 - **INT-028** The payload interface shall transfer the sensor identifier, mass and center of gravity offset from the sensor to the flight controller on connection.
 - **INT-030** The FPV camera shall connect to the video transmitter with a video interface of [TBD].
 - **INT-031** The FPV camera and transmitter shall be powered from the avionics bus through a filter that keeps motor noise out of the video.
-- **INT-032** Each speed controller shall connect to its motor through three phase wires of at least [TBD] AWG with a length not more than [TBD] mm.
+- **INT-032** Each speed controller shall connect to its motor through three phase wires of at least [TBD] AWG with a length not more than [TBD] in.
 - **INT-033** The flight controller shall connect to each speed controller through a command interface of [TBD] at a rate of at least [TBD] Hz.
 - **INT-036** The flight controller shall detect an open or short circuit in a nacelle position sensor within [TBD] ms.
 - **INT-038** The flight controller shall treat loss of battery management data for more than [TBD] ms as a fault.
@@ -381,7 +381,7 @@ Nested as in the model: each requirement sits under the requirement it refines.
 - **FLT-001** The program shall maintain a failure modes and effects analysis for every item in the architecture.
   - **FLT-002** The failure modes and effects analysis shall be reviewed at PDR and CDR.
   - **FLT-003** The program shall maintain a hazard list with severity, likelihood and a mitigation for each hazard.
-    - **FLT-036** The pilot shall plan a landing area within [TBD] m of the flight path for every flight.
+    - **FLT-036** The pilot shall plan a landing area within [TBD] ft of the flight path for every flight.
 - **FLT-005** The flight controller shall alert the pilot within [TBD] ms of a motor failure.
 - **FLT-006** The flight controller shall keep attitude within [TBD] deg during [TBD] s after a motor failure.
 - **FLT-007** The flight controller shall command a glide to a landing with the control surfaces after both motors fail in cruise.
@@ -396,7 +396,7 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **FLT-015** The flight controller shall command the motors to a safe state if all attitude sources fail.
 - **FLT-017** The flight controller shall use a groundspeed and attitude based estimate if the airspeed sensor fails.
   - **FLT-038** The flight controller shall alert the pilot when the airspeed sensor fails.
-- **FLT-018** The flight controller shall use the barometric altitude when the height sensor fails below [TBD] m.
+- **FLT-018** The flight controller shall use the barometric altitude when the height sensor fails below [TBD] ft.
 - **FLT-021** The power distribution shall isolate a shorted branch without losing the avionics bus.
 - **FLT-022** The aircraft shall command the motors to a safe state when the avionics bus is lost.
 - **FLT-024** The flight controller shall return pilot control when the link returns and the pilot confirms.
@@ -414,11 +414,11 @@ Nested as in the model: each requirement sits under the requirement it refines.
 
 ## EnvironmentReqs
 
-- **ENV-001** The vehicle shall operate with ambient temperatures from [TBD] to [TBD] degC.
-  - **ENV-002** The battery shall be used only between [TBD] and [TBD] degC pack temperature.
-- **ENV-003** The vehicle shall survive storage between [TBD] and [TBD] degC without damage.
+- **ENV-001** The vehicle shall operate with ambient temperatures from [TBD] to [TBD] degF.
+  - **ENV-002** The battery shall be used only between [TBD] and [TBD] degF pack temperature.
+- **ENV-003** The vehicle shall survive storage between [TBD] and [TBD] degF without damage.
 - **ENV-004** The vehicle shall not be flown in rain unless demonstrated for it.
-- **ENV-005** The vehicle shall meet its performance requirements up to a density altitude of [TBD] m.
+- **ENV-005** The vehicle shall meet its performance requirements up to a density altitude of [TBD] ft.
 - **ENV-006** The vehicle shall not be flown in conditions that produce icing.
 - **ENV-007** The vehicle shall be flown only in gusts below [TBD] kt.
 - **ENV-008** The vehicle shall be flown only in daylight unless night operation is added and the lights of AVN-020 are fitted.
@@ -434,7 +434,7 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **MNT-006** The program shall maintain a list of spare parts needed to repair the most likely damage within [TBD] hours.
   - **MNT-007** The program shall record the configuration of each flight including the sensor, battery, software version and parameters.
   - **MNT-008** Every damage event shall be recorded and its effect on airworthiness assessed before the next flight.
-  - **MNT-009** The vehicle shall be transportable in a case of [TBD] by [TBD] by [TBD] mm.
+  - **MNT-009** The vehicle shall be transportable in a case of [TBD] by [TBD] by [TBD] in.
     - **MNT-010** A trained operator shall assemble the vehicle from its case in at most [TBD] minutes.
     - **MNT-011** Parts that can be assembled in more than one way shall be keyed so that only the right one fits.
   - **MNT-012** The program shall define the calibrations for the inertial sensors, nacelle sensors and gimbal.

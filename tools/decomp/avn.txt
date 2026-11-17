@@ -1,18 +1,18 @@
 AVN-001|VEH-3.3|controlLink|The aircraft shall have a control link between the ground station and the flight controller.|T|CDR|projectChoice|Pilot control path.
-AVN-002|AVN-001|linkRange|The control link shall operate at a range of at least [TBD] m with the margin of [TBD] dB.|T|CDR|placeholder|Must cover the visual line of sight range.
+AVN-002|AVN-001|linkRange|The control link shall operate at a range of at least [TBD] ft with the margin of [TBD] dB.|T|CDR|placeholder|Must cover the visual line of sight range.
 AVN-003|AVN-001|linkLatency|The control link latency shall not exceed [TBD] ms.|T|CDR|placeholder|Latency limits manual control.
 AVN-004|AVN-001|linkFrequency|The control link shall operate on a frequency band permitted for unlicensed use in the area of operation.|I|SIR|directive|Operating on a legal band is required.
 AVN-005|AVN-001|linkEncryption|The control link shall authenticate commands so that only the paired ground station can control the aircraft.|T|CDR|projectChoice|Prevents accidental or hostile control.
 AVN-006|AVN-001|linkLossDetect|The flight controller shall detect control link loss within [TBD] ms.|T|CDR|placeholder|Starts the failsafe in FCS-017.
 AVN-007|AVN-001|telemetryDown|The aircraft shall send telemetry to the ground station at a rate of at least [TBD] Hz.|T|CDR|placeholder|Supports the displays.
 AVN-008|VEH-8|gps|The aircraft shall have a satellite navigation receiver that reports position to the flight controller.|T|CDR|projectChoice|Position and geofence.
-AVN-009|AVN-008|gpsAccuracy|The satellite navigation position shall be accurate to within [TBD] m.|T|CDR|placeholder|Geofence and landing accuracy.
+AVN-009|AVN-008|gpsAccuracy|The satellite navigation position shall be accurate to within [TBD] ft.|T|CDR|placeholder|Geofence and landing accuracy.
 AVN-010|AVN-008|gpsLoss|The flight controller shall continue attitude control when the satellite navigation is lost.|T|CDR|projectChoice|Attitude control must not depend on GPS.
 AVN-011|VEH-8|imu|The aircraft shall have an inertial measurement unit with a gyro range of at least [TBD] deg/s and an accelerometer range of at least [TBD] g.|T|CDR|placeholder|Sets attitude estimation capability.
 AVN-012|AVN-011|imuVibration|The inertial measurement unit shall be mounted with vibration isolation that gives noise below [TBD] at rotor harmonics.|T|CDR|placeholder|Rotor vibration corrupts the sensor.
 AVN-013|VEH-8|magnetometer|The aircraft shall measure heading.|T|CDR|adoptedDefault|Heading for navigation and landing.
 AVN-014|VEH-8|baro|The aircraft shall have a barometric altitude sensor protected from rotor wash.|T|CDR|adoptedDefault|Altitude estimation.
-AVN-015|VEH-3.2|altitudeAgl|The aircraft shall measure height above ground to within [TBD] m below [TBD] m altitude.|T|CDR|placeholder|Needed for VTOL landing.
+AVN-015|VEH-3.2|altitudeAgl|The aircraft shall measure height above ground to within [TBD] ft below [TBD] ft altitude.|T|CDR|placeholder|Needed for VTOL landing.
 AVN-016|VEH-7|watchdog|The flight controller shall have a watchdog that resets the processor and returns to a safe state within [TBD] ms of a software hang.|T|CDR|placeholder|Hang recovery.
 AVN-017|VEH-7|killSwitch|The remote pilot shall be able to stop all motors from the ground station in at most [TBD] s.|D|CDR|placeholder|Emergency stop on the ground.
 AVN-018|AVN-017|killInFlight|The motor stop in flight shall require a deliberate action by the pilot.|D|CDR|projectChoice|A stray press must not drop the aircraft.
@@ -20,7 +20,7 @@ AVN-019|VEH-3|remoteId|The aircraft shall broadcast remote identification where 
 AVN-020|VEH-3|antiCollision|The aircraft shall carry lights visible for [TBD] statute miles if operated at night.|I|ORR|placeholder|Part 107 night operation rule if used.
 AVN-021|VEH-8|dataLogger|The aircraft shall log flight data at a rate of at least [TBD] Hz for the whole flight.|T|CDR|placeholder|Needed for review and model correction.
 AVN-022|AVN-021|logStorage|The data logger shall hold at least [TBD] hours of data and keep it after a power loss.|T|CDR|placeholder|Crash data must survive.
-AVN-023|VEH-3.1|avionicsMass|The avionics shall have a total mass of not more than [TBD] kg.|T|SIR|placeholder|Part of the mass budget.
+AVN-023|VEH-3.1|avionicsMass|The avionics shall have a total mass of not more than [TBD] lb.|T|SIR|placeholder|Part of the mass budget.
 AVN-024|VEH-2|avionicsPower|The avionics shall draw no more than [TBD] W on average.|T|CDR|placeholder|Part of the power budget.
 AVN-025|VEH-8|emc|The avionics shall tolerate the electromagnetic emissions of the motors and speed controllers during operation.|T|CDR|adoptedDefault|Motor noise upsets sensors.
 

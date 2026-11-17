@@ -21,7 +21,7 @@ package TiltrotorVehicleDecomposition {
                 attribute :>> verifyBy = VerificationMethod::byInspection;
             }
             requirement <'PWR-004'> specificEnergy : VehicleRequirement {
-                doc /* The battery pack shall have a pack-level specific energy of at least 160 Wh/kg. */
+                doc /* The battery pack shall have a pack-level specific energy of at least 72.6 Wh/lb. */
                 attribute :>> basis = Basis::projectChoice;
                 attribute :>> rationale = "Pack mass must fit inside the takeoff mass limit. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
                 attribute :>> phase = "CDR";
@@ -42,7 +42,7 @@ package TiltrotorVehicleDecomposition {
                 attribute :>> verifyBy = VerificationMethod::byTest;
             }
             requirement <'PWR-009'> cellMaxTemp : VehicleRequirement {
-                doc /* The battery management system shall command landing when any cell temperature reaches [TBD] degC. */
+                doc /* The battery management system shall command landing when any cell temperature reaches [TBD] degF. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Prevents thermal damage and runaway.";
                 attribute :>> phase = "CDR";
@@ -71,7 +71,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'PWR-005'> packMass : VehicleRequirement {
-            doc /* The battery pack mass, including wiring and enclosure, shall not exceed 6.5 kg. */
+            doc /* The battery pack weight, including wiring and enclosure, shall not exceed 14.2 lb. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Pack mass is the largest single item in the mass budget. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "SIR";
@@ -147,7 +147,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "SIR";
             attribute :>> verifyBy = VerificationMethod::byDemonstration;
             requirement <'PWR-021'> armIndication : VehicleRequirement {
-                doc /* The vehicle shall indicate the propulsion armed state with a visible indicator readable at [TBD] m. */
+                doc /* The vehicle shall indicate the propulsion armed state with a visible indicator readable at [TBD] ft. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Crew must see when the aircraft can spin its rotors.";
                 attribute :>> phase = "SIR";
@@ -228,14 +228,14 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'PRP-007'> diskLoading : VehicleRequirement {
-            doc /* The rotor disk loading at maximum takeoff weight shall not exceed 550 N/m2. */
+            doc /* The rotor disk loading at maximum takeoff weight shall not exceed 11.5 lbf/ft2. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Disk loading drives hover power and wake effects. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'PRP-008'> rotorDiameter : VehicleRequirement {
-            doc /* The diameter of each rotor shall not exceed 0.508 m (20 in). */
+            doc /* The diameter of each rotor shall not exceed 20 in. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Program owner limit of 20 in. It sets disk loading, hover power and whirl flutter margin (docs/sizing.md).";
             attribute :>> phase = "PDR";
@@ -249,7 +249,7 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'PRP-010'> tipSpeed : VehicleRequirement {
-            doc /* The rotor tip speed shall not exceed [TBD] m/s in any flight condition. */
+            doc /* The rotor tip speed shall not exceed [TBD] ft/s in any flight condition. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Limits compressibility loss and noise.";
             attribute :>> phase = "PDR";
@@ -305,20 +305,20 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'PRP-018'> motorMass : VehicleRequirement {
-            doc /* Each motor, mount and speed controller shall have a combined mass not exceeding [TBD] kg. */
+            doc /* Each motor, mount and speed controller shall have a combined mass not exceeding [TBD] lb. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Motor mass is in the mass budget and moves the nacelle center of gravity.";
             attribute :>> phase = "SIR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'PRP-019'> motorTemp : VehicleRequirement {
-            doc /* The motor winding temperature shall not exceed [TBD] degC during the mission profile. */
+            doc /* The motor winding temperature shall not exceed [TBD] degF during the mission profile. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Winding insulation fails above its class rating.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
             requirement <'PRP-020'> escTemp : VehicleRequirement {
-                doc /* The speed controller temperature shall not exceed [TBD] degC during the mission profile. */
+                doc /* The speed controller temperature shall not exceed [TBD] degF during the mission profile. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Power electronics derate when hot.";
                 attribute :>> phase = "CDR";
@@ -368,7 +368,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
         requirement <'PRP-027'> noiseLimit : VehicleRequirement {
-            doc /* The vehicle sound level at 15 m in hover shall not exceed [TBD] dBA. */
+            doc /* The vehicle sound level at 50 ft in hover shall not exceed [TBD] dBA. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Public acceptance and local rules.";
             attribute :>> phase = "ORR";
@@ -455,13 +455,13 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'TLT-008'> tiltTorque : VehicleRequirement {
-            doc /* Each tilt actuator shall produce a holding and driving torque of at least [TBD] N-m at the worst-case load of the conversion corridor. */
+            doc /* Each tilt actuator shall produce a holding and driving torque of at least [TBD] lbf-ft at the worst-case load of the conversion corridor. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Sizes the actuator.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
             requirement <'TLT-009'> tiltLoadCase : VehicleRequirement {
-                doc /* The worst-case tilt load shall be determined from rotor thrust, gyroscopic moment and aerodynamic hinge moment, with the result recorded as [TBD] N-m. */
+                doc /* The worst-case tilt load shall be determined from rotor thrust, gyroscopic moment and aerodynamic hinge moment, with the result recorded as [TBD] lbf-ft. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Input to the actuator torque requirement.";
                 attribute :>> phase = "PDR";
@@ -497,7 +497,7 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'TLT-014'> tiltStiffness : VehicleRequirement {
-            doc /* The nacelle tilt mechanism stiffness shall be at least [TBD] N-m/rad about the pitch axis. */
+            doc /* The nacelle tilt mechanism stiffness shall be at least [TBD] lbf-ft/rad about the pitch axis. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Whirl flutter margin depends on pitch and yaw support stiffness.";
             attribute :>> phase = "CDR";
@@ -518,7 +518,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'TLT-017'> tiltMass : VehicleRequirement {
-            doc /* The tilt actuator and mechanism, per side, shall have a mass not exceeding [TBD] kg. */
+            doc /* The tilt actuator and mechanism, per side, shall have a mass not exceeding [TBD] lb. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Mass budget.";
             attribute :>> phase = "SIR";
@@ -625,13 +625,13 @@ package TiltrotorVehicleDecomposition {
                 }
             }
             requirement <'PLD-009'> maxMass : VehicleRequirement {
-                doc /* The gimbal shall support a payload sensor of mass up to [TBD] kg. */
+                doc /* The gimbal shall support a payload sensor of mass up to [TBD] lb. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Sets the gimbal and mount design load.";
                 attribute :>> phase = "CDR";
                 attribute :>> verifyBy = VerificationMethod::byTest;
                 requirement <'PLD-010'> maxEnvelope : VehicleRequirement {
-                    doc /* The gimbal shall support a payload sensor within an envelope of [TBD] mm by [TBD] mm by [TBD] mm. */
+                    doc /* The gimbal shall support a payload sensor within an envelope of [TBD] in by [TBD] in by [TBD] in. */
                     attribute :>> basis = Basis::placeholder;
                     attribute :>> rationale = "Sets nose clearance and gimbal rotation space.";
                     attribute :>> phase = "PDR";
@@ -965,21 +965,21 @@ package TiltrotorVehicleDecomposition {
                     attribute :>> phase = "PDR";
                     attribute :>> verifyBy = VerificationMethod::byInspection;
                     requirement <'OPS-006'> ctolRunway : VehicleRequirement {
-                        doc /* The takeoff ground roll in CTOL mode shall not exceed [TBD] m on [TBD] surface. */
+                        doc /* The takeoff ground roll in CTOL mode shall not exceed [TBD] ft on [TBD] surface. */
                         attribute :>> basis = Basis::placeholder;
                         attribute :>> rationale = "Sets the runway the operator needs.";
                         attribute :>> phase = "CDR";
                         attribute :>> verifyBy = VerificationMethod::byTest;
                     }
                     requirement <'OPS-007'> ctolLandingRoll : VehicleRequirement {
-                        doc /* The landing ground roll in CTOL mode shall not exceed [TBD] m on [TBD] surface. */
+                        doc /* The landing ground roll in CTOL mode shall not exceed [TBD] ft on [TBD] surface. */
                         attribute :>> basis = Basis::placeholder;
                         attribute :>> rationale = "Sets the runway the operator needs.";
                         attribute :>> phase = "CDR";
                         attribute :>> verifyBy = VerificationMethod::byTest;
                     }
                     requirement <'OPS-023'> stolGearLoad : VehicleRequirement {
-                        doc /* The landing gear shall carry the limit load of a STOL landing at a descent rate of [TBD] m/s and a forward speed of [TBD] kt without detrimental deformation. */
+                        doc /* The landing gear shall carry the limit load of a STOL landing at a descent rate of [TBD] ft/s and a forward speed of [TBD] kt without detrimental deformation. */
                         attribute :>> basis = Basis::placeholder;
                         attribute :>> rationale = "STOL landings are at higher speed than VTOL landings.";
                         attribute :>> phase = "CDR";
@@ -987,7 +987,7 @@ package TiltrotorVehicleDecomposition {
                     }
                 }
                 requirement <'OPS-008'> ctolClear : VehicleRequirement {
-                    doc /* The rotors shall clear the ground by at least [TBD] mm in CTOL takeoff and landing attitudes. */
+                    doc /* The rotors shall clear the ground by at least [TBD] in in CTOL takeoff and landing attitudes. */
                     attribute :>> basis = Basis::placeholder;
                     attribute :>> rationale = "Strike risk on rotation and flare.";
                     attribute :>> phase = "PDR";
@@ -1001,7 +1001,7 @@ package TiltrotorVehicleDecomposition {
                     attribute :>> verifyBy = VerificationMethod::byTest;
                 }
                 requirement <'OPS-010'> ctolGearLoad : VehicleRequirement {
-                    doc /* The landing gear shall carry the limit load of a landing at a descent rate of [TBD] m/s without detrimental deformation. */
+                    doc /* The landing gear shall carry the limit load of a landing at a descent rate of [TBD] ft/s without detrimental deformation. */
                     attribute :>> basis = Basis::placeholder;
                     attribute :>> rationale = "Structural sizing of the gear.";
                     attribute :>> phase = "CDR";
@@ -1015,7 +1015,7 @@ package TiltrotorVehicleDecomposition {
                 attribute :>> phase = "PDR";
                 attribute :>> verifyBy = VerificationMethod::byInspection;
                 requirement <'OPS-011'> vtolPad : VehicleRequirement {
-                    doc /* The vehicle shall take off and land vertically from a flat surface within a [TBD] m diameter circle. */
+                    doc /* The vehicle shall take off and land vertically from a flat surface within a [TBD] ft diameter circle. */
                     attribute :>> basis = Basis::placeholder;
                     attribute :>> rationale = "Sets the VTOL area needed.";
                     attribute :>> phase = "ORR";
@@ -1092,21 +1092,21 @@ package TiltrotorVehicleDecomposition {
                     attribute :>> verifyBy = VerificationMethod::byDemonstration;
                 }
                 requirement <'OPS-021'> stolTakeoffRoll : VehicleRequirement {
-                    doc /* The takeoff ground roll in STOL mode shall not exceed [TBD] m on [TBD] surface at the maximum STOL takeoff mass. */
+                    doc /* The takeoff ground roll in STOL mode shall not exceed [TBD] ft on [TBD] surface at the maximum STOL takeoff mass. */
                     attribute :>> basis = Basis::placeholder;
                     attribute :>> rationale = "Defines the short runway.";
                     attribute :>> phase = "CDR";
                     attribute :>> verifyBy = VerificationMethod::byTest;
                 }
                 requirement <'OPS-022'> stolLandingRoll : VehicleRequirement {
-                    doc /* The landing ground roll in STOL mode shall not exceed [TBD] m on [TBD] surface. */
+                    doc /* The landing ground roll in STOL mode shall not exceed [TBD] ft on [TBD] surface. */
                     attribute :>> basis = Basis::placeholder;
                     attribute :>> rationale = "Defines the short runway.";
                     attribute :>> phase = "CDR";
                     attribute :>> verifyBy = VerificationMethod::byTest;
                 }
                 requirement <'OPS-024'> stolRotorClear : VehicleRequirement {
-                    doc /* The rotors shall clear the ground by at least [TBD] mm at every STOL nacelle angle and takeoff and landing attitude. */
+                    doc /* The rotors shall clear the ground by at least [TBD] in at every STOL nacelle angle and takeoff and landing attitude. */
                     attribute :>> basis = Basis::placeholder;
                     attribute :>> rationale = "Partially tilted rotors sweep nearer the ground.";
                     attribute :>> phase = "PDR";
@@ -1208,21 +1208,21 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
             requirement <'FCS-002'> hoverPitchAuth : VehicleRequirement {
-                doc /* The control system shall produce a pitch moment of at least [TBD] N-m in hover at maximum takeoff weight. */
+                doc /* The control system shall produce a pitch moment of at least [TBD] lbf-ft in hover at maximum takeoff weight. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Sets effector sizing for pitch.";
                 attribute :>> phase = "PDR";
                 attribute :>> verifyBy = VerificationMethod::byAnalysis;
             }
             requirement <'FCS-003'> hoverRollAuth : VehicleRequirement {
-                doc /* The control system shall produce a roll moment of at least [TBD] N-m in hover at maximum takeoff weight. */
+                doc /* The control system shall produce a roll moment of at least [TBD] lbf-ft in hover at maximum takeoff weight. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Roll comes from differential thrust.";
                 attribute :>> phase = "PDR";
                 attribute :>> verifyBy = VerificationMethod::byAnalysis;
             }
             requirement <'FCS-004'> hoverYawAuth : VehicleRequirement {
-                doc /* The control system shall produce a yaw moment of at least [TBD] N-m in hover at maximum takeoff weight. */
+                doc /* The control system shall produce a yaw moment of at least [TBD] lbf-ft in hover at maximum takeoff weight. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Yaw comes from differential nacelle tilt.";
                 attribute :>> phase = "PDR";
@@ -1292,7 +1292,7 @@ package TiltrotorVehicleDecomposition {
                 attribute :>> verifyBy = VerificationMethod::byAnalysis;
             }
             requirement <'FCS-011'> conversionAltHold : VehicleRequirement {
-                doc /* The flight controller shall keep altitude within [TBD] m during conversion. */
+                doc /* The flight controller shall keep altitude within [TBD] ft during conversion. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Altitude loss in conversion is a safety hazard near the ground.";
                 attribute :>> phase = "CDR";
@@ -1355,7 +1355,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
             requirement <'FCS-020'> geofence : VehicleRequirement {
-                doc /* The flight controller shall apply a geofence of [TBD] m horizontal radius around the takeoff point. */
+                doc /* The flight controller shall apply a geofence of [TBD] ft horizontal radius around the takeoff point. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Keeps the aircraft within visual range.";
                 attribute :>> phase = "CDR";
@@ -1363,7 +1363,7 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'FCS-021'> losRange : VehicleRequirement {
-            doc /* The flight controller shall warn the pilot when the aircraft nears the visual range limit of [TBD] m. */
+            doc /* The flight controller shall warn the pilot when the aircraft nears the visual range limit of [TBD] ft. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Visual line of sight depends on distance.";
             attribute :>> phase = "CDR";
@@ -1441,7 +1441,7 @@ package TiltrotorVehicleDecomposition {
                 attribute :>> phase = "PDR";
                 attribute :>> verifyBy = VerificationMethod::byAnalysis;
                 requirement <'AER-024'> stolPerformance : VehicleRequirement {
-                    doc /* The STOL takeoff and landing distances shall be computed and recorded as [TBD] m. */
+                    doc /* The STOL takeoff and landing distances shall be computed and recorded as [TBD] ft. */
                     attribute :>> basis = Basis::placeholder;
                     attribute :>> rationale = "Input to the STOL roll requirements.";
                     attribute :>> phase = "PDR";
@@ -1457,13 +1457,13 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'AER-005'> wingArea : VehicleRequirement {
-            doc /* The wing area shall be [TBD] m2. */
+            doc /* The wing area shall be [TBD] ft2. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Sizes the stall speed and cruise efficiency.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byInspection;
             requirement <'AER-006'> wingSpan : VehicleRequirement {
-                doc /* The wing span shall be [TBD] m. */
+                doc /* The wing span shall be [TBD] ft. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Sets induced drag and storage.";
                 attribute :>> phase = "PDR";
@@ -1548,14 +1548,14 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'AER-018'> cruisePower : VehicleRequirement {
-            doc /* The electrical power in cruise shall be computed and recorded as 847 W. */
+            doc /* The electrical power in cruise shall be computed and recorded as 841 W. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Input to the endurance constraint. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'AER-019'> hoverPower : VehicleRequirement {
-            doc /* The electrical power in hover shall be computed and recorded as 5523 W. */
+            doc /* The electrical power in hover shall be computed and recorded as 5465 W. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Input to the endurance constraint. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
@@ -1761,7 +1761,7 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'STR-024'> impactLanding : VehicleRequirement {
-            doc /* The structure shall withstand a landing at a descent rate of [TBD] m/s in VTOL mode without damage to the battery or sensor. */
+            doc /* The structure shall withstand a landing at a descent rate of [TBD] ft/s in VTOL mode without damage to the battery or sensor. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Hard landing is a likely event.";
             attribute :>> phase = "CDR";
@@ -1784,7 +1784,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
             requirement <'AVN-002'> linkRange : VehicleRequirement {
-                doc /* The control link shall operate at a range of at least [TBD] m with the margin of [TBD] dB. */
+                doc /* The control link shall operate at a range of at least [TBD] ft with the margin of [TBD] dB. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Must cover the visual line of sight range.";
                 attribute :>> phase = "CDR";
@@ -1833,7 +1833,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
             requirement <'AVN-009'> gpsAccuracy : VehicleRequirement {
-                doc /* The satellite navigation position shall be accurate to within [TBD] m. */
+                doc /* The satellite navigation position shall be accurate to within [TBD] ft. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Geofence and landing accuracy.";
                 attribute :>> phase = "CDR";
@@ -1890,7 +1890,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'AVN-015'> altitudeAgl : VehicleRequirement {
-            doc /* The aircraft shall measure height above ground to within [TBD] m below [TBD] m altitude. */
+            doc /* The aircraft shall measure height above ground to within [TBD] ft below [TBD] ft altitude. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Needed for VTOL landing.";
             attribute :>> phase = "CDR";
@@ -1946,7 +1946,7 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'AVN-023'> avionicsMass : VehicleRequirement {
-            doc /* The avionics shall have a total mass of not more than [TBD] kg. */
+            doc /* The avionics shall have a total mass of not more than [TBD] lb. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Part of the mass budget.";
             attribute :>> phase = "SIR";
@@ -2344,7 +2344,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'INT-032'> escToMotor : VehicleRequirement {
-            doc /* Each speed controller shall connect to its motor through three phase wires of at least [TBD] AWG with a length not more than [TBD] mm. */
+            doc /* Each speed controller shall connect to its motor through three phase wires of at least [TBD] AWG with a length not more than [TBD] in. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Long phase wires cause noise and loss.";
             attribute :>> phase = "CDR";
@@ -2422,7 +2422,7 @@ package TiltrotorVehicleDecomposition {
                 attribute :>> phase = "PDR";
                 attribute :>> verifyBy = VerificationMethod::byAnalysis;
                 requirement <'FLT-036'> emergencyArea : VehicleRequirement {
-                    doc /* The pilot shall plan a landing area within [TBD] m of the flight path for every flight. */
+                    doc /* The pilot shall plan a landing area within [TBD] ft of the flight path for every flight. */
                     attribute :>> basis = Basis::placeholder;
                     attribute :>> rationale = "Operating practice for emergencies.";
                     attribute :>> phase = "ORR";
@@ -2529,7 +2529,7 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'FLT-018'> heightFail : VehicleRequirement {
-            doc /* The flight controller shall use the barometric altitude when the height sensor fails below [TBD] m. */
+            doc /* The flight controller shall use the barometric altitude when the height sensor fails below [TBD] ft. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Backup for VTOL landing.";
             attribute :>> phase = "CDR";
@@ -2637,13 +2637,13 @@ package TiltrotorVehicleDecomposition {
 
     package EnvironmentReqs {
         requirement <'ENV-001'> operatingTemp : VehicleRequirement {
-            doc /* The vehicle shall operate with ambient temperatures from [TBD] to [TBD] degC. */
+            doc /* The vehicle shall operate with ambient temperatures from [TBD] to [TBD] degF. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Sets battery and electronics limits.";
             attribute :>> phase = "ORR";
             attribute :>> verifyBy = VerificationMethod::byTest;
             requirement <'ENV-002'> batteryTempLimits : VehicleRequirement {
-                doc /* The battery shall be used only between [TBD] and [TBD] degC pack temperature. */
+                doc /* The battery shall be used only between [TBD] and [TBD] degF pack temperature. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Cold batteries lose capacity.";
                 attribute :>> phase = "ORR";
@@ -2651,7 +2651,7 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'ENV-003'> storageTemp : VehicleRequirement {
-            doc /* The vehicle shall survive storage between [TBD] and [TBD] degC without damage. */
+            doc /* The vehicle shall survive storage between [TBD] and [TBD] degF without damage. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Vehicle stored in a car or hangar.";
             attribute :>> phase = "ORR";
@@ -2665,7 +2665,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
         requirement <'ENV-005'> altitudeDensity : VehicleRequirement {
-            doc /* The vehicle shall meet its performance requirements up to a density altitude of [TBD] m. */
+            doc /* The vehicle shall meet its performance requirements up to a density altitude of [TBD] ft. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Hover thrust falls with density.";
             attribute :>> phase = "PDR";
@@ -2776,7 +2776,7 @@ package TiltrotorVehicleDecomposition {
                 attribute :>> verifyBy = VerificationMethod::byInspection;
             }
             requirement <'MNT-009'> packaging : VehicleRequirement {
-                doc /* The vehicle shall be transportable in a case of [TBD] by [TBD] by [TBD] mm. */
+                doc /* The vehicle shall be transportable in a case of [TBD] by [TBD] by [TBD] in. */
                 attribute :>> basis = Basis::placeholder;
                 attribute :>> rationale = "Field transport.";
                 attribute :>> phase = "SIR";

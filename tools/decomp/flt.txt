@@ -13,7 +13,7 @@ FLT-013|FLT-010|stuckNacelleLimits|The stuck nacelle angles from which a safe la
 FLT-014|SWR-015|imuFail|The flight controller shall switch to the other attitude source within [TBD] ms of a failed inertial measurement unit.|T|CDR|placeholder|Single sensor loss.
 FLT-015|FLT-014|allImuFail|The flight controller shall command the motors to a safe state if all attitude sources fail.|D|CDR|projectChoice|No attitude means no control.
 FLT-017|SWR-015|airspeedFail|The flight controller shall use a groundspeed and attitude based estimate if the airspeed sensor fails.|T|CDR|projectChoice|Backup for airspeed.
-FLT-018|SWR-015|heightFail|The flight controller shall use the barometric altitude when the height sensor fails below [TBD] m.|T|CDR|placeholder|Backup for VTOL landing.
+FLT-018|SWR-015|heightFail|The flight controller shall use the barometric altitude when the height sensor fails below [TBD] ft.|T|CDR|placeholder|Backup for VTOL landing.
 FLT-021|PWR-014|shortCircuit|The power distribution shall isolate a shorted branch without losing the avionics bus.|T|CDR|projectChoice|Fault containment.
 FLT-022|PWR-017|avionicsPowerLoss|The aircraft shall command the motors to a safe state when the avionics bus is lost.|T|CDR|placeholder|Safe state on lost control.
 FLT-024|AVN-006|linkRegain|The flight controller shall return pilot control when the link returns and the pilot confirms.|D|CDR|projectChoice|Prevents an abrupt handover.
@@ -26,7 +26,7 @@ FLT-032|FCS-008|conversionStall|The flight controller shall return the nacelles 
 FLT-033|FCS-008|conversionOverspeed|The flight controller shall limit airspeed to the corridor ceiling during conversion.|T|CDR|projectChoice|Overspeed at high tilt is a rotor and flutter hazard.
 FLT-034|PRP-013|rotorBreak|The structure shall contain the loss of one rotor blade without damage to the battery or flight controller.|A|CDR|placeholder|Blade loss is rare but dangerous.
 FLT-035|PWR-009|batteryFire|The aircraft shall keep a battery fire from reaching the flight controller and payload for at least [TBD] s.|A|CDR|placeholder|Time to land.
-FLT-036|FLT-003|emergencyArea|The pilot shall plan a landing area within [TBD] m of the flight path for every flight.|D|ORR|placeholder|Operating practice for emergencies.
+FLT-036|FLT-003|emergencyArea|The pilot shall plan a landing area within [TBD] ft of the flight path for every flight.|D|ORR|placeholder|Operating practice for emergencies.
 FLT-037|FLT-010|stuckNacelleLanding|The flight controller shall command a landing in the mode that suits the stuck angle.|A|CDR|placeholder|Stuck nacelle landing strategy.
 FLT-038|FLT-017|airspeedFailAlert|The flight controller shall alert the pilot when the airspeed sensor fails.|T|CDR|projectChoice|Pilot awareness.
 FLT-039|PLD-019|sensorFailAlert|The flight controller shall alert the pilot when the payload sensor fails.|D|CDR|projectChoice|Pilot awareness.

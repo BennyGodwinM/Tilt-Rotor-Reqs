@@ -27,7 +27,7 @@ INT-027|INT-025|sensorHotSwap|The payload interface shall prevent damage if a se
 INT-028|PLD-005|sensorDataFormat|The payload interface shall transfer the sensor identifier, mass and center of gravity offset from the sensor to the flight controller on connection.|T|CDR|projectChoice|Supports the profile load in PLD-007.
 INT-030|FPV-001|fpvToTx|The FPV camera shall connect to the video transmitter with a video interface of [TBD].|T|CDR|placeholder|Connection FPV camera to transmitter.
 INT-031|FPV-001|fpvPowerInt|The FPV camera and transmitter shall be powered from the avionics bus through a filter that keeps motor noise out of the video.|T|CDR|adoptedDefault|Noise creates interference on the display.
-INT-032|VEH-8|escToMotor|Each speed controller shall connect to its motor through three phase wires of at least [TBD] AWG with a length not more than [TBD] mm.|I|CDR|placeholder|Long phase wires cause noise and loss.
+INT-032|VEH-8|escToMotor|Each speed controller shall connect to its motor through three phase wires of at least [TBD] AWG with a length not more than [TBD] in.|I|CDR|placeholder|Long phase wires cause noise and loss.
 INT-033|VEH-8|escCommandIf|The flight controller shall connect to each speed controller through a command interface of [TBD] at a rate of at least [TBD] Hz.|T|CDR|placeholder|Thrust command path.
 INT-036|TLT-010|tiltSensorFail|The flight controller shall detect an open or short circuit in a nacelle position sensor within [TBD] ms.|T|CDR|placeholder|A failed sensor must not look valid.
 INT-038|PWR-011|bmsLoss|The flight controller shall treat loss of battery management data for more than [TBD] ms as a fault.|T|CDR|placeholder|Unknown energy state is unsafe.

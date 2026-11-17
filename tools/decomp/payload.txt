@@ -6,8 +6,8 @@ PLD-005|PLD-001|dataInterface|The gimbal payload interface shall provide a data 
 PLD-006|PLD-005|sensorDetect|The flight controller shall identify the installed sensor type within [TBD] s of power-up.|T|CDR|placeholder|Mass, size and settings depend on which sensor is fitted.
 PLD-007|PLD-006|sensorProfile|The flight controller shall load a stored profile for the identified sensor containing its mass, center of gravity offset and power draw.|D|CDR|projectChoice|Static margin and endurance estimates depend on the sensor.
 PLD-008|PLD-007|unknownSensor|The flight controller shall block takeoff when the installed sensor has no stored profile and no manual mass entry.|D|CDR|projectChoice|Unknown mass makes the static margin estimate unreliable.
-PLD-009|PLD-001|maxMass|The gimbal shall support a payload sensor of mass up to [TBD] kg.|T|CDR|placeholder|Sets the gimbal and mount design load.
-PLD-010|PLD-009|maxEnvelope|The gimbal shall support a payload sensor within an envelope of [TBD] mm by [TBD] mm by [TBD] mm.|I|PDR|placeholder|Sets nose clearance and gimbal rotation space.
+PLD-009|PLD-001|maxMass|The gimbal shall support a payload sensor of mass up to [TBD] lb.|T|CDR|placeholder|Sets the gimbal and mount design load.
+PLD-010|PLD-009|maxEnvelope|The gimbal shall support a payload sensor within an envelope of [TBD] in by [TBD] in by [TBD] in.|I|PDR|placeholder|Sets nose clearance and gimbal rotation space.
 PLD-011|PLD-009|massRange|The gimbal control shall tune to any sensor mass within the range in PLD-009 using the stored profile.|T|CDR|placeholder|Pointing quality changes with payload inertia.
 PLD-012|VEH-3.1|payloadMassBudget|The takeoff mass requirement shall be met with the heaviest supported payload sensor.|T|SIR|adoptedDefault|Part 107 mass limit applies for any sensor.
 PLD-013|VEH-1|gimbalAxes|The gimbal shall point the payload sensor in pitch over at least [TBD] deg and in yaw over at least [TBD] deg.|T|CDR|placeholder|Pointing range defines the field of regard.
