@@ -102,6 +102,7 @@ package AFRC_TiltrotorRequirementsDocument {
         alias <'4.5.2'> groundTestReq for TiltrotorProgramModel::programReqs::structuralIntegrityReqs::groundTest;
         alias <'4.5.3'> compositeBuildingBlockReq for TiltrotorProgramModel::programReqs::structuralIntegrityReqs::compositeBuildingBlock;
         alias <'4.5.4'> proofLoadReq for TiltrotorProgramModel::programReqs::structuralIntegrityReqs::proofLoad;
+        alias <'4.5.5'> inspectionIntervalReq for TiltrotorProgramModel::programReqs::structuralIntegrityReqs::inspectionInterval;
         alias <'4.6'> rotorPara for TiltrotorProgramModel::programReqs::rotorEffectsReqs;
         alias <'4.6.1'> rotorLoadsReq for TiltrotorProgramModel::programReqs::rotorEffectsReqs::rotorLoads;
         alias <'4.6.2'> rotorDynamicsReq for TiltrotorProgramModel::programReqs::rotorEffectsReqs::rotorDynamics;

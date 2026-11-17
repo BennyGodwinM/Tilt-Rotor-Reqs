@@ -207,6 +207,10 @@ package TiltrotorProgramModel {
                 doc /* Where the aircraft is the proof-test article, the proof load shall be applied and its results compared with analysis before first flight. */
                 attribute :>> milestone = Milestone::SIR;
             }
+            requirement <'SIN-5'> inspectionInterval : ProgramRequirement {
+                doc /* Inspection intervals shall be set from fatigue-crack growth analysis so that the smallest crack the inspection method can detect cannot grow to failure within the interval, and the interval shall reflect each aircraft's actual usage. */
+                attribute :>> milestone = Milestone::SIR;
+            }
             requirement <'SIN-1'> criteria : ProgramRequirement {
                 doc /* Structural design criteria shall be defined: factors of safety, load cases and fatigue approach. */
                 attribute :>> milestone = Milestone::PDR;
