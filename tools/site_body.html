@@ -1,0 +1,29 @@
+<main class="wrap">
+<header>
+ <div class="title-block">
+  <div class="tb-name"><div class="tb-label">Program</div><div class="tb-val">Tiltrotor UAV requirements</div><p class="sub">Twin-rotor tiltrotor, nose gimbal camera, 30 minute endurance, 14 CFR Part 107. Requirements and program model, kept as SysML v2 in Git.</p></div>
+  <div><div class="tb-label">Revision</div><div class="tb-val mono">rev-C</div></div>
+  <div><div class="tb-label">Requirements</div><div class="tb-val mono">{{prog}} + {{veh}}</div></div>
+  <div><div class="tb-label">Open items</div><div class="tb-val mono">{{tbd}}</div></div>
+ </div>
+</header>
+<section aria-labelledby="h-rev"><h2 id="h-rev">Deliverables by review</h2><p class="sub">Program requirements due at each milestone. Only systems engineering and configuration management owe anything at SRR.</p><div class="strip" id="strip"></div></section>
+<section aria-labelledby="h-dec"><h2 id="h-dec">Decisions waiting on the chief engineer</h2><div class="decisions">
+ <div><b>Structural factors of safety</b><span>2.25 ultimate factor is a placeholder. STR-3, VEH-6. Needed by PDR.</span></div>
+ <div><b>Endurance reserve and mass margin</b><span>Both size the battery. VEH-2, VEH-3.1. Needed by SRR.</span></div>
+ <div><b>Conversion corridor</b><span>Defines the design space for aero, controls and flutter. VEH-4. Needed by SRR.</span></div>
+ <div><b>Controlled variable latency and tolerance</b><span>Nacelle tilt and gimbal pitch commands. VEH-8. Needed by PDR.</span></div>
+</div></section>
+<section aria-labelledby="h-reg"><h2 id="h-reg">Requirement register</h2>
+ <div class="controls" style="margin-top:10px">
+  <input id="q" type="search" placeholder="Search text, ID or rationale" aria-label="Search requirements">
+  <select id="own" aria-label="Owner"><option value="">All owners</option></select>
+  <select id="ms" aria-label="Review"><option value="">All reviews</option><option>SRR</option><option>PDR</option><option>CDR</option><option>SIR</option><option>ORR</option><option>PostFlight</option></select>
+  <select id="bs" aria-label="Basis"><option value="">All bases</option><option value="directive">directive</option><option value="adoptedDefault">adoptedDefault</option><option value="projectChoice">projectChoice</option><option value="placeholder">placeholder</option></select>
+  <span class="count" id="cnt"></span>
+ </div>
+ <div class="scroll" style="margin-top:10px"><table><thead><tr><th>Para</th><th>ID</th><th>Requirement</th><th>Owner</th><th>Due</th><th>Basis</th></tr></thead><tbody id="rows"></tbody></table></div>
+</section>
+<section aria-labelledby="h-tbd"><h2 id="h-tbd">TBD register</h2><div class="scroll" style="margin-top:10px"><table><thead><tr><th>#</th><th>Item</th><th>Open point</th><th>Needed by</th></tr></thead><tbody id="tbd"></tbody></table></div></section>
+<footer>Basis counts across program requirements: directive {{b_directive}}, adopted default {{b_adoptedDefault}}, project choice {{b_projectChoice}}, placeholder {{b_placeholder}}. Adopted defaults come from NASA and FAA sources that do not bind this aircraft. Source files: <a href="https://github.com/BennyGodwinM/Tilt-Rotor-Reqs">github.com/BennyGodwinM/Tilt-Rotor-Reqs</a>.</footer>
+</main>

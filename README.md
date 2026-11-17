@@ -17,3 +17,7 @@ Revision A parses with no syntax errors. Not yet checked in SysON itself.
 ## Derived files (rev-C)
 
 The two `.sysml` models are the source. `python3 tools/derive.py` regenerates the Armstrong chapters 3 and 4, `docs/verification_matrix.md` and `docs/tbd_register.md`; `--check` only reports counts. `tools/req_meta.py` holds the basis, source and rationale of each program requirement and `tools/annotate.py` writes them into the model.
+
+## Website
+
+`python3 tools/derive.py && python3 tools/site.py` builds `docs/index.html`, a single self-contained page. To publish with GitHub Pages: Settings, Pages, deploy from branch `main`, folder `/docs`.
