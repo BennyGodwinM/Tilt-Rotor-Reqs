@@ -66,6 +66,9 @@ package AFRC_TiltrotorRequirementsDocument {
         alias <'4.1.6'> technicalAssessmentReq for TiltrotorProgramModel::programReqs::seReqs::technicalAssessment;
         alias <'4.1.7'> riskBasedInsightReq for TiltrotorProgramModel::programReqs::seReqs::riskBasedInsight;
         alias <'4.1.8'> issueEscalationReq for TiltrotorProgramModel::programReqs::seReqs::issueEscalation;
+        alias <'4.1.9'> criticalTechnologiesReq for TiltrotorProgramModel::programReqs::seReqs::criticalTechnologies;
+        alias <'4.1.10'> readinessLevelReq for TiltrotorProgramModel::programReqs::seReqs::readinessLevel;
+        alias <'4.1.11'> predictBeforeTestReq for TiltrotorProgramModel::programReqs::seReqs::predictBeforeTest;
         alias <'4.2'> aeroPara for TiltrotorProgramModel::programReqs::aerodynamicsReqs;
         alias <'4.2.1'> aeroDatabaseReq for TiltrotorProgramModel::programReqs::aerodynamicsReqs::aeroDatabase;
         alias <'4.2.2'> aeroUpdateReq for TiltrotorProgramModel::programReqs::aerodynamicsReqs::aeroUpdate;
@@ -77,6 +80,10 @@ package AFRC_TiltrotorRequirementsDocument {
         alias <'4.2.8'> airDataReq for TiltrotorProgramModel::programReqs::aerodynamicsReqs::airData;
         alias <'4.2.9'> instrumentCheckReq for TiltrotorProgramModel::programReqs::aerodynamicsReqs::instrumentCheck;
         alias <'4.2.10'> aeroFlightValidationReq for TiltrotorProgramModel::programReqs::aerodynamicsReqs::aeroFlightValidation;
+        alias <'4.2.11'> sensorErrorsReq for TiltrotorProgramModel::programReqs::aerodynamicsReqs::sensorErrors;
+        alias <'4.2.12'> parameterEstimationReq for TiltrotorProgramModel::programReqs::aerodynamicsReqs::parameterEstimation;
+        alias <'4.2.13'> flightDataArchiveReq for TiltrotorProgramModel::programReqs::aerodynamicsReqs::flightDataArchive;
+        alias <'4.2.14'> codeCrossCheckReq for TiltrotorProgramModel::programReqs::aerodynamicsReqs::codeCrossCheck;
         alias <'4.3'> loadsPara for TiltrotorProgramModel::programReqs::loadsReqs;
         alias <'4.3.1'> prelimLoadsReq for TiltrotorProgramModel::programReqs::loadsReqs::prelimLoads;
         alias <'4.3.2'> finalLoadsReq for TiltrotorProgramModel::programReqs::loadsReqs::finalLoads;
@@ -84,12 +91,17 @@ package AFRC_TiltrotorRequirementsDocument {
         alias <'4.3.4'> datasetChecksReq for TiltrotorProgramModel::programReqs::loadsReqs::datasetChecks;
         alias <'4.3.5'> modalDataReq for TiltrotorProgramModel::programReqs::loadsReqs::modalData;
         alias <'4.3.6'> toolchainChecksReq for TiltrotorProgramModel::programReqs::loadsReqs::toolchainChecks;
+        alias <'4.3.7'> modelQualityReq for TiltrotorProgramModel::programReqs::loadsReqs::modelQuality;
         alias <'4.4'> structuresPara for TiltrotorProgramModel::programReqs::structuresReqs;
         alias <'4.4.1'> stressNotesReq for TiltrotorProgramModel::programReqs::structuresReqs::stressNotes;
         alias <'4.4.2'> conformityReq for TiltrotorProgramModel::programReqs::structuresReqs::conformity;
+        alias <'4.4.3'> staticApproachReq for TiltrotorProgramModel::programReqs::structuresReqs::staticApproach;
+        alias <'4.4.4'> flightLoadLimitReq for TiltrotorProgramModel::programReqs::structuresReqs::flightLoadLimit;
         alias <'4.5'> integrityPara for TiltrotorProgramModel::programReqs::structuralIntegrityReqs;
         alias <'4.5.1'> criteriaReq for TiltrotorProgramModel::programReqs::structuralIntegrityReqs::criteria;
         alias <'4.5.2'> groundTestReq for TiltrotorProgramModel::programReqs::structuralIntegrityReqs::groundTest;
+        alias <'4.5.3'> compositeBuildingBlockReq for TiltrotorProgramModel::programReqs::structuralIntegrityReqs::compositeBuildingBlock;
+        alias <'4.5.4'> proofLoadReq for TiltrotorProgramModel::programReqs::structuralIntegrityReqs::proofLoad;
         alias <'4.6'> rotorPara for TiltrotorProgramModel::programReqs::rotorEffectsReqs;
         alias <'4.6.1'> rotorLoadsReq for TiltrotorProgramModel::programReqs::rotorEffectsReqs::rotorLoads;
         alias <'4.6.2'> rotorDynamicsReq for TiltrotorProgramModel::programReqs::rotorEffectsReqs::rotorDynamics;
@@ -106,6 +118,8 @@ package AFRC_TiltrotorRequirementsDocument {
         alias <'4.7.10'> flightFlutterPlanReq for TiltrotorProgramModel::programReqs::flutterReqs::flightFlutterPlan;
         alias <'4.7.11'> flightFlutterTestReq for TiltrotorProgramModel::programReqs::flutterReqs::flightFlutterTest;
         alias <'4.7.12'> nacelleModalReq for TiltrotorProgramModel::programReqs::flutterReqs::nacelleModal;
+        alias <'4.7.13'> modelSensitivityReq for TiltrotorProgramModel::programReqs::flutterReqs::modelSensitivity;
+        alias <'4.7.14'> testReliefReq for TiltrotorProgramModel::programReqs::flutterReqs::testRelief;
         alias <'4.8'> flightTestPara for TiltrotorProgramModel::programReqs::flightTestReqs;
         alias <'4.8.1'> testPlanReq for TiltrotorProgramModel::programReqs::flightTestReqs::testPlan;
         alias <'4.8.2'> readinessReq for TiltrotorProgramModel::programReqs::flightTestReqs::readiness;
@@ -113,6 +127,7 @@ package AFRC_TiltrotorRequirementsDocument {
         alias <'4.8.4'> envelopeExpansionReq for TiltrotorProgramModel::programReqs::flightTestReqs::envelopeExpansion;
         alias <'4.8.5'> techBriefReq for TiltrotorProgramModel::programReqs::flightTestReqs::techBrief;
         alias <'4.8.6'> debriefReq for TiltrotorProgramModel::programReqs::flightTestReqs::debrief;
+        alias <'4.8.7'> instrumentationPlanReq for TiltrotorProgramModel::programReqs::flightTestReqs::instrumentationPlan;
         alias <'4.9'> safetyPara for TiltrotorProgramModel::programReqs::safetyOfFlightReqs;
         alias <'4.9.1'> hazardsReq for TiltrotorProgramModel::programReqs::safetyOfFlightReqs::hazards;
         alias <'4.9.2'> sofReviewReq for TiltrotorProgramModel::programReqs::safetyOfFlightReqs::sofReview;
@@ -121,10 +136,15 @@ package AFRC_TiltrotorRequirementsDocument {
         alias <'4.9.5'> reviewLevelReq for TiltrotorProgramModel::programReqs::safetyOfFlightReqs::reviewLevel;
         alias <'4.9.6'> independentReviewReq for TiltrotorProgramModel::programReqs::safetyOfFlightReqs::independentReview;
         alias <'4.9.7'> flightApprovalReq for TiltrotorProgramModel::programReqs::safetyOfFlightReqs::flightApproval;
+        alias <'4.9.8'> lostLinkReq for TiltrotorProgramModel::programReqs::safetyOfFlightReqs::lostLink;
+        alias <'4.9.9'> hazardStandardReq for TiltrotorProgramModel::programReqs::safetyOfFlightReqs::hazardStandard;
+        alias <'4.9.10'> pilotOverrideReq for TiltrotorProgramModel::programReqs::safetyOfFlightReqs::pilotOverride;
         alias <'4.10'> cmPara for TiltrotorProgramModel::programReqs::configurationManagementReqs;
         alias <'4.10.1'> cmpReq for TiltrotorProgramModel::programReqs::configurationManagementReqs::cmp;
         alias <'4.10.2'> reqBaselineReq for TiltrotorProgramModel::programReqs::configurationManagementReqs::reqBaseline;
         alias <'4.10.3'> designBaselineReq for TiltrotorProgramModel::programReqs::configurationManagementReqs::designBaseline;
+        alias <'4.10.4'> asBuiltLinkReq for TiltrotorProgramModel::programReqs::configurationManagementReqs::asBuiltLink;
+        alias <'4.10.5'> simControlReq for TiltrotorProgramModel::programReqs::configurationManagementReqs::simControl;
     }
 
     package AppendixA_Definitions {

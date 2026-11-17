@@ -50,6 +50,19 @@ package TiltrotorProgramModel {
                 doc /* The verification and validation plan shall be baselined. */
                 attribute :>> milestone = Milestone::CDR;
             }
+            requirement <'SE-9'> criticalTechnologies : ProgramRequirement {
+                doc /* New technologies the aircraft needs, such as the tilt mechanism, conversion control and the nose gimbal, shall be identified as critical technology elements and agreed with the approving authority, and an initial technology readiness assessment shall record the readiness level of each. */
+                attribute :>> milestone = Milestone::SRR;
+            }
+            requirement <'SE-10'> readinessLevel : ProgramRequirement {
+                doc /* Each critical technology element shall reach the readiness level below by PDR, the readiness of any assembly shall not be rated above its least mature element, and the assessment shall be updated at PDR. */
+                attribute requiredTrl : Real = 6;
+                attribute :>> milestone = Milestone::PDR;
+            }
+            requirement <'SE-11'> predictBeforeTest : ProgramRequirement {
+                doc /* Analysis predictions shall be recorded before each development test, and a test result outside the predicted uncertainty shall have its variance explained and its root cause reviewed. */
+                attribute :>> milestone = Milestone::CDR;
+            }
             requirement <'SE-4'> integrationPlan : ProgramRequirement {
                 doc /* The integration plan shall be updated. */
                 attribute :>> milestone = Milestone::SIR;
@@ -70,6 +83,23 @@ package TiltrotorProgramModel {
 
         requirement <'AER-0'> aerodynamicsReqs : ProgramRequirement {
             doc /* Aerodynamics program deliverables. */
+            requirement <'AER-11'> sensorErrors : ProgramRequirement {
+                doc /* The effect of sensor errors on the derived quantity, such as pressure error on angle of attack, shall be analyzed, and temperature and tubing lag effects shall be accounted for. */
+                attribute :>> milestone = Milestone::CDR;
+            }
+            requirement <'AER-12'> parameterEstimation : ProgramRequirement {
+                doc /* Aerodynamic parameters shall be estimated with more than one technique, the differences shall be reviewed for data errors, and reported uncertainties shall be treated as lower bounds. */
+                attribute :>> milestone = Milestone::SIR;
+            }
+            requirement <'AER-13'> flightDataArchive : ProgramRequirement {
+                doc /* Flight data shall be archived with metadata, and the steps that convert raw data to engineering data shall be documented. */
+                attribute :>> milestone = Milestone::SIR;
+            }
+            requirement <'AER-14'> codeCrossCheck : ProgramRequirement {
+                doc /* Two independent CFD codes shall be compared before the large-scale database runs, and each run shall be converged to the drag tolerance below. */
+                attribute dragStdDev : Real = 1e-5;
+                attribute :>> milestone = Milestone::PDR;
+            }
             requirement <'AER-3'> modelRecord : ProgramRequirement {
                 doc /* The aerodynamic model shall carry uncertainties, state its axis system, document its limits of use and data sources, and be kept under version control. */
                 attribute :>> milestone = Milestone::PDR;
@@ -118,6 +148,10 @@ package TiltrotorProgramModel {
                 doc /* Aerodynamic and inertial loads shall be released as a preliminary loads set. */
                 attribute :>> milestone = Milestone::PDR;
             }
+            requirement <'LDS-7'> modelQuality : ProgramRequirement {
+                doc /* Finite element and dynamic models shall use one consistent unit system and a right-handed coordinate system, and the model mass and center of gravity shall be checked against the actual article. */
+                attribute :>> milestone = Milestone::PDR;
+            }
             requirement <'LDS-2'> finalLoads : ProgramRequirement {
                 doc /* Limit and ultimate loads shall be released for flight and ground conditions under revision control. */
                 attribute :>> milestone = Milestone::CDR;
@@ -143,6 +177,15 @@ package TiltrotorProgramModel {
 
         requirement <'STR-0'> structuresReqs : ProgramRequirement {
             doc /* Aircraft structures program deliverables. */
+            requirement <'STR-3'> staticApproach : ProgramRequirement {
+                doc /* One static-strength approach shall be selected and documented: no test and no data, test and data, test and no data, or a justified alternative, with an ultimate factor of safety that fits the approach. The factor below is a placeholder until the project selects. */
+                attribute ultimateFactor : Real = 2.25;
+                attribute :>> milestone = Milestone::PDR;
+            }
+            requirement <'STR-4'> flightLoadLimit : ProgramRequirement {
+                doc /* The flight envelope shall be limited to the fraction of limit load that the selected approach supports, and where the aircraft is the proof article it shall be fully instrumented and calibrated. */
+                attribute :>> milestone = Milestone::SIR;
+            }
             requirement <'STR-1'> stressNotes : ProgramRequirement {
                 doc /* Stress notes shall show margins of safety for all primary structure. */
                 attribute :>> milestone = Milestone::CDR;
@@ -155,6 +198,15 @@ package TiltrotorProgramModel {
 
         requirement <'SIN-0'> structuralIntegrityReqs : ProgramRequirement {
             doc /* Aircraft structural integrity program deliverables. */
+            requirement <'SIN-3'> compositeBuildingBlock : ProgramRequirement {
+                doc /* Composite structure shall be substantiated by a building-block approach: coupon tests, then design-feature tests, then proof loading on the aircraft, with a factor of safety of 3.0 on secondary structure of unproven equivalence. */
+                attribute secondaryFactor : Real = 3.0;
+                attribute :>> milestone = Milestone::CDR;
+            }
+            requirement <'SIN-4'> proofLoad : ProgramRequirement {
+                doc /* Where the aircraft is the proof-test article, the proof load shall be applied and its results compared with analysis before first flight. */
+                attribute :>> milestone = Milestone::SIR;
+            }
             requirement <'SIN-1'> criteria : ProgramRequirement {
                 doc /* Structural design criteria shall be defined: factors of safety, load cases and fatigue approach. */
                 attribute :>> milestone = Milestone::PDR;
@@ -223,6 +275,15 @@ package TiltrotorProgramModel {
                 doc /* Where body inertia changes with deformation or the nacelle rotates, modal integrals shall be included, and results with and without them shall be compared side by side. */
                 attribute :>> milestone = Milestone::PDR;
             }
+            requirement <'FLU-13'> modelSensitivity : ProgramRequirement {
+                doc /* Uncertain model parameters shall be varied to bound the flutter envelope, a large margin shall be confirmed under all variations, and critical parameter combinations shall be identified. */
+                attribute :>> milestone = Milestone::PDR;
+            }
+            requirement <'FLU-14'> testRelief : ProgramRequirement {
+                doc /* Flight flutter testing shall be omitted only where the margin on a high-confidence model exceeds the value below, and the omission shall be recorded as a deviation. */
+                attribute largeMarginPercent : Real = 100;
+                attribute :>> milestone = Milestone::CDR;
+            }
             requirement <'FLU-4'> prelimFlutter : ProgramRequirement {
                 doc /* A preliminary flutter analysis at the key flight points, including whirl flutter across the conversion corridor, shall show at least the margin below on equivalent airspeed and Mach number. */
                 attribute marginPercent : Real = 15;
@@ -247,6 +308,10 @@ package TiltrotorProgramModel {
             requirement <'FTP-5'> techBrief : ProgramRequirement {
                 doc /* A technical briefing shall close out all open items, peer review the plan and the current risks, and end with signed approval to fly. */
                 attribute :>> milestone = Milestone::ORR;
+            }
+            requirement <'FTP-7'> instrumentationPlan : ProgramRequirement {
+                doc /* Instrumentation shall be designed early, to show safety, experiment success and experiment failure, and its reliability and maintainability shall be planned for the full program. */
+                attribute :>> milestone = Milestone::PDR;
             }
             requirement <'FTP-6'> debrief : ProgramRequirement {
                 doc /* Each flight shall be followed by a debrief, and discrepancies and results shall be documented and compared with predictions. */
@@ -280,6 +345,18 @@ package TiltrotorProgramModel {
                 doc /* A flight readiness review by reviewers outside the project team shall examine the analyses, procedures, hazard analyses and qualification results, and the project shall respond to each finding. */
                 attribute :>> milestone = Milestone::ORR;
             }
+            requirement <'SOF-8'> lostLink : ProgramRequirement {
+                doc /* A lost-link procedure shall be defined with a predesignated contingency landing site and verified in ground and flight test. */
+                attribute :>> milestone = Milestone::ORR;
+            }
+            requirement <'SOF-9'> hazardStandard : ProgramRequirement {
+                doc /* The hazard analysis shall follow ASTM F3178-16, which the NASA memo cites for small unmanned aircraft under 55 pounds. */
+                attribute :>> milestone = Milestone::PDR;
+            }
+            requirement <'SOF-10'> pilotOverride : ProgramRequirement {
+                doc /* The remote pilot shall be able to command or override the vehicle at all times. */
+                attribute :>> milestone = Milestone::ORR;
+            }
             requirement <'SOF-7'> flightApproval : ProgramRequirement {
                 doc /* A written recommendation quantifying residual risk, with accepted risks named, shall be signed by the approving authority before the first flight. */
                 attribute :>> milestone = Milestone::ORR;
@@ -296,6 +373,14 @@ package TiltrotorProgramModel {
 
         requirement <'CMG-0'> configurationManagementReqs : ProgramRequirement {
             doc /* Configuration management program deliverables. */
+            requirement <'CMG-4'> asBuiltLink : ProgramRequirement {
+                doc /* Design, analysis and manufacturing shall stay linked so that the as-built performance is confirmed against the analysis. */
+                attribute :>> milestone = Milestone::SIR;
+            }
+            requirement <'CMG-5'> simControl : ProgramRequirement {
+                doc /* Flight simulations shall be under version control as part of configuration control. */
+                attribute :>> milestone = Milestone::CDR;
+            }
             requirement <'CMG-1'> cmp : ProgramRequirement {
                 doc /* A configuration management plan shall be approved. */
                 attribute :>> milestone = Milestone::SRR;
