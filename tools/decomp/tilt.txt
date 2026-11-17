@@ -1,0 +1,23 @@
+TLT-001|VEH-4|tiltRange|Each nacelle shall rotate through at least 0 to 90 deg of tilt angle, where 0 deg is the cruise position and 90 deg is the hover position.|T|CDR|projectChoice|Covers the full hover to cruise range.
+TLT-002|TLT-001|tiltAccuracy|Each tilt actuator shall hold the commanded angle within [TBD] deg.|T|CDR|placeholder|Angle error changes thrust direction and trim.
+TLT-003|VEH-4|tiltRate|Each nacelle shall tilt at a rate of at least [TBD] deg/s under aerodynamic load.|T|CDR|placeholder|Rate sets conversion time and corridor length.
+TLT-004|TLT-003|tiltRateMax|Each nacelle shall tilt at a rate not exceeding [TBD] deg/s.|T|CDR|placeholder|Fast tilting changes forces faster than the controls can follow.
+TLT-005|VEH-4|tiltSync|The two nacelle angles shall differ by no more than [TBD] deg at any time during conversion.|T|CDR|placeholder|An angle split gives a roll and yaw moment.
+TLT-006|TLT-005|tiltSyncDetect|The flight controller shall detect a nacelle angle split above the limit in TLT-005 within [TBD] ms.|T|CDR|placeholder|Early detection allows a response before loss of control.
+TLT-007|TLT-006|tiltSyncResponse|The flight controller shall hold both nacelles at their current angles when a split above the limit is detected.|D|CDR|projectChoice|Holding avoids making the split worse.
+TLT-008|VEH-4|tiltTorque|Each tilt actuator shall produce a holding and driving torque of at least [TBD] N-m at the worst-case load of the conversion corridor.|A|PDR|placeholder|Sizes the actuator.
+TLT-009|TLT-008|tiltLoadCase|The worst-case tilt load shall be determined from rotor thrust, gyroscopic moment and aerodynamic hinge moment, with the result recorded as [TBD] N-m.|A|PDR|placeholder|Input to the actuator torque requirement.
+TLT-010|VEH-4|tiltPosition|Each nacelle shall have a position sensor that reports tilt angle to the flight controller at a rate of at least [TBD] Hz.|T|CDR|placeholder|Closed-loop angle control needs a measurement.
+TLT-011|TLT-010|tiltPositionAccuracy|The nacelle position sensor shall measure angle within [TBD] deg.|T|CDR|placeholder|Limits angle error in TLT-002.
+TLT-012|VEH-7|tiltFailSafe|On loss of tilt actuator power the nacelle shall hold its last angle.|T|CDR|projectChoice|Holding avoids an uncommanded conversion.
+TLT-013|TLT-012|tiltBackdrive|The tilt actuator shall resist back-driving by aerodynamic load with the power off up to the load of TLT-009.|T|CDR|placeholder|Needed for the hold in TLT-012.
+TLT-014|VEH-5|tiltStiffness|The nacelle tilt mechanism stiffness shall be at least [TBD] N-m/rad about the pitch axis.|A|CDR|placeholder|Whirl flutter margin depends on pitch and yaw support stiffness.
+TLT-015|TLT-014|tiltFreeplay|The tilt mechanism free play shall not exceed [TBD] deg.|I|SIR|placeholder|Free play reduces the effective stiffness and is a flutter risk.
+TLT-016|VEH-6|tiltStrength|The nacelle tilt mechanism shall carry the limit load without detrimental deformation and the ultimate load without failure.|A|CDR|adoptedDefault|Primary structure per the strength requirement.
+TLT-017|VEH-3.1|tiltMass|The tilt actuator and mechanism, per side, shall have a mass not exceeding [TBD] kg.|T|SIR|placeholder|Mass budget.
+TLT-018|VEH-2|tiltPower|Each tilt actuator shall draw no more than [TBD] W averaged over the mission profile.|T|CDR|placeholder|Holding torque draws power and reduces endurance.
+TLT-019|VEH-7|tiltEndStops|Each nacelle shall have mechanical end stops at the limits of the tilt range of TLT-001.|I|SIR|adoptedDefault|Prevents over travel on actuator failure.
+TLT-020|VEH-7|tiltCalibrate|The flight controller shall verify nacelle angle against known end stop positions during preflight checks.|D|ORR|adoptedDefault|Catches sensor drift or slippage.
+TLT-021|VEH-4|tiltLife|The tilt mechanism shall complete at least [TBD] conversion cycles without maintenance.|T|CDR|placeholder|Sets maintenance interval and testing wear.
+TLT-022|VEH-4|conversionSchedule|The flight controller shall schedule nacelle angle as a function of airspeed within the conversion corridor, to be defined.|A|CDR|placeholder|Corridor definition is still open (VEH-4).
+TLT-023|TLT-022|conversionAbort|The flight controller shall return the nacelles to the hover position when the conversion leaves the corridor.|D|CDR|projectChoice|Hover is the known safe state.

@@ -1,0 +1,26 @@
+# ID|parent|name|text|verify|phase|basis|rationale
+PWR-001|VEH-2|usableEnergy|The battery pack shall deliver at least the usable energy computed by EnduranceConstraint for a 30-minute mission plus the reserve in PWR-002.|A|PDR|projectChoice|Energy sizing follows directly from the endurance requirement.
+PWR-002|VEH-2|energyReserve|The mission energy budget shall hold a landing reserve of [TBD] percent of pack usable energy.|A|PDR|placeholder|Reserve policy is not yet chosen.
+PWR-003|PWR-001|packChemistry|The battery pack shall use lithium-polymer or lithium-ion cells [TBD chemistry].|I|PDR|placeholder|Cell choice sets specific energy and discharge capability.
+PWR-004|PWR-001|specificEnergy|The battery pack shall have a pack-level specific energy of at least [TBD] Wh/kg.|T|CDR|placeholder|Pack mass must fit inside the takeoff mass limit.
+PWR-005|VEH-3.1|packMass|The battery pack mass, including wiring and enclosure, shall not exceed [TBD] kg.|T|SIR|placeholder|Pack mass is the largest single item in the mass budget.
+PWR-006|PWR-001|peakDischarge|The battery pack shall supply the peak electrical power demand of hover at maximum takeoff mass without cell voltage falling below the cell minimum voltage.|T|CDR|adoptedDefault|Hover is the highest power condition and sets the discharge rating.
+PWR-007|PWR-006|peakPowerValue|The peak electrical power demand in hover shall be determined by analysis and recorded as [TBD] W.|A|PDR|placeholder|Needed before the pack discharge rating can be checked.
+PWR-008|PWR-001|cellMinVoltage|The battery management system shall command landing when any cell voltage falls to [TBD] V under load.|T|CDR|placeholder|Protects the cells and defines the usable energy cutoff.
+PWR-009|PWR-001|cellMaxTemp|The battery management system shall command landing when any cell temperature reaches [TBD] degC.|T|CDR|placeholder|Prevents thermal damage and runaway.
+PWR-010|PWR-009|tempSensing|The battery pack shall provide at least one temperature sensor per [TBD] cells.|I|PDR|placeholder|Sensor density sets how fast a hot cell is detected.
+PWR-011|VEH-2|packVoltageTelemetry|The battery management system shall report pack voltage, current and the lowest cell voltage to the flight controller at a rate of at least [TBD] Hz.|T|CDR|placeholder|The flight controller needs live energy state to manage reserve.
+PWR-012|PWR-011|stateOfCharge|The flight controller shall compute remaining usable energy and display it to the remote pilot.|D|CDR|adoptedDefault|The pilot decides when to land from remaining energy.
+PWR-013|PWR-012|lowEnergyAlert|The ground station shall alert the remote pilot when remaining usable energy falls to the reserve in PWR-002.|D|CDR|adoptedDefault|Gives the pilot time to land before the reserve is used.
+PWR-014|VEH-3|overcurrentProtect|The power distribution shall interrupt any branch whose current exceeds its rating for longer than [TBD] ms.|T|CDR|placeholder|Limits fire risk from a short circuit.
+PWR-015|PWR-014|branchRatings|Each power distribution branch shall be rated for at least [TBD] times its maximum continuous current.|A|PDR|placeholder|Derating margin for wiring and connectors.
+PWR-016|VEH-2|efficiencyPdu|The power distribution shall have an efficiency of at least [TBD] percent at the average cruise load.|T|CDR|placeholder|Losses reduce endurance.
+PWR-017|VEH-7|avionicsBus|The power distribution shall supply the flight controller and radio link from a regulated bus of [TBD] V.|T|CDR|placeholder|Avionics need a stable supply independent of motor load.
+PWR-018|PWR-017|busRipple|The avionics bus shall hold voltage within [TBD] percent during a motor current step from idle to maximum.|T|CDR|placeholder|Motor transients must not reset the flight controller.
+PWR-019|PWR-017|brownout|The flight controller shall continue operating for at least [TBD] ms after the avionics bus falls below its minimum voltage.|T|CDR|placeholder|Gives time to enter a safe state on supply loss.
+PWR-020|VEH-3|armSwitch|The vehicle shall provide a physical means of disconnecting battery power to the propulsion system on the ground.|D|SIR|adoptedDefault|Ground crew safety during handling.
+PWR-021|PWR-020|armIndication|The vehicle shall indicate the propulsion armed state with a visible indicator readable at [TBD] m.|D|SIR|placeholder|Crew must see when the aircraft can spin its rotors.
+PWR-022|VEH-3.1|connectors|Every power connector shall be keyed so that it cannot be mated with reverse polarity.|I|SIR|adoptedDefault|Reverse polarity damages the electronics.
+PWR-023|VEH-6|packRetention|The battery pack retention shall hold the pack against the limit load factors in the strength requirements without release.|A|CDR|adoptedDefault|A loose pack shifts the center of gravity and can short.
+PWR-024|PWR-001|storageTransport|The battery pack shall be transported and stored in a container that limits the effect of a cell fire, to be selected.|I|ORR|placeholder|Lithium cells are a fire hazard on the ground.
+PWR-025|VEH-2|chargeRecord|Each pack shall carry a logged cycle count, and packs beyond [TBD] cycles shall not be flown.|I|ORR|placeholder|Capacity falls with age and breaks the endurance margin.

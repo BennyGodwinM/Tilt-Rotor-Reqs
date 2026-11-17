@@ -1,0 +1,25 @@
+OPS-001|VEH-1|opModes|The vehicle shall operate in three takeoff and landing modes: CTOL, VTOL and C/VTOL.|D|CDR|projectChoice|Pilot choice of mode per flight.
+OPS-002|OPS-001|ctolDef|CTOL shall mean takeoff and landing with the nacelles at a fixed forward angle of [TBD] deg and a ground roll.|I|PDR|placeholder|Defines the term for the requirements below.
+OPS-003|OPS-001|vtolDef|VTOL shall mean takeoff and landing with the nacelles at 90 deg and no ground roll, with conversion to cruise in flight.|I|PDR|projectChoice|Defines the term for the requirements below.
+OPS-004|OPS-001|cvtolDef|C/VTOL shall mean a flight that takes off in one of CTOL or VTOL and lands in the other.|I|PDR|placeholder|Defines the mixed mode; confirm the intent with the program owner.
+OPS-005|OPS-002|ctolGear|The vehicle shall have landing gear or skids that support the aircraft on the ground in CTOL mode.|I|PDR|placeholder|The present architecture has no gear; this is a design decision to confirm.
+OPS-006|OPS-005|ctolRunway|The takeoff ground roll in CTOL mode shall not exceed [TBD] m on [TBD] surface.|T|CDR|placeholder|Sets the runway the operator needs.
+OPS-007|OPS-005|ctolLandingRoll|The landing ground roll in CTOL mode shall not exceed [TBD] m on [TBD] surface.|T|CDR|placeholder|Sets the runway the operator needs.
+OPS-008|OPS-002|ctolClear|The rotors shall clear the ground by at least [TBD] mm in CTOL takeoff and landing attitudes.|A|PDR|placeholder|Strike risk on rotation and flare.
+OPS-009|OPS-002|ctolSpeeds|The rotation speed and approach speed for CTOL mode shall be determined by flight test and recorded in the flight manual.|T|ORR|placeholder|Needed before CTOL flights are made.
+OPS-010|OPS-002|ctolGearLoad|The landing gear shall carry the limit load of a landing at a descent rate of [TBD] m/s without detrimental deformation.|A|CDR|placeholder|Structural sizing of the gear.
+OPS-011|OPS-003|vtolPad|The vehicle shall take off and land vertically from a flat surface within a [TBD] m diameter circle.|D|ORR|placeholder|Sets the VTOL area needed.
+OPS-012|OPS-003|vtolWindLimit|VTOL takeoff and landing shall be possible in steady wind up to [TBD] kt and gusts up to [TBD] kt.|D|ORR|placeholder|Environmental limit for the checklist.
+OPS-013|OPS-004|cvtolTransitionGround|In C/VTOL mode the flight controller shall accept the landing mode selection in flight and configure the nacelles to match.|D|CDR|projectChoice|Lets the pilot change mode in flight.
+OPS-014|OPS-001|modeSelect|The remote pilot shall select CTOL, VTOL or C/VTOL before takeoff, and the flight controller shall not change the selection during the flight except as in OPS-013.|D|CDR|projectChoice|Mode drives the checklist and limits.
+OPS-015|OPS-014|modeDisplay|The ground station shall display the selected mode and the associated limits.|D|CDR|adoptedDefault|The pilot must see what is selected.
+OPS-016|OPS-001|modeChecklistLink|The flight controller shall not arm until the preflight checklist for the selected mode is complete.|D|CDR|projectChoice|Enforces the preflight check.
+OPS-017|OPS-001|modeEnvelope|The flight controller shall apply the envelope limits for the selected mode.|T|CDR|projectChoice|Speed and attitude limits differ by mode.
+CHK-001|VEH-3|preflightChecklist|The program shall provide a preflight checklist for each of CTOL, VTOL and C/VTOL.|I|ORR|projectChoice|Each mode has different items.
+CHK-002|VEH-3|postflightChecklist|The program shall provide a postflight checklist for each of CTOL, VTOL and C/VTOL.|I|ORR|projectChoice|Each mode has different items.
+CHK-003|CHK-001|chkTrace|Every checklist item shall trace to a requirement or hazard it protects.|I|ORR|adoptedDefault|Keeps the checklist tied to the safety case.
+CHK-004|CHK-001|chkElectronic|The ground station shall present the checklist for the selected mode and record each item as complete.|D|CDR|projectChoice|Supports enforcement in OPS-016.
+CHK-005|CHK-004|chkLog|The ground station shall store the completed checklist with the flight record.|I|ORR|adoptedDefault|Evidence of the check.
+CHK-006|CHK-001|chkAutoItems|The flight controller shall check automatically every preflight item that has a sensor and mark it complete or failed.|T|CDR|projectChoice|Reduces missed items.
+CHK-007|CHK-001|chkPaper|The program shall provide a printed form of each checklist.|I|ORR|projectChoice|Usable when the ground station is not working.
+CHK-008|CHK-001|chkRevision|Each checklist shall carry a revision identifier, and the ground station shall show the revision in use.|I|ORR|adoptedDefault|Prevents use of an old version.

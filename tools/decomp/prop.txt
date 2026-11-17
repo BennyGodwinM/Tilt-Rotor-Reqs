@@ -1,0 +1,28 @@
+PRP-001|VEH-1|rotorCount|The vehicle shall have exactly two rotors, one on each side of the fuselage.|I|SIR|projectChoice|Defines the twin-rotor configuration.
+PRP-002|VEH-2|hoverThrust|The propulsion system shall produce a total thrust of at least [TBD] times the maximum takeoff weight in hover.|T|CDR|placeholder|Thrust margin sets climb and control authority in hover.
+PRP-003|PRP-002|perRotorThrust|Each rotor shall produce at least half of the total thrust in PRP-002 at the rotor operating point.|T|CDR|adoptedDefault|Symmetric twin rotors must each carry half.
+PRP-004|PRP-002|thrustMargin|The sum of both rotor thrusts shall exceed hover weight by the control-authority margin of [TBD] percent.|A|PDR|placeholder|Keeps thrust available for control inputs.
+PRP-005|VEH-4|cruiseThrust|The propulsion system shall produce thrust at least equal to cruise drag at the cruise speed [TBD] kt with the nacelles at 0 deg.|A|CDR|placeholder|Cruise thrust sets the cruise power and endurance.
+PRP-006|VEH-3.2|maxSpeedLimit|The flight controller shall limit commanded groundspeed to no more than 87 kt.|T|CDR|directive|Part 107 groundspeed limit, applied in software.
+PRP-007|VEH-5|diskLoading|The rotor disk loading at maximum takeoff weight shall not exceed [TBD] N/m2.|A|PDR|placeholder|Disk loading drives hover power and wake effects.
+PRP-008|VEH-5|rotorDiameter|The rotor diameter shall be [TBD] m.|I|PDR|placeholder|Diameter sets disk loading and whirl flutter margin.
+PRP-009|PRP-008|rotorBlades|Each rotor shall have [TBD] blades.|I|PDR|placeholder|Blade number affects whirl flutter and noise.
+PRP-010|VEH-5|tipSpeed|The rotor tip speed shall not exceed [TBD] m/s in any flight condition.|A|PDR|placeholder|Limits compressibility loss and noise.
+PRP-011|VEH-5|rotorFreq|The rotor first-flap and in-plane natural frequencies shall differ from 1P, 2P and 3P by at least [TBD] percent across the operating rpm range.|A|CDR|placeholder|Avoids resonance with the rotor rotation harmonics.
+PRP-012|VEH-5|rotorBalance|Each rotor shall be balanced so that residual hub vibration stays below [TBD] g at operating rpm.|T|CDR|placeholder|Vibration feeds into the wing and gimbal.
+PRP-013|VEH-6|rotorRetention|The rotor hub and blade retention shall carry centrifugal load at [TBD] percent overspeed with ultimate factor of safety.|A|CDR|placeholder|A thrown blade is a flight safety hazard.
+PRP-014|PRP-013|overspeedDef|The overspeed condition shall be defined as [TBD] percent above maximum rotor speed.|A|PDR|placeholder|Defines the case PRP-013 checks.
+PRP-015|VEH-6|bladeProof|Each rotor blade shall be proof tested to [TBD] times its design centrifugal load before first flight.|T|SIR|placeholder|Screens manufacturing defects.
+PRP-016|VEH-2|motorEfficiency|The motor and speed controller together shall have an efficiency of at least [TBD] percent at the hover operating point.|T|CDR|placeholder|Hover power dominates the energy budget.
+PRP-017|PRP-016|motorEfficiencyCruise|The motor and speed controller together shall have an efficiency of at least [TBD] percent at the cruise operating point.|T|CDR|placeholder|Cruise is the longest segment of the mission.
+PRP-018|VEH-3.1|motorMass|Each motor, mount and speed controller shall have a combined mass not exceeding [TBD] kg.|T|SIR|placeholder|Motor mass is in the mass budget and moves the nacelle center of gravity.
+PRP-019|VEH-7|motorTemp|The motor winding temperature shall not exceed [TBD] degC during the mission profile.|T|CDR|placeholder|Winding insulation fails above its class rating.
+PRP-020|PRP-019|escTemp|The speed controller temperature shall not exceed [TBD] degC during the mission profile.|T|CDR|placeholder|Power electronics derate when hot.
+PRP-021|VEH-7|motorFault|The flight controller shall detect loss of thrust on one motor within [TBD] ms.|T|CDR|placeholder|One motor out causes a roll moment that must be corrected quickly.
+PRP-022|PRP-021|motorFaultResponse|The flight controller shall command the landing mode after a single motor failure is detected.|D|CDR|projectChoice|A single failed rotor cannot sustain controlled flight, so the safe response is to land.
+PRP-023|VEH-7|escCommandRate|The speed controller shall accept thrust commands at a rate of at least [TBD] Hz.|T|CDR|placeholder|Command rate limits control bandwidth in hover.
+PRP-024|PRP-023|escLatency|The speed controller shall change motor torque within [TBD] ms of a command.|T|CDR|placeholder|Response lag erodes hover stability margin.
+PRP-025|VEH-8|thrustTelemetry|The speed controller shall report rpm, current and temperature to the flight controller at at least [TBD] Hz.|T|CDR|placeholder|Telemetry feeds fault detection and energy tracking.
+PRP-026|VEH-3|rotorGuard|The vehicle shall have a means of keeping persons away from the rotors during ground handling, to be selected.|I|SIR|placeholder|Ground crew safety.
+PRP-027|VEH-3|noiseLimit|The vehicle sound level at 15 m in hover shall not exceed [TBD] dBA.|T|ORR|placeholder|Public acceptance and local rules.
+PRP-028|VEH-5|windmill|The rotor shall not windmill into an unstable condition when the motor is unpowered in cruise.|A|CDR|adoptedDefault|An unpowered rotor in forward flight can excite whirl flutter.

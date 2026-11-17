@@ -1,0 +1,32 @@
+PLD-001|VEH-1|payloadSensor|The nose gimbal shall carry one payload sensor that is replaceable by the operator without modifying the airframe or gimbal.|D|SIR|projectChoice|Replaces the fixed GoPro in VEH-1 with a swappable sensor; the GoPro becomes one supported payload.
+PLD-002|PLD-001|mechInterface|The gimbal payload interface shall define one mounting pattern, with dimensions and fastener type of [TBD], for every supported sensor.|I|PDR|placeholder|A single mount is what makes sensors swappable.
+PLD-003|PLD-001|swapTime|A trained operator shall exchange the payload sensor in no more than [TBD] minutes using only the tools listed in the maintenance manual.|D|ORR|placeholder|Swaps must be quick enough for field use.
+PLD-004|PLD-001|elecInterface|The gimbal payload interface shall provide regulated power at [TBD] V and no more than [TBD] W to the sensor.|T|CDR|placeholder|Sensors differ in supply needs; the limit protects the avionics bus.
+PLD-005|PLD-001|dataInterface|The gimbal payload interface shall provide a data connection of type [TBD] with a minimum throughput of [TBD] Mbit/s.|T|CDR|placeholder|Higher-rate sensors need a defined data path.
+PLD-006|PLD-005|sensorDetect|The flight controller shall identify the installed sensor type within [TBD] s of power-up.|T|CDR|placeholder|Mass, size and settings depend on which sensor is fitted.
+PLD-007|PLD-006|sensorProfile|The flight controller shall load a stored profile for the identified sensor containing its mass, center of gravity offset and power draw.|D|CDR|projectChoice|Static margin and endurance estimates depend on the sensor.
+PLD-008|PLD-007|unknownSensor|The flight controller shall block takeoff when the installed sensor has no stored profile and no manual mass entry.|D|CDR|projectChoice|Unknown mass makes the static margin estimate unreliable.
+PLD-009|PLD-001|maxMass|The gimbal shall support a payload sensor of mass up to [TBD] kg.|T|CDR|placeholder|Sets the gimbal and mount design load.
+PLD-010|PLD-009|maxEnvelope|The gimbal shall support a payload sensor within an envelope of [TBD] mm by [TBD] mm by [TBD] mm.|I|PDR|placeholder|Sets nose clearance and gimbal rotation space.
+PLD-011|PLD-009|massRange|The gimbal control shall tune to any sensor mass within the range in PLD-009 using the stored profile.|T|CDR|placeholder|Pointing quality changes with payload inertia.
+PLD-012|VEH-3.1|payloadMassBudget|The takeoff mass requirement shall be met with the heaviest supported payload sensor.|T|SIR|adoptedDefault|Part 107 mass limit applies for any sensor.
+PLD-013|VEH-1|gimbalAxes|The gimbal shall point the payload sensor in pitch over at least [TBD] deg and in yaw over at least [TBD] deg.|T|CDR|placeholder|Pointing range defines the field of regard.
+PLD-014|PLD-013|gimbalAccuracy|The gimbal shall hold the commanded pointing angle within [TBD] deg during hover and cruise.|T|CDR|placeholder|Pointing error degrades sensor data.
+PLD-015|PLD-013|gimbalStabilize|The gimbal shall isolate the sensor from aircraft angular motion to within [TBD] deg rms.|T|CDR|placeholder|Image quality needs stabilization.
+PLD-016|VEH-1|gimbalClear|The gimbal and sensor shall not contact the rotors, airframe or ground in any gimbal position or any tilt position.|A|CDR|adoptedDefault|Prevents strikes during rotation and landing.
+PLD-017|VEH-2|gimbalPower|The gimbal and payload sensor together shall draw no more than [TBD] W averaged over the mission.|T|CDR|placeholder|Payload power reduces endurance.
+PLD-018|VEH-8|gimbalCommandBoundary|The gimbal yaw command shall be added to the boundary variables with a unit, range, latency and tolerance.|I|PDR|adoptedDefault|Closes the gimbal in the boundary definition of VEH-8.
+PLD-019|VEH-7|payloadFault|The flight controller shall continue flight when the payload sensor or gimbal fails.|D|CDR|projectChoice|Payload loss must not endanger the aircraft.
+PLD-020|VEH-3|payloadRetain|The sensor mount shall retain the sensor in all flight and landing load cases of the strength requirements.|A|CDR|adoptedDefault|A released sensor is a hazard to people on the ground.
+PLD-021|PLD-001|payloadRecord|The aircraft shall record the sensor identifier in the flight log for each flight.|I|ORR|adoptedDefault|Links data to the sensor used.
+PLD-022|PLD-001|payloadList|The program shall maintain a list of supported sensors, each with a completed profile and a verification record.|I|ORR|projectChoice|Each supported sensor must have been checked for mass and clearance.
+FPV-001|VEH-3.3|fpvCamera|The vehicle shall carry a forward-looking FPV camera, separate from the payload sensor, that provides live video to the remote pilot.|D|SIR|projectChoice|Pilot situational awareness, independent of what payload is fitted.
+FPV-002|FPV-001|fpvFov|The FPV camera shall have a horizontal field of view of at least [TBD] deg.|I|PDR|placeholder|Pilot needs enough view to fly the aircraft.
+FPV-003|FPV-001|fpvLatency|The end-to-end FPV video latency from camera to pilot display shall not exceed [TBD] ms.|T|CDR|placeholder|Latency limits how well the pilot can control by FPV.
+FPV-004|FPV-001|fpvResolution|The FPV video shall have a resolution of at least [TBD] by [TBD] pixels at [TBD] frames per second.|T|CDR|placeholder|Sets image quality for the pilot.
+FPV-005|FPV-001|fpvView|The FPV camera shall be mounted so that the nacelles, rotors and gimbal do not block more than [TBD] percent of its field of view.|I|PDR|placeholder|The aircraft must not hide the view ahead.
+FPV-006|FPV-001|fpvDownlink|The video link shall operate at the range of the visual line of sight limit with the margin of [TBD] dB.|T|CDR|placeholder|Loss of video at the range limit is unacceptable.
+FPV-007|VEH-3.3|fpvNotSubstitute|The remote pilot shall maintain visual line of sight with the aircraft while FPV video is in use.|D|ORR|directive|FPV does not replace visual line of sight under Part 107; a visual observer or the pilot's own sight remains required.
+FPV-008|FPV-001|fpvPower|The FPV camera and transmitter shall draw no more than [TBD] W.|T|CDR|placeholder|Part of the avionics power budget.
+FPV-009|FPV-001|fpvOverlay|The video display shall overlay airspeed, altitude, remaining energy, nacelle angle and static margin status.|D|CDR|projectChoice|Lets the pilot see key data while flying FPV.
+FPV-010|FPV-001|fpvLoss|The flight controller shall indicate loss of the video link to the pilot within [TBD] s.|T|CDR|placeholder|The pilot must know when video is gone.
