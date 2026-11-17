@@ -16,7 +16,6 @@ SWR-015|VEH-7|faultManagement|The flight software shall detect and report faults
 SWR-016|SWR-015|faultTable|The faults and responses shall be listed in a fault table that is reviewed at PDR and CDR.|I|PDR|adoptedDefault|Review point.
 SWR-017|VEH-7|alerting|The ground station shall show faults, cautions and alerts with a distinct display and sound for each level.|D|CDR|projectChoice|Pilot must tell levels apart.
 SWR-018|VEH-7|modeAnnunciation|The ground station shall display the flight mode and nacelle angle at all times.|D|CDR|adoptedDefault|Pilot situational awareness.
-SWR-019|VEH-7|preflightEnforce|The software shall implement the preflight checks defined in CHK-006 and prevent arming if any failed.|T|CDR|projectChoice|Implements automatic checks.
 SWR-020|VEH-8|boundaryDefaults|The software shall use only boundary variable values defined in the vehicle model for its limits.|I|CDR|adoptedDefault|Single source for limits.
 SWR-021|SWR-001|regression|The test suite shall run after each software change.|T|CDR|adoptedDefault|Prevents regressions.
 SWR-022|SWR-001|dataLink|The ground station software shall be developed under the same process as the flight software or a recorded equivalent.|I|PDR|placeholder|Ground station errors can mislead the pilot.

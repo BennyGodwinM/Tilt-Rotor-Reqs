@@ -1,0 +1,40 @@
+{
+ "total": 394,
+ "withTbd": 199,
+ "openValues": 233,
+ "maxDepth": 5,
+ "byPackage": {
+  "PowerReqs": 25,
+  "PropulsionReqs": 29,
+  "TiltReqs": 25,
+  "PayloadReqs": 32,
+  "StabilityReqs": 21,
+  "OperationsReqs": 36,
+  "ControlReqs": 30,
+  "AeroReqs": 24,
+  "StructureReqs": 26,
+  "AvionicsReqs": 27,
+  "SoftwareReqs": 23,
+  "InterfaceReqs": 38,
+  "FailureReqs": 33,
+  "EnvironmentReqs": 25
+ },
+ "byMethod": {
+  "byAnalysis": 91,
+  "byInspection": 73,
+  "byTest": 177,
+  "byDemonstration": 53
+ },
+ "byBasis": {
+  "projectChoice": 94,
+  "placeholder": 225,
+  "adoptedDefault": 70,
+  "directive": 5
+ },
+ "byPhase": {
+  "PDR": 63,
+  "CDR": 254,
+  "ORR": 51,
+  "SIR": 26
+ }
+}

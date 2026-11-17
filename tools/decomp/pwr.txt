@@ -5,7 +5,6 @@ PWR-003|PWR-001|packChemistry|The battery pack shall use lithium-polymer or lith
 PWR-004|PWR-001|specificEnergy|The battery pack shall have a pack-level specific energy of at least [TBD] Wh/kg.|T|CDR|placeholder|Pack mass must fit inside the takeoff mass limit.
 PWR-005|VEH-3.1|packMass|The battery pack mass, including wiring and enclosure, shall not exceed [TBD] kg.|T|SIR|placeholder|Pack mass is the largest single item in the mass budget.
 PWR-006|PWR-001|peakDischarge|The battery pack shall supply the peak electrical power demand of hover at maximum takeoff mass without cell voltage falling below the cell minimum voltage.|T|CDR|adoptedDefault|Hover is the highest power condition and sets the discharge rating.
-PWR-007|PWR-006|peakPowerValue|The peak electrical power demand in hover shall be determined by analysis and recorded as [TBD] W.|A|PDR|placeholder|Needed before the pack discharge rating can be checked.
 PWR-008|PWR-001|cellMinVoltage|The battery management system shall command landing when any cell voltage falls to [TBD] V under load.|T|CDR|placeholder|Protects the cells and defines the usable energy cutoff.
 PWR-009|PWR-001|cellMaxTemp|The battery management system shall command landing when any cell temperature reaches [TBD] degC.|T|CDR|placeholder|Prevents thermal damage and runaway.
 PWR-010|PWR-009|tempSensing|The battery pack shall provide at least one temperature sensor per [TBD] cells.|I|PDR|placeholder|Sensor density sets how fast a hot cell is detected.

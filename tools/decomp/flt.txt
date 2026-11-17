@@ -1,9 +1,8 @@
 FLT-001|SWR-015|fmeaDoc|The program shall maintain a failure modes and effects analysis for every item in the architecture.|A|PDR|adoptedDefault|Failure responses are derived from it.
 FLT-002|FLT-001|fmeaReview|The failure modes and effects analysis shall be reviewed at PDR and CDR.|I|PDR|adoptedDefault|Review points.
 FLT-003|FLT-001|hazardList|The program shall maintain a hazard list with severity, likelihood and a mitigation for each hazard.|A|PDR|adoptedDefault|Basis for the safety case.
-FLT-004|PRP-021|oneMotorOut|The flight controller shall command the landing mode after one motor failure.|D|CDR|projectChoice|See PRP-022; response for one motor out.
-FLT-005|FLT-004|oneMotorAlert|The flight controller shall alert the pilot within [TBD] ms of a motor failure.|T|CDR|placeholder|Pilot awareness.
-FLT-006|FLT-004|oneMotorControl|The flight controller shall keep attitude within [TBD] deg during [TBD] s after a motor failure.|A|CDR|placeholder|Time to land after failure.
+FLT-005|PRP-022|oneMotorAlert|The flight controller shall alert the pilot within [TBD] ms of a motor failure.|T|CDR|placeholder|Pilot awareness.
+FLT-006|PRP-022|oneMotorControl|The flight controller shall keep attitude within [TBD] deg during [TBD] s after a motor failure.|A|CDR|placeholder|Time to land after failure.
 FLT-007|PRP-021|bothMotorsOut|The flight controller shall command a glide to a landing with the control surfaces after both motors fail in cruise.|A|CDR|projectChoice|A winged aircraft can glide after a power loss.
 FLT-008|FLT-007|glideRatio|The glide ratio with both motors stopped shall be at least [TBD].|A|CDR|placeholder|Sets glide distance from altitude.
 FLT-009|FLT-007|bothMotorsHover|The flight controller shall command a controlled descent to the extent possible if both motors fail in hover.|A|CDR|placeholder|There is no thrust; behavior needs analysis.
@@ -13,20 +12,14 @@ FLT-012|FLT-010|stuckNacelleResponse|The flight controller shall hold the other 
 FLT-013|FLT-010|stuckNacelleLimits|The stuck nacelle angles from which a safe landing is possible shall be determined by analysis and recorded as [TBD].|A|CDR|placeholder|Some angles cannot be landed.
 FLT-014|SWR-015|imuFail|The flight controller shall switch to the other attitude source within [TBD] ms of a failed inertial measurement unit.|T|CDR|placeholder|Single sensor loss.
 FLT-015|FLT-014|allImuFail|The flight controller shall command the motors to a safe state if all attitude sources fail.|D|CDR|projectChoice|No attitude means no control.
-FLT-016|SWR-015|gpsFail|The flight controller shall alert the pilot and continue in the attitude hold mode on loss of satellite navigation.|D|CDR|projectChoice|See AVN-010.
 FLT-017|SWR-015|airspeedFail|The flight controller shall use a groundspeed and attitude based estimate if the airspeed sensor fails.|T|CDR|projectChoice|Backup for airspeed.
 FLT-018|SWR-015|heightFail|The flight controller shall use the barometric altitude when the height sensor fails below [TBD] m.|T|CDR|placeholder|Backup for VTOL landing.
-FLT-019|PWR-008|lowVoltage|The flight controller shall command landing on the first of the low cell voltage, the low energy alert and the low bus voltage conditions.|T|CDR|projectChoice|Several energy conditions end the flight.
-FLT-020|PWR-009|highTemp|The flight controller shall command landing when any monitored temperature reaches its limit.|T|CDR|projectChoice|Overheat.
 FLT-021|PWR-014|shortCircuit|The power distribution shall isolate a shorted branch without losing the avionics bus.|T|CDR|projectChoice|Fault containment.
 FLT-022|PWR-017|avionicsPowerLoss|The aircraft shall command the motors to a safe state when the avionics bus is lost.|T|CDR|placeholder|Safe state on lost control.
-FLT-023|AVN-006|linkLoss|The flight controller shall command return and land after the link has been lost for the time in FCS-017.|T|CDR|placeholder|See FCS-017.
-FLT-024|FLT-023|linkRegain|The flight controller shall return pilot control when the link returns and the pilot confirms.|D|CDR|projectChoice|Prevents an abrupt handover.
+FLT-024|AVN-006|linkRegain|The flight controller shall return pilot control when the link returns and the pilot confirms.|D|CDR|projectChoice|Prevents an abrupt handover.
 FLT-025|PLD-019|gimbalFail|The flight controller shall hold the gimbal in a safe position when the gimbal fails.|T|CDR|projectChoice|A loose gimbal can strike the airframe.
-FLT-026|PLD-019|sensorFail|The flight controller shall continue the flight when the payload sensor fails.|D|CDR|projectChoice|Payload failure is not a safety event.
 FLT-027|FPV-010|fpvFail|The flight controller shall continue the flight when the FPV camera fails.|D|CDR|projectChoice|FPV loss is not a safety event.
 FLT-028|AVN-016|softwareHang|The flight controller shall restart in flight within [TBD] ms of a watchdog reset and resume control.|T|CDR|placeholder|Reset in flight must be short.
-FLT-029|STB-012|smAlertFlight|The flight controller shall command landing when static margin remains out of limits as in STB-013.|T|CDR|projectChoice|See STB-013.
 FLT-030|INT-040|gearFail|The flight controller shall continue to arm and fly with a failed weight-on-wheels sensor and alert the pilot.|D|CDR|projectChoice|A gear sensor fault should not strand the aircraft.
 FLT-031|OPS-013|modeChangeFail|The flight controller shall keep the current landing mode if a mode change in flight cannot be completed.|D|CDR|projectChoice|Safe default.
 FLT-032|FCS-008|conversionStall|The flight controller shall return the nacelles to the hover position if the airspeed falls below the corridor floor in conversion.|T|CDR|projectChoice|Stall in conversion needs hover thrust.
@@ -36,5 +29,5 @@ FLT-035|PWR-009|batteryFire|The aircraft shall keep a battery fire from reaching
 FLT-036|FLT-003|emergencyArea|The pilot shall plan a landing area within [TBD] m of the flight path for every flight.|D|ORR|placeholder|Operating practice for emergencies.
 FLT-037|FLT-010|stuckNacelleLanding|The flight controller shall command a landing in the mode that suits the stuck angle.|A|CDR|placeholder|Stuck nacelle landing strategy.
 FLT-038|FLT-017|airspeedFailAlert|The flight controller shall alert the pilot when the airspeed sensor fails.|T|CDR|projectChoice|Pilot awareness.
-FLT-039|FLT-026|sensorFailAlert|The flight controller shall alert the pilot when the payload sensor fails.|D|CDR|projectChoice|Pilot awareness.
+FLT-039|PLD-019|sensorFailAlert|The flight controller shall alert the pilot when the payload sensor fails.|D|CDR|projectChoice|Pilot awareness.
 FLT-040|FLT-027|fpvFailAlert|The flight controller shall alert the pilot when the FPV camera fails.|D|CDR|projectChoice|Pilot awareness.

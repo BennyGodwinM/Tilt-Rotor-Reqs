@@ -33,13 +33,6 @@ package TiltrotorVehicleDecomposition {
                 attribute :>> rationale = "Hover is the highest power condition and sets the discharge rating.";
                 attribute :>> phase = "CDR";
                 attribute :>> verifyBy = VerificationMethod::byTest;
-                requirement <'PWR-007'> peakPowerValue : VehicleRequirement {
-                    doc /* The peak electrical power demand in hover shall be determined by analysis and recorded as [TBD] W. */
-                    attribute :>> basis = Basis::placeholder;
-                    attribute :>> rationale = "Needed before the pack discharge rating can be checked.";
-                    attribute :>> phase = "PDR";
-                    attribute :>> verifyBy = VerificationMethod::byAnalysis;
-                }
             }
             requirement <'PWR-008'> cellMinVoltage : VehicleRequirement {
                 doc /* The battery management system shall command landing when any cell voltage falls to [TBD] V under load. */
@@ -828,13 +821,6 @@ package TiltrotorVehicleDecomposition {
                     attribute :>> rationale = "Battery is the largest movable mass.";
                     attribute :>> phase = "CDR";
                     attribute :>> verifyBy = VerificationMethod::byDemonstration;
-                    requirement <'STB-019'> batteryUse : VehicleRequirement {
-                        doc /* The flight controller shall use the battery position in the center of gravity estimate. */
-                        attribute :>> basis = Basis::adoptedDefault;
-                        attribute :>> rationale = "Closes the loop on STB-004.";
-                        attribute :>> phase = "CDR";
-                        attribute :>> verifyBy = VerificationMethod::byTest;
-                    }
                 }
             }
             requirement <'STB-005'> neutralPoint : VehicleRequirement {
@@ -2130,13 +2116,6 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byDemonstration;
         }
-        requirement <'SWR-019'> preflightEnforce : VehicleRequirement {
-            doc /* The software shall implement the preflight checks defined in CHK-006 and prevent arming if any failed. */
-            attribute :>> basis = Basis::projectChoice;
-            attribute :>> rationale = "Implements automatic checks.";
-            attribute :>> phase = "CDR";
-            attribute :>> verifyBy = VerificationMethod::byTest;
-        }
         requirement <'SWR-020'> boundaryDefaults : VehicleRequirement {
             doc /* The software shall use only boundary variable values defined in the vehicle model for its limits. */
             attribute :>> basis = Basis::adoptedDefault;
@@ -2223,13 +2202,6 @@ package TiltrotorVehicleDecomposition {
                 attribute :>> phase = "CDR";
                 attribute :>> verifyBy = VerificationMethod::byTest;
             }
-        }
-        requirement <'INT-012'> pduToRadio : VehicleRequirement {
-            doc /* The power distribution radio link port shall connect to the radio link power input on the avionics bus. */
-            attribute :>> basis = Basis::projectChoice;
-            attribute :>> rationale = "Connection power distribution to radio link.";
-            attribute :>> phase = "CDR";
-            attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'INT-013'> pduToGimbal : VehicleRequirement {
             doc /* The power distribution gimbal port shall connect to the gimbal power input at a voltage of [TBD] V and a current limit of [TBD] A. */
@@ -2350,13 +2322,6 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
-        requirement <'INT-029'> sensorDataStream : VehicleRequirement {
-            doc /* The payload interface shall carry sensor data to the recorder at a rate of at least [TBD] Mbit/s. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Sensor data storage.";
-            attribute :>> phase = "CDR";
-            attribute :>> verifyBy = VerificationMethod::byTest;
-        }
         requirement <'INT-030'> fpvToTx : VehicleRequirement {
             doc /* The FPV camera shall connect to the video transmitter with a video interface of [TBD]. */
             attribute :>> basis = Basis::placeholder;
@@ -2384,41 +2349,20 @@ package TiltrotorVehicleDecomposition {
             attribute :>> rationale = "Thrust command path.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
-            requirement <'INT-034'> escTelemIf : VehicleRequirement {
-                doc /* The speed controller telemetry shall return over the interface of INT-033 or a separate one of [TBD]. */
-                attribute :>> basis = Basis::placeholder;
-                attribute :>> rationale = "Telemetry path for PRP-025.";
-                attribute :>> phase = "CDR";
-                attribute :>> verifyBy = VerificationMethod::byTest;
-            }
         }
-        requirement <'INT-035'> tiltSensorIf : VehicleRequirement {
-            doc /* Each nacelle position sensor shall connect to the flight controller with an interface of [TBD] at a rate of at least [TBD] Hz. */
+        requirement <'INT-036'> tiltSensorFail : VehicleRequirement {
+            doc /* The flight controller shall detect an open or short circuit in a nacelle position sensor within [TBD] ms. */
             attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Angle feedback path.";
+            attribute :>> rationale = "A failed sensor must not look valid.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
-            requirement <'INT-036'> tiltSensorFail : VehicleRequirement {
-                doc /* The flight controller shall detect an open or short circuit in a nacelle position sensor within [TBD] ms. */
-                attribute :>> basis = Basis::placeholder;
-                attribute :>> rationale = "A failed sensor must not look valid.";
-                attribute :>> phase = "CDR";
-                attribute :>> verifyBy = VerificationMethod::byTest;
-            }
         }
-        requirement <'INT-037'> bmsToFc : VehicleRequirement {
-            doc /* The battery management system shall send voltage, current, temperature and fault data to the flight controller through an interface of [TBD]. */
+        requirement <'INT-038'> bmsLoss : VehicleRequirement {
+            doc /* The flight controller shall treat loss of battery management data for more than [TBD] ms as a fault. */
             attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Energy state path for PWR-011.";
+            attribute :>> rationale = "Unknown energy state is unsafe.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
-            requirement <'INT-038'> bmsLoss : VehicleRequirement {
-                doc /* The flight controller shall treat loss of battery management data for more than [TBD] ms as a fault. */
-                attribute :>> basis = Basis::placeholder;
-                attribute :>> rationale = "Unknown energy state is unsafe.";
-                attribute :>> phase = "CDR";
-                attribute :>> verifyBy = VerificationMethod::byTest;
-            }
         }
         requirement <'INT-039'> gearSensor : VehicleRequirement {
             doc /* The flight controller shall receive the weight-on-wheels state from at least [TBD] sensors on the landing gear. */
@@ -2479,26 +2423,19 @@ package TiltrotorVehicleDecomposition {
                 }
             }
         }
-        requirement <'FLT-004'> oneMotorOut : VehicleRequirement {
-            doc /* The flight controller shall command the landing mode after one motor failure. */
-            attribute :>> basis = Basis::projectChoice;
-            attribute :>> rationale = "See PRP-022; response for one motor out.";
+        requirement <'FLT-005'> oneMotorAlert : VehicleRequirement {
+            doc /* The flight controller shall alert the pilot within [TBD] ms of a motor failure. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Pilot awareness.";
             attribute :>> phase = "CDR";
-            attribute :>> verifyBy = VerificationMethod::byDemonstration;
-            requirement <'FLT-005'> oneMotorAlert : VehicleRequirement {
-                doc /* The flight controller shall alert the pilot within [TBD] ms of a motor failure. */
-                attribute :>> basis = Basis::placeholder;
-                attribute :>> rationale = "Pilot awareness.";
-                attribute :>> phase = "CDR";
-                attribute :>> verifyBy = VerificationMethod::byTest;
-            }
-            requirement <'FLT-006'> oneMotorControl : VehicleRequirement {
-                doc /* The flight controller shall keep attitude within [TBD] deg during [TBD] s after a motor failure. */
-                attribute :>> basis = Basis::placeholder;
-                attribute :>> rationale = "Time to land after failure.";
-                attribute :>> phase = "CDR";
-                attribute :>> verifyBy = VerificationMethod::byAnalysis;
-            }
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FLT-006'> oneMotorControl : VehicleRequirement {
+            doc /* The flight controller shall keep attitude within [TBD] deg during [TBD] s after a motor failure. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Time to land after failure.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'FLT-007'> bothMotorsOut : VehicleRequirement {
             doc /* The flight controller shall command a glide to a landing with the control surfaces after both motors fail in cruise. */
@@ -2570,13 +2507,6 @@ package TiltrotorVehicleDecomposition {
                 attribute :>> verifyBy = VerificationMethod::byDemonstration;
             }
         }
-        requirement <'FLT-016'> gpsFail : VehicleRequirement {
-            doc /* The flight controller shall alert the pilot and continue in the attitude hold mode on loss of satellite navigation. */
-            attribute :>> basis = Basis::projectChoice;
-            attribute :>> rationale = "See AVN-010.";
-            attribute :>> phase = "CDR";
-            attribute :>> verifyBy = VerificationMethod::byDemonstration;
-        }
         requirement <'FLT-017'> airspeedFail : VehicleRequirement {
             doc /* The flight controller shall use a groundspeed and attitude based estimate if the airspeed sensor fails. */
             attribute :>> basis = Basis::projectChoice;
@@ -2598,20 +2528,6 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
-        requirement <'FLT-019'> lowVoltage : VehicleRequirement {
-            doc /* The flight controller shall command landing on the first of the low cell voltage, the low energy alert and the low bus voltage conditions. */
-            attribute :>> basis = Basis::projectChoice;
-            attribute :>> rationale = "Several energy conditions end the flight.";
-            attribute :>> phase = "CDR";
-            attribute :>> verifyBy = VerificationMethod::byTest;
-        }
-        requirement <'FLT-020'> highTemp : VehicleRequirement {
-            doc /* The flight controller shall command landing when any monitored temperature reaches its limit. */
-            attribute :>> basis = Basis::projectChoice;
-            attribute :>> rationale = "Overheat.";
-            attribute :>> phase = "CDR";
-            attribute :>> verifyBy = VerificationMethod::byTest;
-        }
         requirement <'FLT-021'> shortCircuit : VehicleRequirement {
             doc /* The power distribution shall isolate a shorted branch without losing the avionics bus. */
             attribute :>> basis = Basis::projectChoice;
@@ -2626,19 +2542,12 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
-        requirement <'FLT-023'> linkLoss : VehicleRequirement {
-            doc /* The flight controller shall command return and land after the link has been lost for the time in FCS-017. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "See FCS-017.";
+        requirement <'FLT-024'> linkRegain : VehicleRequirement {
+            doc /* The flight controller shall return pilot control when the link returns and the pilot confirms. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Prevents an abrupt handover.";
             attribute :>> phase = "CDR";
-            attribute :>> verifyBy = VerificationMethod::byTest;
-            requirement <'FLT-024'> linkRegain : VehicleRequirement {
-                doc /* The flight controller shall return pilot control when the link returns and the pilot confirms. */
-                attribute :>> basis = Basis::projectChoice;
-                attribute :>> rationale = "Prevents an abrupt handover.";
-                attribute :>> phase = "CDR";
-                attribute :>> verifyBy = VerificationMethod::byDemonstration;
-            }
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
         }
         requirement <'FLT-025'> gimbalFail : VehicleRequirement {
             doc /* The flight controller shall hold the gimbal in a safe position when the gimbal fails. */
@@ -2646,20 +2555,6 @@ package TiltrotorVehicleDecomposition {
             attribute :>> rationale = "A loose gimbal can strike the airframe.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
-        }
-        requirement <'FLT-026'> sensorFail : VehicleRequirement {
-            doc /* The flight controller shall continue the flight when the payload sensor fails. */
-            attribute :>> basis = Basis::projectChoice;
-            attribute :>> rationale = "Payload failure is not a safety event.";
-            attribute :>> phase = "CDR";
-            attribute :>> verifyBy = VerificationMethod::byDemonstration;
-            requirement <'FLT-039'> sensorFailAlert : VehicleRequirement {
-                doc /* The flight controller shall alert the pilot when the payload sensor fails. */
-                attribute :>> basis = Basis::projectChoice;
-                attribute :>> rationale = "Pilot awareness.";
-                attribute :>> phase = "CDR";
-                attribute :>> verifyBy = VerificationMethod::byDemonstration;
-            }
         }
         requirement <'FLT-027'> fpvFail : VehicleRequirement {
             doc /* The flight controller shall continue the flight when the FPV camera fails. */
@@ -2679,13 +2574,6 @@ package TiltrotorVehicleDecomposition {
             doc /* The flight controller shall restart in flight within [TBD] ms of a watchdog reset and resume control. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Reset in flight must be short.";
-            attribute :>> phase = "CDR";
-            attribute :>> verifyBy = VerificationMethod::byTest;
-        }
-        requirement <'FLT-029'> smAlertFlight : VehicleRequirement {
-            doc /* The flight controller shall command landing when static margin remains out of limits as in STB-013. */
-            attribute :>> basis = Basis::projectChoice;
-            attribute :>> rationale = "See STB-013.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
@@ -2730,6 +2618,13 @@ package TiltrotorVehicleDecomposition {
             attribute :>> rationale = "Time to land.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'FLT-039'> sensorFailAlert : VehicleRequirement {
+            doc /* The flight controller shall alert the pilot when the payload sensor fails. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Pilot awareness.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
         }
     }
 
@@ -3027,52 +2922,46 @@ package TiltrotorVehicleDecomposition {
     dependency from SoftwareReqs::faultManagement to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
     dependency from SoftwareReqs::alerting to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
     dependency from SoftwareReqs::modeAnnunciation to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
-    dependency from SoftwareReqs::preflightEnforce to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
     dependency from SoftwareReqs::boundaryDefaults to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
     dependency from InterfaceReqs::battToPdu to PowerReqs::avionicsBus;
     dependency from InterfaceReqs::pduToNacelleL to PowerReqs::overcurrentProtect;
     dependency from InterfaceReqs::pduToFc to PowerReqs::avionicsBus;
-    dependency from InterfaceReqs::pduToRadio to PowerReqs::avionicsBus;
     dependency from InterfaceReqs::pduToGimbal to PayloadReqs::payloadSensor::elecInterface;
     dependency from InterfaceReqs::radioToFc to AvionicsReqs::controlLink;
     dependency from InterfaceReqs::fcToTiltL to TiltReqs::tiltPosition;
     dependency from InterfaceReqs::fcToGimbal to PayloadReqs::payloadSensor::dataInterface;
     dependency from InterfaceReqs::sensorConnector to PayloadReqs::payloadSensor::mechInterface;
     dependency from InterfaceReqs::sensorDataFormat to PayloadReqs::payloadSensor::dataInterface;
-    dependency from InterfaceReqs::sensorDataStream to PayloadReqs::payloadSensor::dataInterface;
     dependency from InterfaceReqs::fpvToTx to PayloadReqs::fpvCamera;
     dependency from InterfaceReqs::fpvPowerInt to PayloadReqs::fpvCamera;
     dependency from InterfaceReqs::escToMotor to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
     dependency from InterfaceReqs::escCommandIf to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
-    dependency from InterfaceReqs::tiltSensorIf to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
-    dependency from InterfaceReqs::bmsToFc to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from InterfaceReqs::tiltSensorFail to TiltReqs::tiltPosition;
+    dependency from InterfaceReqs::bmsLoss to PowerReqs::packVoltageTelemetry;
     dependency from InterfaceReqs::gearSensor to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
     dependency from InterfaceReqs::connectorLocking to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
     dependency from InterfaceReqs::interfaceControlDoc to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
     dependency from FailureReqs::fmeaDoc to SoftwareReqs::faultManagement;
-    dependency from FailureReqs::oneMotorOut to PropulsionReqs::motorFault;
+    dependency from FailureReqs::oneMotorAlert to PropulsionReqs::motorFault::motorFaultResponse;
+    dependency from FailureReqs::oneMotorControl to PropulsionReqs::motorFault::motorFaultResponse;
     dependency from FailureReqs::bothMotorsOut to PropulsionReqs::motorFault;
     dependency from FailureReqs::tiltActuatorFailL to TiltReqs::tiltFailSafe;
     dependency from FailureReqs::imuFail to SoftwareReqs::faultManagement;
-    dependency from FailureReqs::gpsFail to SoftwareReqs::faultManagement;
     dependency from FailureReqs::airspeedFail to SoftwareReqs::faultManagement;
     dependency from FailureReqs::heightFail to SoftwareReqs::faultManagement;
-    dependency from FailureReqs::lowVoltage to PowerReqs::usableEnergy::cellMinVoltage;
-    dependency from FailureReqs::highTemp to PowerReqs::usableEnergy::cellMaxTemp;
     dependency from FailureReqs::shortCircuit to PowerReqs::overcurrentProtect;
     dependency from FailureReqs::avionicsPowerLoss to PowerReqs::avionicsBus;
-    dependency from FailureReqs::linkLoss to AvionicsReqs::controlLink::linkLossDetect;
+    dependency from FailureReqs::linkRegain to AvionicsReqs::controlLink::linkLossDetect;
     dependency from FailureReqs::gimbalFail to PayloadReqs::payloadFault;
-    dependency from FailureReqs::sensorFail to PayloadReqs::payloadFault;
     dependency from FailureReqs::fpvFail to PayloadReqs::fpvCamera::fpvLoss;
     dependency from FailureReqs::softwareHang to AvionicsReqs::watchdog;
-    dependency from FailureReqs::smAlertFlight to StabilityReqs::staticMarginEstimate::smLimits::smWarnAlert;
     dependency from FailureReqs::gearFail to InterfaceReqs::gearSensor::gearSensorDisagree;
     dependency from FailureReqs::modeChangeFail to OperationsReqs::opModes::cvtolDef::cvtolTransitionGround;
     dependency from FailureReqs::conversionStall to ControlReqs::conversionControl;
     dependency from FailureReqs::conversionOverspeed to ControlReqs::conversionControl;
     dependency from FailureReqs::rotorBreak to PropulsionReqs::rotorRetention;
     dependency from FailureReqs::batteryFire to PowerReqs::usableEnergy::cellMaxTemp;
+    dependency from FailureReqs::sensorFailAlert to PayloadReqs::payloadFault;
     dependency from EnvironmentReqs::operatingTemp to TiltrotorVehicleRequirements::vehicleReqs::part107;
     dependency from EnvironmentReqs::storageTemp to TiltrotorVehicleRequirements::vehicleReqs::part107;
     dependency from EnvironmentReqs::rainLimit to TiltrotorVehicleRequirements::vehicleReqs::part107;

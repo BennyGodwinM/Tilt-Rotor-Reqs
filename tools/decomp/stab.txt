@@ -16,7 +16,6 @@ STB-015|STB-001|smConfirmBalance|The operator shall be able to confirm the estim
 STB-016|STB-001|smRecord|The aircraft shall log the static margin estimate, its confidence and its inputs throughout every flight.|I|ORR|adoptedDefault|Supports review and model correction.
 STB-017|STB-001|smFlightTest|The static margin estimate shall be compared with flight test results at [TBD] configurations before release.|T|ORR|placeholder|Validates the estimator.
 STB-018|STB-001|smRateDisplay|The ground station shall display static margin, its limits and its confidence to the remote pilot.|D|CDR|adoptedDefault|The pilot needs to see the number.
-STB-019|STB-004|batteryUse|The flight controller shall use the battery position in the center of gravity estimate.|T|CDR|adoptedDefault|Closes the loop on STB-004.
 STB-020|STB-014|lowConfidenceCaution|The flight controller shall give a caution when the static margin confidence is low.|D|CDR|projectChoice|Low confidence must be visible.
 STB-021|STB-015|measuredCg|The flight controller shall accept a measured center of gravity as an input to the estimate.|D|ORR|projectChoice|Ground measurement overrides the stored model.
 STB-022|STB-009|smStolLimits|The static margin limits shall be defined for each nacelle angle in the STOL range.|A|PDR|placeholder|Partial tilt changes the neutral point.

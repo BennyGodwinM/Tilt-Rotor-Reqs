@@ -9,7 +9,6 @@ INT-008|INT-005|nacelleHarnessRoute|The nacelle power harness shall be routed so
 INT-009|INT-005|nacelleSymmetry|The left and right nacelle power paths shall have resistance within [TBD] percent of each other.|T|CDR|placeholder|Unequal paths produce unequal thrust at equal command.
 INT-010|PWR-017|pduToFc|The power distribution flight controller port shall connect to the flight controller power input on the avionics bus of [TBD] V.|T|CDR|placeholder|Connection power distribution to flight controller.
 INT-011|INT-010|fcSupplyRedundant|The flight controller shall accept power from [TBD] independent sources.|T|CDR|placeholder|Single supply loss must not reset the flight controller.
-INT-012|PWR-017|pduToRadio|The power distribution radio link port shall connect to the radio link power input on the avionics bus.|T|CDR|projectChoice|Connection power distribution to radio link.
 INT-013|PLD-004|pduToGimbal|The power distribution gimbal port shall connect to the gimbal power input at a voltage of [TBD] V and a current limit of [TBD] A.|T|CDR|placeholder|Connection power distribution to gimbal.
 INT-014|INT-013|gimbalCurrentLimit|The gimbal power branch shall limit current to [TBD] A so that a payload fault does not drop the avionics bus.|T|CDR|placeholder|Isolation of payload faults.
 INT-015|AVN-001|radioToFc|The radio link pilot command port shall connect to the flight controller pilot command input using a serial protocol of [TBD] at a rate of [TBD] baud.|T|CDR|placeholder|Connection radio link to flight controller.
@@ -26,16 +25,12 @@ INT-025|PLD-002|sensorConnector|The payload sensor connector shall be keyed.|I|P
 INT-026|INT-025|sensorConnectorCycles|The payload sensor connector shall survive at least [TBD] mating cycles.|T|CDR|placeholder|Swaps are frequent.
 INT-027|INT-025|sensorHotSwap|The payload interface shall prevent damage if a sensor is connected or disconnected with power on.|T|CDR|projectChoice|Operators may swap without powering down.
 INT-028|PLD-005|sensorDataFormat|The payload interface shall transfer the sensor identifier, mass and center of gravity offset from the sensor to the flight controller on connection.|T|CDR|projectChoice|Supports the profile load in PLD-007.
-INT-029|PLD-005|sensorDataStream|The payload interface shall carry sensor data to the recorder at a rate of at least [TBD] Mbit/s.|T|CDR|placeholder|Sensor data storage.
 INT-030|FPV-001|fpvToTx|The FPV camera shall connect to the video transmitter with a video interface of [TBD].|T|CDR|placeholder|Connection FPV camera to transmitter.
 INT-031|FPV-001|fpvPowerInt|The FPV camera and transmitter shall be powered from the avionics bus through a filter that keeps motor noise out of the video.|T|CDR|adoptedDefault|Noise creates interference on the display.
 INT-032|VEH-8|escToMotor|Each speed controller shall connect to its motor through three phase wires of at least [TBD] AWG with a length not more than [TBD] mm.|I|CDR|placeholder|Long phase wires cause noise and loss.
 INT-033|VEH-8|escCommandIf|The flight controller shall connect to each speed controller through a command interface of [TBD] at a rate of at least [TBD] Hz.|T|CDR|placeholder|Thrust command path.
-INT-034|INT-033|escTelemIf|The speed controller telemetry shall return over the interface of INT-033 or a separate one of [TBD].|T|CDR|placeholder|Telemetry path for PRP-025.
-INT-035|VEH-8|tiltSensorIf|Each nacelle position sensor shall connect to the flight controller with an interface of [TBD] at a rate of at least [TBD] Hz.|T|CDR|placeholder|Angle feedback path.
-INT-036|INT-035|tiltSensorFail|The flight controller shall detect an open or short circuit in a nacelle position sensor within [TBD] ms.|T|CDR|placeholder|A failed sensor must not look valid.
-INT-037|VEH-8|bmsToFc|The battery management system shall send voltage, current, temperature and fault data to the flight controller through an interface of [TBD].|T|CDR|placeholder|Energy state path for PWR-011.
-INT-038|INT-037|bmsLoss|The flight controller shall treat loss of battery management data for more than [TBD] ms as a fault.|T|CDR|placeholder|Unknown energy state is unsafe.
+INT-036|TLT-010|tiltSensorFail|The flight controller shall detect an open or short circuit in a nacelle position sensor within [TBD] ms.|T|CDR|placeholder|A failed sensor must not look valid.
+INT-038|PWR-011|bmsLoss|The flight controller shall treat loss of battery management data for more than [TBD] ms as a fault.|T|CDR|placeholder|Unknown energy state is unsafe.
 INT-039|VEH-8|gearSensor|The flight controller shall receive the weight-on-wheels state from at least [TBD] sensors on the landing gear.|T|CDR|placeholder|Needed to know ground contact in CTOL and STOL.
 INT-040|INT-039|gearSensorDisagree|The flight controller shall treat disagreeing weight-on-wheels sensors as a fault.|T|CDR|projectChoice|Wrong ground state affects arming and landing logic.
 INT-041|VEH-8|connectorLocking|Every connector on the vehicle shall have a locking feature that resists the vibration of PRP-012.|T|CDR|adoptedDefault|Vibration unseats connectors.

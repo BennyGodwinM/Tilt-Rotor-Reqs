@@ -37,3 +37,13 @@ SysON is the graphical modeler for the same `.sysml` files. Git stays the record
 5. Export edited text back into `models/` and commit; then run `tools/derive.py`, `tools/views.py` and `tools/site.py`.
 
 Status: the stack starts and its project API answers, but I could not load the models into it automatically. The upload call returned a generic server error even for a one-line file, so I have not confirmed that SysON accepts these files, and I have not seen how it shows the paragraph-number aliases. Report any load error and I will adjust the models.
+
+## Decomposition (vehicle requirements below the top level)
+
+`models/TiltrotorVehicleDecomposition.sysml` holds 394 atomic requirements, nested under the requirement each one refines, with a `dependency` to its vehicle-level parent. **Do not edit it by hand.** It is generated:
+
+1. Edit the rows in `tools/decomp/*.txt` (`ID|parent|name|text|verify|phase|basis|rationale`; verify is T, A, D or I).
+2. Run `python3 tools/gen_decomp.py` to write the model and `docs/checklists.md`.
+3. Run `python3 tools/derive_decomp.py` to write `docs/decomposition_matrix.md`, `decomposition_tbd.md`, `decomposition_outline.md` and `decomposition_summary.json`.
+
+Rules: one "shall" per row; a number you cannot derive is written `[TBD]` with basis `placeholder`; a row's parent must exist. Checklist items in `tools/decomp/checklists.csv` must trace to a requirement ID.
