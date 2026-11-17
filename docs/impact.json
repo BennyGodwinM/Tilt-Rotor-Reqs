@@ -1,0 +1,869 @@
+{
+ "nodes": {
+  "VEH-1": {
+   "kind": "vehicle requirement",
+   "label": "The vehicle shall be a twin-rotor tiltrotor with a GoPro camera on a gimbal in the nose."
+  },
+  "VEH-2": {
+   "kind": "vehicle requirement",
+   "label": "The vehicle shall have at least 30 minutes of flight time. Reserve policy to be set."
+  },
+  "VEH-3": {
+   "kind": "vehicle requirement",
+   "label": "The vehicle shall be operable under 14 CFR Part 107."
+  },
+  "VEH-3.1": {
+   "kind": "vehicle requirement",
+   "label": "Takeoff mass including payload shall be less than the limit, with a sizing margin to be set."
+  },
+  "VEH-3.2": {
+   "kind": "vehicle requirement",
+   "label": "Operation shall stay below the altitude limit and at or below the groundspeed limit."
+  },
+  "VEH-3.3": {
+   "kind": "vehicle requirement",
+   "label": "Operation shall stay within visual line of sight of the remote pilot."
+  },
+  "VEH-4": {
+   "kind": "vehicle requirement",
+   "label": "The vehicle shall convert between hover and cruise inside a conversion corridor to be defined."
+  },
+  "VEH-5": {
+   "kind": "vehicle requirement",
+   "label": "The vehicle shall be free of whirl flutter inside the flight envelope, with at least the margin required in the flutter program requirements."
+  },
+  "VEH-6": {
+   "kind": "vehicle requirement",
+   "label": "The structure shall carry limit loads without detrimental deformation and ultimate loads without failure, with factors to be set."
+  },
+  "VEH-7": {
+   "kind": "vehicle requirement",
+   "label": "The vehicle shall move between flight modes only along the transitions defined in the FlightModes state definition."
+  },
+  "VEH-8": {
+   "kind": "vehicle requirement",
+   "label": "Every monitored and controlled variable of the vehicle shall have a unit and range, and every controlled variable shall also have a latency and a tolerance."
+  },
+  "SE-5": {
+   "kind": "program requirement",
+   "label": "Design standards shall be chosen for the aircraft, and any relaxation shall be recorded with its rationale, such as real-time monitoring or operating limits."
+  },
+  "SE-1": {
+   "kind": "program requirement",
+   "label": "A systems engineering management plan, or equivalent, shall be signed off before SRR."
+  },
+  "SE-2": {
+   "kind": "program requirement",
+   "label": "Conceptual design and trade studies shall be documented and shall recommend one configuration."
+  },
+  "SE-3": {
+   "kind": "program requirement",
+   "label": "The verification and validation plan shall be baselined."
+  },
+  "SE-9": {
+   "kind": "program requirement",
+   "label": "New technologies the aircraft needs, such as the tilt mechanism, conversion control and the nose gimbal, shall be identified as critical technology elements and agreed with the approving authority, and an initial technology readiness assessment shall record the readiness level of each."
+  },
+  "SE-10": {
+   "kind": "program requirement",
+   "label": "Each critical technology element shall reach the readiness level below by PDR, the readiness of any assembly shall not be rated above its least mature element, and the assessment shall be updated at PDR."
+  },
+  "SE-11": {
+   "kind": "program requirement",
+   "label": "Analysis predictions shall be recorded before each development test, and a test result outside the predicted uncertainty shall have its variance explained and its root cause reviewed."
+  },
+  "SE-12": {
+   "kind": "program requirement",
+   "label": "Each requirement shall be a complete statement with one shall, a quantitative measure where it states performance, and a recorded rationale that gives the reason, assumptions and link to the concept of operations."
+  },
+  "SE-13": {
+   "kind": "program requirement",
+   "label": "Requirements shall be validated before baselining: written to the form in SE-12, technically correct with bidirectional traceability, accepted by stakeholders, feasible, verifiable, and neither redundant nor over-specified."
+  },
+  "SE-14": {
+   "kind": "program requirement",
+   "label": "Key driving requirements, those that would move cost or schedule by more than the amount the chief engineer sets, shall be identified, and technical performance measures shall be tracked against planned values at each review."
+  },
+  "SE-15": {
+   "kind": "program requirement",
+   "label": "The system overview shall be written before requirements: a synopsis, the operating contexts, a context diagram, the external entities and the preliminary system goals, and it shall be kept current."
+  },
+  "SE-16": {
+   "kind": "program requirement",
+   "label": "The system boundary shall be defined early as the monitored variables the aircraft senses, the controlled variables it commands and the environmental variables it must tolerate, each with type, range, precision and units, and every physical interface shall be defined."
+  },
+  "SE-17": {
+   "kind": "program requirement",
+   "label": "Operational concepts shall be written as use cases titled by their goal and traced to system goals, each with a primary actor, preconditions and postconditions, normal flow first, then exception cases and alternate courses, and without operator interface details."
+  },
+  "SE-18": {
+   "kind": "program requirement",
+   "label": "Each environmental assumption shall state type, range, precision and units, shall carry its rationale, and shall be grouped by the entity it constrains."
+  },
+  "SE-19": {
+   "kind": "program requirement",
+   "label": "Major flight modes and the transitions between them shall be identified, including any mode added for a discontinuity the pilot can see."
+  },
+  "SE-20": {
+   "kind": "program requirement",
+   "label": "Each controlled variable shall be specified as a condition and an assigned value, with its latency and tolerance, and the set shall be complete, consistent and free of duplication; latency and tolerance shall not be set on internal variables."
+  },
+  "SE-21": {
+   "kind": "program requirement",
+   "label": "Each design decision that constrains the design further shall be flagged as a derived requirement, and its latency and accuracy shall be confirmed against the top-level values."
+  },
+  "SE-22": {
+   "kind": "program requirement",
+   "label": "When requirements are allocated to a subsystem, the subsystem shall have its own overview, monitored and controlled variables and operational concept, shared assumptions shall be identified, and latencies and tolerances shall be consistent with the system level."
+  },
+  "SE-23": {
+   "kind": "program requirement",
+   "label": "One product-oriented work breakdown structure shall cover the whole scope of work, including enabling work such as project management and safety, shall be drafted as early as project definition allows, and shall be changed only by formal approval after it is baselined."
+  },
+  "SE-24": {
+   "kind": "program requirement",
+   "label": "A work breakdown structure dictionary shall define each element with its title, code, content, interfaces, associated specification and revision history, shall be clear enough to remove overlap between elements, and shall be a baselined controlled document."
+  },
+  "SE-25": {
+   "kind": "program requirement",
+   "label": "A verification matrix shall list every shall statement by unique identifier, source document and paragraph, with its success criteria, method, facility or laboratory, phase, and whether it is also checked at acceptance and before each flight."
+  },
+  "SE-26": {
+   "kind": "program requirement",
+   "label": "Measures of effectiveness shall be derived from the goals, measures of performance from those, and the technical performance measures that matter to flight success shall be tracked against their planned values at each review."
+  },
+  "SE-27": {
+   "kind": "program requirement",
+   "label": "Each requirement shall be checked before baselining for: active form, a stated tolerance, no implementation, positive wording, no unverifiable terms, and traceability up to a parent and down to a verification; TBD values shall be kept few, each with a best estimate, an owner and a closing review."
+  },
+  "SE-4": {
+   "kind": "program requirement",
+   "label": "The integration plan shall be updated."
+  },
+  "SE-6": {
+   "kind": "program requirement",
+   "label": "The project chief engineer shall assess technical performance against design allocations, margins and trades every month, and shall report the assessment to the approving authority."
+  },
+  "SE-7": {
+   "kind": "program requirement",
+   "label": "The program shall apply a risk-based method to set how deeply each discipline program is independently reviewed, and the top technical risks shall be reported with each monthly assessment."
+  },
+  "SE-8": {
+   "kind": "program requirement",
+   "label": "Technical issues shall go up the chief engineer chain without filtering, and late-breaking or potential issues shall be briefed to the approving authority before the next review."
+  },
+  "AER-11": {
+   "kind": "program requirement",
+   "label": "The effect of sensor errors on the derived quantity, such as pressure error on angle of attack, shall be analyzed, and temperature and tubing lag effects shall be accounted for."
+  },
+  "AER-12": {
+   "kind": "program requirement",
+   "label": "Aerodynamic parameters shall be estimated with more than one technique, the differences shall be reviewed for data errors, and reported uncertainties shall be treated as lower bounds."
+  },
+  "AER-13": {
+   "kind": "program requirement",
+   "label": "Flight data shall be archived with metadata, and the steps that convert raw data to engineering data shall be documented."
+  },
+  "AER-14": {
+   "kind": "program requirement",
+   "label": "Two independent CFD codes shall be compared before the production database runs, and each run shall be converged to the drag tolerance below."
+  },
+  "AER-3": {
+   "kind": "program requirement",
+   "label": "The aerodynamic model shall carry uncertainties, state its axis system, document its limits of use and data sources, and be kept under version control."
+  },
+  "AER-4": {
+   "kind": "program requirement",
+   "label": "CFD shall use one defined coordinate system and sign convention, validated codes, and grid independence studies on the most complex geometry and flow."
+  },
+  "AER-5": {
+   "kind": "program requirement",
+   "label": "The CAD model used for CFD shall be checked against measurements or photographs of the as-built aircraft."
+  },
+  "AER-6": {
+   "kind": "program requirement",
+   "label": "The CAD models, grids, solver settings, scripts, solutions and code versions used in airworthiness reviews shall be archived."
+  },
+  "AER-7": {
+   "kind": "program requirement",
+   "label": "Aerodynamic instrumentation shall be defined early from the project objectives, with sensors sized and calibrated for the full envelope and the worst local environment, and with spare capacity."
+  },
+  "AER-8": {
+   "kind": "program requirement",
+   "label": "Air data accuracy requirements shall be stated before the air data system is designed, and an in-flight calibration shall be planned."
+  },
+  "AER-9": {
+   "kind": "program requirement",
+   "label": "Sensor locations, labels and calibrations shall be checked twice before the flight campaign, and the instrumentation kept under configuration control."
+  },
+  "AER-10": {
+   "kind": "program requirement",
+   "label": "The pre-flight aerodynamic model and its uncertainties shall be validated against flight data during envelope expansion, using more than one parameter estimation method, and updated as needed."
+  },
+  "AER-1": {
+   "kind": "program requirement",
+   "label": "An aerodynamic database covering hover, conversion and cruise shall be released."
+  },
+  "AER-2": {
+   "kind": "program requirement",
+   "label": "The database shall be updated with the latest CFD and test data and re-released."
+  },
+  "LDS-1": {
+   "kind": "program requirement",
+   "label": "Aerodynamic and inertial loads shall be released as a preliminary loads set."
+  },
+  "LDS-7": {
+   "kind": "program requirement",
+   "label": "Finite element and dynamic models shall use one consistent unit system and a right-handed coordinate system, and the model mass and center of gravity shall be checked against the actual article."
+  },
+  "LDS-2": {
+   "kind": "program requirement",
+   "label": "Limit and ultimate loads shall be released for flight and ground conditions under revision control."
+  },
+  "LDS-3": {
+   "kind": "program requirement",
+   "label": "Modeling assumptions that change results, such as whether the rotor and nacelle motion is inside or outside the structural modes, shall be documented and shared by the loads, structures and flutter programs."
+  },
+  "LDS-4": {
+   "kind": "program requirement",
+   "label": "Sanity checks shall be run on each structural dataset before it is delivered to a downstream user."
+  },
+  "LDS-5": {
+   "kind": "program requirement",
+   "label": "Modal data shall keep double precision, and mode shapes shall be mass-normalized so that the transpose of the mode shape matrix times the mass matrix times the mode shape matrix equals the identity matrix."
+  },
+  "LDS-6": {
+   "kind": "program requirement",
+   "label": "Regression tests shall exercise the finite element to dynamics model toolchain, and any modal-integral implementation shall be checked against an independent model, with accelerations agreeing within the tolerance below."
+  },
+  "STR-3": {
+   "kind": "program requirement",
+   "label": "One static-strength approach shall be selected and documented: no test and no data, test and data, test and no data, or a justified alternative, with an ultimate factor of safety that fits the approach. The factor below is a placeholder until the project selects."
+  },
+  "STR-4": {
+   "kind": "program requirement",
+   "label": "The flight envelope shall be limited to the fraction of limit load that the selected approach supports, and where the aircraft is the proof article it shall be fully instrumented and calibrated."
+  },
+  "STR-1": {
+   "kind": "program requirement",
+   "label": "Stress notes shall show margins of safety for all primary structure."
+  },
+  "STR-2": {
+   "kind": "program requirement",
+   "label": "The as-built structure shall be shown to conform to the released drawings."
+  },
+  "SIN-3": {
+   "kind": "program requirement",
+   "label": "Composite structure shall be substantiated by a building-block approach: coupon tests, then design-feature tests, then proof loading on the aircraft, with a factor of safety of 3.0 on secondary structure of unproven equivalence."
+  },
+  "SIN-4": {
+   "kind": "program requirement",
+   "label": "Where the aircraft is the proof-test article, the proof load shall be applied and its results compared with analysis before first flight."
+  },
+  "SIN-5": {
+   "kind": "program requirement",
+   "label": "Inspection intervals shall be set from fatigue-crack growth analysis so that the smallest crack the inspection method can detect cannot grow to failure within the interval, and the interval shall reflect each aircraft's actual usage."
+  },
+  "SIN-1": {
+   "kind": "program requirement",
+   "label": "Structural design criteria shall be defined: factors of safety, load cases and fatigue approach."
+  },
+  "SIN-2": {
+   "kind": "program requirement",
+   "label": "A structural ground test shall verify the design before flight."
+  },
+  "ROT-1": {
+   "kind": "program requirement",
+   "label": "Rotor loads and rotor-induced aerodynamic effects shall be characterised for the loads and aerodynamics programs."
+  },
+  "ROT-2": {
+   "kind": "program requirement",
+   "label": "A rotor and nacelle dynamics model shall be released to the flutter program."
+  },
+  "FLU-1": {
+   "kind": "program requirement",
+   "label": "The aeroelastic instabilities likely in the flight envelope, including whirl flutter, shall be identified, and any excluded shall be recorded with the reason."
+  },
+  "FLU-2": {
+   "kind": "program requirement",
+   "label": "Flutter clearance shall use flutter analysis, ground vibration test and flight flutter test, because the aircraft is new."
+  },
+  "FLU-3": {
+   "kind": "program requirement",
+   "label": "A finite element model of the airframe, rotors and nacelles shall be built and its modes calculated; an equivalent-beam model is the minimum."
+  },
+  "FLU-5": {
+   "kind": "program requirement",
+   "label": "Every feedback loop of the flight control system shall have at least the gain and phase margins below."
+  },
+  "FLU-6": {
+   "kind": "program requirement",
+   "label": "Weight, centre of gravity and moments of inertia shall be measured to correlate the model."
+  },
+  "FLU-8": {
+   "kind": "program requirement",
+   "label": "The model shall be correlated to the ground vibration test: frequency error on significant modes at most the first limit below, and off-diagonal orthogonality terms at most the second."
+  },
+  "FLU-9": {
+   "kind": "program requirement",
+   "label": "If the structural or aerodynamic model was updated, the flutter analysis shall be repeated at the key flight points."
+  },
+  "FLU-10": {
+   "kind": "program requirement",
+   "label": "A flight flutter test plan shall define the instrumentation, build-up test points and real-time monitoring with test point clearance."
+  },
+  "FLU-11": {
+   "kind": "program requirement",
+   "label": "Flight flutter testing shall show no instability within the flight envelope, and the models shall be correlated to flight data."
+  },
+  "FLU-12": {
+   "kind": "program requirement",
+   "label": "Where body inertia changes with deformation or the nacelle rotates, modal integrals shall be included, and results with and without them shall be compared side by side."
+  },
+  "FLU-13": {
+   "kind": "program requirement",
+   "label": "Uncertain model parameters shall be varied to bound the flutter envelope, a margin of at least the largeMarginPercent value shall be confirmed under all variations, and critical parameter combinations shall be identified."
+  },
+  "FLU-14": {
+   "kind": "program requirement",
+   "label": "Flight flutter testing shall be omitted only where the margin on a high-confidence model exceeds the value below, and the omission shall be recorded as a deviation."
+  },
+  "FLU-4": {
+   "kind": "program requirement",
+   "label": "A preliminary flutter analysis at the key flight points, including whirl flutter across the conversion corridor, shall show at least the margin below on equivalent airspeed and Mach number."
+  },
+  "FLU-7": {
+   "kind": "program requirement",
+   "label": "A ground vibration test shall measure mode shapes, frequencies and damping in every relevant configuration."
+  },
+  "FTP-3": {
+   "kind": "program requirement",
+   "label": "Flight maneuvers and test conditions shall be designed and practised in flight simulation before flight."
+  },
+  "FTP-4": {
+   "kind": "program requirement",
+   "label": "The envelope expansion plan shall include a bail-out plan for the edges and corners of the envelope, and shall watch in flight for any cliffs found in CFD or wind tunnel data."
+  },
+  "FTP-5": {
+   "kind": "program requirement",
+   "label": "A technical briefing shall close out all open items, peer review the plan and the current risks, and end with signed approval to fly."
+  },
+  "FTP-7": {
+   "kind": "program requirement",
+   "label": "Instrumentation shall be designed early, to show safety, experiment success and experiment failure, and its reliability and maintainability shall be planned for the full program."
+  },
+  "FTP-6": {
+   "kind": "program requirement",
+   "label": "Each flight shall be followed by a debrief, and discrepancies and results shall be documented and compared with predictions."
+  },
+  "FTP-1": {
+   "kind": "program requirement",
+   "label": "A flight test plan and test cards shall be released."
+  },
+  "FTP-2": {
+   "kind": "program requirement",
+   "label": "No flight shall start until the operational readiness review is closed."
+  },
+  "SOF-3": {
+   "kind": "program requirement",
+   "label": "Hazards shall be identified, evaluated for cause and effect, and scored for severity and probability on the hazard scales, with mitigations recorded, and the analysis kept current through the life cycle."
+  },
+  "SOF-4": {
+   "kind": "program requirement",
+   "label": "No human-safety risk shall be accepted by the project team; any exception needs a recorded decision by the approving authority named in the configuration management plan."
+  },
+  "SOF-5": {
+   "kind": "program requirement",
+   "label": "The level of independent review shall be chosen to match the complexity, criticality and risk of the flights, and the choice recorded."
+  },
+  "SOF-6": {
+   "kind": "program requirement",
+   "label": "A flight readiness review by reviewers outside the project team shall examine the analyses, procedures, hazard analyses and qualification results, and the project shall respond to each finding."
+  },
+  "SOF-8": {
+   "kind": "program requirement",
+   "label": "A lost-link procedure shall be defined with a predesignated contingency landing site and verified in ground and flight test."
+  },
+  "SOF-9": {
+   "kind": "program requirement",
+   "label": "The hazard analysis shall follow ASTM F3178-16, which the NASA memo cites for small unmanned aircraft under 55 pounds."
+  },
+  "SOF-10": {
+   "kind": "program requirement",
+   "label": "The remote pilot shall be able to command or override the vehicle at all times."
+  },
+  "SOF-7": {
+   "kind": "program requirement",
+   "label": "A written recommendation quantifying residual risk, with accepted risks named, shall be signed by the approving authority before the first flight."
+  },
+  "SOF-1": {
+   "kind": "program requirement",
+   "label": "A preliminary hazard analysis shall be completed."
+  },
+  "SOF-2": {
+   "kind": "program requirement",
+   "label": "A safety of flight review shall be completed with open items dispositioned."
+  },
+  "CMG-4": {
+   "kind": "program requirement",
+   "label": "Design, analysis and manufacturing shall stay linked so that the as-built performance is confirmed against the analysis."
+  },
+  "CMG-5": {
+   "kind": "program requirement",
+   "label": "Flight simulations shall be under version control as part of configuration control."
+  },
+  "CMG-1": {
+   "kind": "program requirement",
+   "label": "A configuration management plan shall be approved."
+  },
+  "CMG-2": {
+   "kind": "program requirement",
+   "label": "The requirements shall be baselined and changed only through change control."
+  },
+  "CMG-3": {
+   "kind": "program requirement",
+   "label": "Document, load and data releases shall be recorded, and the design baselined."
+  },
+  "part:airframe": {
+   "kind": "part",
+   "label": "airframe : Airframe"
+  },
+  "part:leftRotorNacelle": {
+   "kind": "part",
+   "label": "leftRotorNacelle : Nacelle"
+  },
+  "part:rightRotorNacelle": {
+   "kind": "part",
+   "label": "rightRotorNacelle : Nacelle"
+  },
+  "part:noseGimbal": {
+   "kind": "part",
+   "label": "noseGimbal : Gimbal"
+  },
+  "part:battery": {
+   "kind": "part",
+   "label": "battery : Battery"
+  },
+  "part:powerDistribution": {
+   "kind": "part",
+   "label": "powerDistribution : PowerDistribution"
+  },
+  "part:flightController": {
+   "kind": "part",
+   "label": "flightController : FlightController"
+  },
+  "part:radioLink": {
+   "kind": "part",
+   "label": "radioLink : RadioLink"
+  },
+  "part:leftRotorNacelle.motor": {
+   "kind": "part",
+   "label": "leftRotorNacelle.motor : Motor"
+  },
+  "part:rightRotorNacelle.motor": {
+   "kind": "part",
+   "label": "rightRotorNacelle.motor : Motor"
+  },
+  "part:leftRotorNacelle.rotor": {
+   "kind": "part",
+   "label": "leftRotorNacelle.rotor : Rotor"
+  },
+  "part:rightRotorNacelle.rotor": {
+   "kind": "part",
+   "label": "rightRotorNacelle.rotor : Rotor"
+  },
+  "part:leftRotorNacelle.tiltActuator": {
+   "kind": "part",
+   "label": "leftRotorNacelle.tiltActuator : TiltActuator"
+  },
+  "part:rightRotorNacelle.tiltActuator": {
+   "kind": "part",
+   "label": "rightRotorNacelle.tiltActuator : TiltActuator"
+  },
+  "part:noseGimbal.camera": {
+   "kind": "part",
+   "label": "noseGimbal.camera : Camera"
+  },
+  "part:tiltrotor": {
+   "kind": "part",
+   "label": "tiltrotor : Vehicle"
+  },
+  "ver:EnduranceTest": {
+   "kind": "verification case",
+   "label": "EnduranceTest"
+  },
+  "ver:MassCheck": {
+   "kind": "verification case",
+   "label": "MassCheck"
+  },
+  "ver:EnvelopeDemonstration": {
+   "kind": "verification case",
+   "label": "EnvelopeDemonstration"
+  },
+  "ver:FlutterAnalysis": {
+   "kind": "verification case",
+   "label": "FlutterAnalysis"
+  },
+  "ver:StrengthAnalysis": {
+   "kind": "verification case",
+   "label": "StrengthAnalysis"
+  }
+ },
+ "edges": [
+  [
+   "part:leftRotorNacelle",
+   "part:leftRotorNacelle.motor",
+   "contains"
+  ],
+  [
+   "part:rightRotorNacelle",
+   "part:rightRotorNacelle.motor",
+   "contains"
+  ],
+  [
+   "part:leftRotorNacelle",
+   "part:leftRotorNacelle.rotor",
+   "contains"
+  ],
+  [
+   "part:rightRotorNacelle",
+   "part:rightRotorNacelle.rotor",
+   "contains"
+  ],
+  [
+   "part:leftRotorNacelle",
+   "part:leftRotorNacelle.tiltActuator",
+   "contains"
+  ],
+  [
+   "part:rightRotorNacelle",
+   "part:rightRotorNacelle.tiltActuator",
+   "contains"
+  ],
+  [
+   "part:noseGimbal",
+   "part:noseGimbal.camera",
+   "contains"
+  ],
+  [
+   "VEH-2",
+   "ver:EnduranceTest",
+   "verified by"
+  ],
+  [
+   "VEH-3.1",
+   "ver:MassCheck",
+   "verified by"
+  ],
+  [
+   "VEH-3.2",
+   "ver:EnvelopeDemonstration",
+   "verified by"
+  ],
+  [
+   "VEH-5",
+   "ver:FlutterAnalysis",
+   "verified by"
+  ],
+  [
+   "VEH-6",
+   "ver:StrengthAnalysis",
+   "verified by"
+  ],
+  [
+   "VEH-3",
+   "VEH-3.1",
+   "decomposes to"
+  ],
+  [
+   "VEH-3",
+   "VEH-3.2",
+   "decomposes to"
+  ],
+  [
+   "VEH-3",
+   "VEH-3.3",
+   "decomposes to"
+  ],
+  [
+   "VEH-6",
+   "part:airframe",
+   "satisfied by"
+  ],
+  [
+   "VEH-1",
+   "part:tiltrotor",
+   "satisfied by"
+  ],
+  [
+   "VEH-2",
+   "part:battery",
+   "satisfied by"
+  ],
+  [
+   "VEH-3",
+   "part:tiltrotor",
+   "satisfied by"
+  ],
+  [
+   "VEH-4",
+   "part:leftRotorNacelle",
+   "satisfied by"
+  ],
+  [
+   "VEH-4",
+   "part:rightRotorNacelle",
+   "satisfied by"
+  ],
+  [
+   "VEH-5",
+   "part:leftRotorNacelle",
+   "satisfied by"
+  ],
+  [
+   "VEH-5",
+   "part:rightRotorNacelle",
+   "satisfied by"
+  ],
+  [
+   "VEH-7",
+   "part:tiltrotor",
+   "satisfied by"
+  ],
+  [
+   "VEH-5",
+   "FLU-4",
+   "proven by"
+  ],
+  [
+   "VEH-5",
+   "FLU-11",
+   "proven by"
+  ],
+  [
+   "VEH-1",
+   "SE-2",
+   "proven by"
+  ],
+  [
+   "VEH-7",
+   "SE-19",
+   "proven by"
+  ],
+  [
+   "VEH-8",
+   "SE-16",
+   "proven by"
+  ],
+  [
+   "VEH-6",
+   "STR-1",
+   "proven by"
+  ],
+  [
+   "part:battery",
+   "part:powerDistribution",
+   "powerOut to powerIn"
+  ],
+  [
+   "part:powerDistribution",
+   "part:leftRotorNacelle",
+   "toLeftNacelle to powerIn"
+  ],
+  [
+   "part:powerDistribution",
+   "part:rightRotorNacelle",
+   "toRightNacelle to powerIn"
+  ],
+  [
+   "part:powerDistribution",
+   "part:flightController",
+   "toFlightController to powerIn"
+  ],
+  [
+   "part:powerDistribution",
+   "part:radioLink",
+   "toRadioLink to powerIn"
+  ],
+  [
+   "part:powerDistribution",
+   "part:noseGimbal",
+   "toGimbal to powerIn"
+  ],
+  [
+   "part:radioLink",
+   "part:flightController",
+   "pilotCommand to pilotCommand"
+  ],
+  [
+   "part:flightController",
+   "part:leftRotorNacelle",
+   "tiltCommandLeft to tiltCommand"
+  ],
+  [
+   "part:flightController",
+   "part:rightRotorNacelle",
+   "tiltCommandRight to tiltCommand"
+  ],
+  [
+   "part:flightController",
+   "part:noseGimbal",
+   "gimbalCommand to gimbalCommand"
+  ],
+  [
+   "VEH-2",
+   "FTP-3",
+   "proven by"
+  ],
+  [
+   "VEH-2",
+   "FTP-4",
+   "proven by"
+  ],
+  [
+   "VEH-2",
+   "FTP-5",
+   "proven by"
+  ],
+  [
+   "VEH-2",
+   "FTP-7",
+   "proven by"
+  ],
+  [
+   "VEH-2",
+   "FTP-6",
+   "proven by"
+  ],
+  [
+   "VEH-2",
+   "FTP-1",
+   "proven by"
+  ],
+  [
+   "VEH-2",
+   "FTP-2",
+   "proven by"
+  ],
+  [
+   "VEH-3",
+   "SOF-3",
+   "proven by"
+  ],
+  [
+   "VEH-3",
+   "SOF-4",
+   "proven by"
+  ],
+  [
+   "VEH-3",
+   "SOF-5",
+   "proven by"
+  ],
+  [
+   "VEH-3",
+   "SOF-6",
+   "proven by"
+  ],
+  [
+   "VEH-3",
+   "SOF-8",
+   "proven by"
+  ],
+  [
+   "VEH-3",
+   "SOF-9",
+   "proven by"
+  ],
+  [
+   "VEH-3",
+   "SOF-10",
+   "proven by"
+  ],
+  [
+   "VEH-3",
+   "SOF-7",
+   "proven by"
+  ],
+  [
+   "VEH-3",
+   "SOF-1",
+   "proven by"
+  ],
+  [
+   "VEH-3",
+   "SOF-2",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-11",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-12",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-13",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-14",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-3",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-4",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-5",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-6",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-7",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-8",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-9",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-10",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-1",
+   "proven by"
+  ],
+  [
+   "VEH-4",
+   "AER-2",
+   "proven by"
+  ]
+ ]
+}

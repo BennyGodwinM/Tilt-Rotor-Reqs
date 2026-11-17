@@ -7,7 +7,7 @@ G={'systemsEngineering':'Systems engineering','aerodynamics':'Aerodynamics','loa
 rows=[dict(para=p,id=i,text=t,owner=G.get(o,o),ms=ms,basis=b,src=s,why=D['rationale'].get(i,'')) for p,i,t,o,ms,b,s in D['program']]
 veh=[dict(para=p,id=i,text=t,owner='Vehicle',ms=ph,basis=b,src='Vehicle model',why=D['rationale'].get(i,''),method=m,crit=c,fac=f) for p,i,t,m,b,c,f,ph in D['vehicle']]
 tbd=[dict(n=k,id=i,what=w,detail=d,by=m) for k,(i,w,d,o,m) in enumerate(D['tbd'],1)]
-data=json.dumps(dict(prog=rows,veh=veh,tbd=tbd),separators=(',',':')).replace('</','<\\/')
+data=json.dumps(dict(prog=rows,veh=veh,tbd=tbd,views=json.load(open(os.path.join(root,'docs','views.json'))),impact=json.load(open(os.path.join(root,'docs','impact.json')))),separators=(',',':')).replace('</','<\\/')
 bas={};[bas.__setitem__(r['basis'],bas.get(r['basis'],0)+1) for r in rows]
 CSS=open(os.path.join(root,'tools','site.css')).read()
 BODY=open(os.path.join(root,'tools','site_body.html')).read()
@@ -18,7 +18,8 @@ frag=f'<title>Tiltrotor Requirements</title>\n<meta name="claude:viewport-fit-si
 full='<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n'+frag+'</head>\n</html>\n'
 # body must follow head: rebuild properly
 head,rest=frag.split('</style>\n',1)
-full='<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n'+head+'</style>\n</head>\n<body>\n'+rest+'</body>\n</html>\n'
+mer='<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.3/mermaid.min.js"></script>\n<script>mermaid.initialize({startOnLoad:true,theme:matchMedia("(prefers-color-scheme: dark)").matches?"dark":"neutral"});</script>\n'
+full='<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n'+head+'</style>\n</head>\n<body>\n'+rest+mer+'</body>\n</html>\n'
 open(os.path.join(root,'docs','index.html'),'w').write(full)
 open(os.path.join(root,'docs','.nojekyll'),'w').write('')
 if len(sys.argv)>1: open(sys.argv[1],'w').write(frag)

@@ -1,0 +1,6 @@
+stateDiagram-v2
+  [*] --> hover
+  hover --> conversion : hoverToConversion
+  conversion --> cruise : conversionToCruise
+  cruise --> conversion : cruiseToConversion
+  conversion --> hover : conversionToHover

@@ -27,14 +27,75 @@ package TiltrotorVehicleRequirements {
         attribute tolerance : Real;
     }
 
+    // Proposed architecture for the block and interconnection views. A modeling choice to confirm:
+    // the parts, ports and connections below are not yet from a trade study.
+    item def Power;
+    item def Command;
+    port def PowerOut { out item power : Power; }
+    port def PowerIn { in item power : Power; }
+    port def CommandOut { out item command : Command; }
+    port def CommandIn { in item command : Command; }
+
+    part def Airframe;
+    part def Motor;
+    part def Rotor;
+    part def TiltActuator;
+    part def Camera;
+    part def Battery { port powerOut : PowerOut; }
+    part def PowerDistribution {
+        port powerIn : PowerIn;
+        port toLeftNacelle : PowerOut;
+        port toRightNacelle : PowerOut;
+        port toFlightController : PowerOut;
+        port toRadioLink : PowerOut;
+        port toGimbal : PowerOut;
+    }
+    part def FlightController {
+        port powerIn : PowerIn;
+        port pilotCommand : CommandIn;
+        port tiltCommandLeft : CommandOut;
+        port tiltCommandRight : CommandOut;
+        port gimbalCommand : CommandOut;
+    }
+    part def RadioLink {
+        port powerIn : PowerIn;
+        port pilotCommand : CommandOut;
+    }
+    part def Nacelle {
+        port powerIn : PowerIn;
+        port tiltCommand : CommandIn;
+        part motor : Motor;
+        part rotor : Rotor;
+        part tiltActuator : TiltActuator;
+    }
+    part def Gimbal {
+        port powerIn : PowerIn;
+        port gimbalCommand : CommandIn;
+        part camera : Camera;
+    }
+
     part def Vehicle;
 
     part tiltrotor : Vehicle {
-        part airframe;
-        part leftRotorNacelle;
-        part rightRotorNacelle;
-        part noseGimbal;
-        part battery;
+        part airframe : Airframe;
+        part leftRotorNacelle : Nacelle;
+        part rightRotorNacelle : Nacelle;
+        part noseGimbal : Gimbal;
+        part battery : Battery;
+        part powerDistribution : PowerDistribution;
+        part flightController : FlightController;
+        part radioLink : RadioLink;
+
+        connect battery.powerOut to powerDistribution.powerIn;
+        connect powerDistribution.toLeftNacelle to leftRotorNacelle.powerIn;
+        connect powerDistribution.toRightNacelle to rightRotorNacelle.powerIn;
+        connect powerDistribution.toFlightController to flightController.powerIn;
+        connect powerDistribution.toRadioLink to radioLink.powerIn;
+        connect powerDistribution.toGimbal to noseGimbal.powerIn;
+        connect radioLink.pilotCommand to flightController.pilotCommand;
+        connect flightController.tiltCommandLeft to leftRotorNacelle.tiltCommand;
+        connect flightController.tiltCommandRight to rightRotorNacelle.tiltCommand;
+        connect flightController.gimbalCommand to noseGimbal.gimbalCommand;
 
         part boundary {
             attribute groundspeed : BoundaryVariable { attribute :>> kind = BoundaryKind::monitored; attribute :>> unit = "kt"; attribute :>> rangeMin = 0; attribute :>> rangeMax = 87; }
@@ -205,4 +266,11 @@ package TiltrotorVehicleRequirements {
     dependency from vehicleReqs::modeLogic to TiltrotorProgramModel::programReqs::seReqs::modeLogic;
     dependency from vehicleReqs::boundaryComplete to TiltrotorProgramModel::programReqs::seReqs::systemBoundary;
     dependency from vehicleReqs::strength to TiltrotorProgramModel::programReqs::structuresReqs::stressNotes;
+
+    // Verification cases: how each vehicle requirement will be closed
+    verification def EnduranceTest { subject testVehicle : Vehicle; objective { verify vehicleReqs::endurance; } }
+    verification def MassCheck { subject testVehicle : Vehicle; objective { verify vehicleReqs::part107::maxMass; } }
+    verification def EnvelopeDemonstration { subject testVehicle : Vehicle; objective { verify vehicleReqs::part107::envelope; } }
+    verification def FlutterAnalysis { subject testVehicle : Vehicle; objective { verify vehicleReqs::whirlFlutterFree; } }
+    verification def StrengthAnalysis { subject testVehicle : Vehicle; objective { verify vehicleReqs::strength; } }
 }

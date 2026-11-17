@@ -1,0 +1,50 @@
+classDiagram
+  direction LR
+  class Airframe
+  class Motor
+  class Rotor
+  class TiltActuator
+  class Camera
+  class Battery {
+    port powerOut : PowerOut
+  }
+  class PowerDistribution {
+    port powerIn : PowerIn
+    port toLeftNacelle : PowerOut
+    port toRightNacelle : PowerOut
+    port toFlightController : PowerOut
+    port toRadioLink : PowerOut
+    port toGimbal : PowerOut
+  }
+  class FlightController {
+    port powerIn : PowerIn
+    port pilotCommand : CommandIn
+    port tiltCommandLeft : CommandOut
+    port tiltCommandRight : CommandOut
+    port gimbalCommand : CommandOut
+  }
+  class RadioLink {
+    port powerIn : PowerIn
+    port pilotCommand : CommandOut
+  }
+  class Nacelle {
+    port powerIn : PowerIn
+    port tiltCommand : CommandIn
+  }
+  class Gimbal {
+    port powerIn : PowerIn
+    port gimbalCommand : CommandIn
+  }
+  class Tiltrotor
+  Tiltrotor *-- Airframe : airframe
+  Tiltrotor *-- Nacelle : leftRotorNacelle
+  Tiltrotor *-- Nacelle : rightRotorNacelle
+  Tiltrotor *-- Gimbal : noseGimbal
+  Tiltrotor *-- Battery : battery
+  Tiltrotor *-- PowerDistribution : powerDistribution
+  Tiltrotor *-- FlightController : flightController
+  Tiltrotor *-- RadioLink : radioLink
+  Nacelle *-- Motor : motor
+  Nacelle *-- Rotor : rotor
+  Nacelle *-- TiltActuator : tiltActuator
+  Gimbal *-- Camera : camera

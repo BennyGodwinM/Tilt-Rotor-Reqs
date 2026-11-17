@@ -1,0 +1,4 @@
+flowchart LR
+  E["batteryEnergyWh"] --> C{{"EnduranceConstraint<br/>enduranceMin = E / P * 60"}}
+  P["averagePowerW"] --> C
+  C --> M["enduranceMin >= 30<br/>VEH-2"]

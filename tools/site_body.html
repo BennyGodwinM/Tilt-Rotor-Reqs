@@ -8,6 +8,9 @@
  </div>
 </header>
 <section aria-labelledby="h-rev"><h2 id="h-rev">Deliverables by review</h2><p class="sub">Program requirements due at each milestone. Only systems engineering and configuration management owe anything at SRR.</p><div class="strip" id="strip"></div></section>
+<section aria-labelledby="h-views"><h2 id="h-views">SysML views</h2><p class="sub">Generated from the models. The architecture in the block and interconnection views is a proposed one, to be confirmed.</p><div id="views" style="display:flex;flex-direction:column;gap:22px;margin-top:12px"></div></section>
+<section aria-labelledby="h-trace"><h2 id="h-trace">Traceability matrix</h2><p class="sub">Each vehicle requirement, what it is allocated to, what verifies it and which program requirements prove it. Empty cells are gaps.</p><div class="scroll" style="margin-top:10px"><table><thead><tr><th>Requirement</th><th>Allocated to</th><th>Verified by</th><th>Proven by</th></tr></thead><tbody id="trace"></tbody></table></div></section>
+<section aria-labelledby="h-imp"><h2 id="h-imp">Impact analysis</h2><p class="sub">Pick any requirement or part. Change flows along decomposition, allocation, verification, proof and connection links.</p><div class="controls" style="margin-top:10px"><select id="impsel" aria-label="Item" style="flex:1 1 280px;min-width:0"></select></div><div id="imp" class="decisions" style="margin-top:10px"></div></section>
 <section aria-labelledby="h-dec"><h2 id="h-dec">Decisions waiting on the chief engineer</h2><div class="decisions">
  <div><b>Structural factors of safety</b><span>2.25 ultimate factor is a placeholder. STR-3, VEH-6. Needed by PDR.</span></div>
  <div><b>Endurance reserve and mass margin</b><span>Both size the battery. VEH-2, VEH-3.1. Needed by SRR.</span></div>

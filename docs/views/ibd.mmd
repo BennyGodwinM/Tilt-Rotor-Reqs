@@ -1,0 +1,31 @@
+flowchart LR
+  subgraph tiltrotor["tiltrotor : Vehicle"]
+    airframe["airframe : Airframe"]
+    subgraph leftRotorNacelle["leftRotorNacelle : Nacelle"]
+      leftRotorNacelle_motor["motor : Motor"]
+      leftRotorNacelle_rotor["rotor : Rotor"]
+      leftRotorNacelle_tiltActuator["tiltActuator : TiltActuator"]
+    end
+    subgraph rightRotorNacelle["rightRotorNacelle : Nacelle"]
+      rightRotorNacelle_motor["motor : Motor"]
+      rightRotorNacelle_rotor["rotor : Rotor"]
+      rightRotorNacelle_tiltActuator["tiltActuator : TiltActuator"]
+    end
+    subgraph noseGimbal["noseGimbal : Gimbal"]
+      noseGimbal_camera["camera : Camera"]
+    end
+    battery["battery : Battery"]
+    powerDistribution["powerDistribution : PowerDistribution"]
+    flightController["flightController : FlightController"]
+    radioLink["radioLink : RadioLink"]
+  end
+  battery ==>|"powerOut to powerIn"| powerDistribution
+  powerDistribution ==>|"toLeftNacelle to powerIn"| leftRotorNacelle
+  powerDistribution ==>|"toRightNacelle to powerIn"| rightRotorNacelle
+  powerDistribution ==>|"toFlightController to powerIn"| flightController
+  powerDistribution ==>|"toRadioLink to powerIn"| radioLink
+  powerDistribution ==>|"toGimbal to powerIn"| noseGimbal
+  radioLink -->|"pilotCommand to pilotCommand"| flightController
+  flightController -->|"tiltCommandLeft to tiltCommand"| leftRotorNacelle
+  flightController -->|"tiltCommandRight to tiltCommand"| rightRotorNacelle
+  flightController -->|"gimbalCommand to gimbalCommand"| noseGimbal

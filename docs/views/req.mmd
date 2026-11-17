@@ -1,0 +1,30 @@
+flowchart LR
+  VEH_1["VEH-1<br/>The vehicle shall be a twin-rotor tiltrotor with a GoPro c..."]
+  VEH_2["VEH-2<br/>The vehicle shall have at least 30 minutes of flight time...."]
+  VEH_3["VEH-3<br/>The vehicle shall be operable under 14 CFR Part 107."]
+  VEH_3_1["VEH-3.1<br/>Takeoff mass including payload shall be less than the limi..."]
+  VEH_3 --> VEH_3_1
+  VEH_3_2["VEH-3.2<br/>Operation shall stay below the altitude limit and at or be..."]
+  VEH_3 --> VEH_3_2
+  VEH_3_3["VEH-3.3<br/>Operation shall stay within visual line of sight of the re..."]
+  VEH_3 --> VEH_3_3
+  VEH_4["VEH-4<br/>The vehicle shall convert between hover and cruise inside ..."]
+  VEH_5["VEH-5<br/>The vehicle shall be free of whirl flutter inside the flig..."]
+  VEH_6["VEH-6<br/>The structure shall carry limit loads without detrimental ..."]
+  VEH_7["VEH-7<br/>The vehicle shall move between flight modes only along the..."]
+  VEH_8["VEH-8<br/>Every monitored and controlled variable of the vehicle sha..."]
+  VEH_6 -. satisfied by .-> P_airframe[("airframe")]
+  VEH_1 -. satisfied by .-> P_tiltrotor[("tiltrotor")]
+  VEH_2 -. satisfied by .-> P_battery[("battery")]
+  VEH_3 -. satisfied by .-> P_tiltrotor[("tiltrotor")]
+  VEH_4 -. satisfied by .-> P_leftRotorNacelle[("leftRotorNacelle")]
+  VEH_4 -. satisfied by .-> P_rightRotorNacelle[("rightRotorNacelle")]
+  VEH_5 -. satisfied by .-> P_leftRotorNacelle[("leftRotorNacelle")]
+  VEH_5 -. satisfied by .-> P_rightRotorNacelle[("rightRotorNacelle")]
+  VEH_7 -. satisfied by .-> P_tiltrotor[("tiltrotor")]
+  VEH_8 -. satisfied by .-> P_boundary[("boundary")]
+  VEH_2 -. verified by .-> V_EnduranceTest{{"EnduranceTest"}}
+  VEH_3_1 -. verified by .-> V_MassCheck{{"MassCheck"}}
+  VEH_3_2 -. verified by .-> V_EnvelopeDemonstration{{"EnvelopeDemonstration"}}
+  VEH_5 -. verified by .-> V_FlutterAnalysis{{"FlutterAnalysis"}}
+  VEH_6 -. verified by .-> V_StrengthAnalysis{{"StrengthAnalysis"}}
