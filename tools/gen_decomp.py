@@ -49,7 +49,7 @@ for c in ck:
 m = ['# Preflight and postflight checklists', '',
      'Generated from `tools/decomp/checklists.csv`. Every item traces to a requirement. Items marked All apply to every mode; a flight uses the All items plus the items for its mode (C/VTOL uses the CTOL and VTOL items that apply to the planned modes).', '']
 for ph, title in (('Pre', 'Preflight'), ('Post', 'Postflight')):
-    for md in ('All', 'CTOL', 'VTOL', 'C/VTOL'):
+    for md in ('All', 'CTOL', 'STOL', 'VTOL', 'C/VTOL'):
         it = [c for c in ck if c['phase'] == ph and c['mode'] == md]
         if not it: continue
         m += ['## %s: %s' % (title, md), '', '| Done | Item | Check | Traces to |', '|---|---|---|---|']

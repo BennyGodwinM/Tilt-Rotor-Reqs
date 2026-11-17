@@ -386,6 +386,13 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
+        requirement <'PRP-029'> partialTiltOps : VehicleRequirement {
+            doc /* Each rotor shall operate continuously at every nacelle angle in the STOL range with the in-plane inflow of that condition. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Edgewise flow loads the rotor and hub.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
     }
 
     package TiltReqs {
@@ -549,6 +556,20 @@ package TiltrotorVehicleDecomposition {
             attribute :>> rationale = "Hover is the known safe state.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'TLT-024'> tiltHoldAny : VehicleRequirement {
+            doc /* Each nacelle shall hold any commanded angle between 0 and 90 deg continuously for at least [TBD] minutes. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "STOL and conversion need steady operation at partial tilt.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'TLT-025'> tiltHoldLoad : VehicleRequirement {
+            doc /* Each tilt mechanism shall carry the rotor loads at every angle in the STOL range for the full mission duration. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Holding at partial tilt is a sustained load case.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
     }
 
@@ -927,11 +948,18 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "ORR";
             attribute :>> verifyBy = VerificationMethod::byDemonstration;
         }
+        requirement <'STB-022'> smStolLimits : VehicleRequirement {
+            doc /* The static margin limits shall be defined for each nacelle angle in the STOL range. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Partial tilt changes the neutral point.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
     }
 
     package OperationsReqs {
         requirement <'OPS-001'> opModes : VehicleRequirement {
-            doc /* The vehicle shall operate in three takeoff and landing modes: CTOL, VTOL and C/VTOL. */
+            doc /* The vehicle shall operate in four takeoff and landing modes: CTOL, STOL, VTOL and C/VTOL. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Pilot choice of mode per flight.";
             attribute :>> phase = "CDR";
@@ -1022,7 +1050,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byDemonstration;
         }
         requirement <'OPS-014'> modeSelect : VehicleRequirement {
-            doc /* The remote pilot shall select CTOL, VTOL or C/VTOL before takeoff. */
+            doc /* The remote pilot shall select CTOL, STOL, VTOL or C/VTOL before takeoff. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Mode drives the checklist and limits.";
             attribute :>> phase = "CDR";
@@ -1050,14 +1078,14 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'CHK-001'> preflightChecklist : VehicleRequirement {
-            doc /* The program shall provide a preflight checklist for each of CTOL, VTOL and C/VTOL. */
+            doc /* The program shall provide a preflight checklist for each of CTOL, STOL, VTOL and C/VTOL. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Each mode has different items.";
             attribute :>> phase = "ORR";
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
         requirement <'CHK-002'> postflightChecklist : VehicleRequirement {
-            doc /* The program shall provide a postflight checklist for each of CTOL, VTOL and C/VTOL. */
+            doc /* The program shall provide a postflight checklist for each of CTOL, STOL, VTOL and C/VTOL. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Each mode has different items.";
             attribute :>> phase = "ORR";
@@ -1118,6 +1146,69 @@ package TiltrotorVehicleDecomposition {
             attribute :>> rationale = "The user can see which revision is in use.";
             attribute :>> phase = "ORR";
             attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'OPS-019'> stolDef : VehicleRequirement {
+            doc /* STOL shall mean takeoff and landing with the nacelles at a partially tilted angle between the CTOL and VTOL angles and a ground roll shorter than the CTOL ground roll. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Program owner added STOL: partial tilt shortens the roll and the thrust carries part of the weight.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'OPS-020'> stolAngleRange : VehicleRequirement {
+            doc /* The flight controller shall allow the remote pilot to select a STOL nacelle angle between [TBD] deg and [TBD] deg. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Range of partial tilt allowed for takeoff and landing.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'OPS-021'> stolTakeoffRoll : VehicleRequirement {
+            doc /* The takeoff ground roll in STOL mode shall not exceed [TBD] m on [TBD] surface at the maximum STOL takeoff mass. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Defines the short runway.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'OPS-022'> stolLandingRoll : VehicleRequirement {
+            doc /* The landing ground roll in STOL mode shall not exceed [TBD] m on [TBD] surface. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Defines the short runway.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'OPS-023'> stolGearLoad : VehicleRequirement {
+            doc /* The landing gear shall carry the limit load of a STOL landing at a descent rate of [TBD] m/s and a forward speed of [TBD] kt without detrimental deformation. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "STOL landings are at higher speed than VTOL landings.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'OPS-024'> stolRotorClear : VehicleRequirement {
+            doc /* The rotors shall clear the ground by at least [TBD] mm at every STOL nacelle angle and takeoff and landing attitude. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Partially tilted rotors sweep nearer the ground.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'OPS-025'> stolSchedule : VehicleRequirement {
+            doc /* The flight controller shall schedule nacelle angle with airspeed during the STOL ground roll and approach. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Tilt changes thrust direction as the wing takes the load.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'OPS-026'> stolSpeeds : VehicleRequirement {
+            doc /* The rotation speed and approach speed for STOL mode shall be determined by flight test and recorded in the flight manual. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Needed before STOL flights are made.";
+            attribute :>> phase = "ORR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'OPS-027'> stolEnvelopeLimits : VehicleRequirement {
+            doc /* The flight controller shall apply the STOL envelope limits for speed, attitude and nacelle angle when STOL is selected. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Limits differ from CTOL and VTOL.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
         }
     }
 
@@ -1325,6 +1416,13 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
+        requirement <'FCS-030'> stolControl : VehicleRequirement {
+            doc /* The flight controller shall control attitude with the nacelles held at any angle in the STOL range. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "STOL flies with partial tilt for the whole takeoff and landing.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
     }
 
     package AeroReqs {
@@ -1481,6 +1579,20 @@ package TiltrotorVehicleDecomposition {
             attribute :>> rationale = "Sets the wind limit for flight.";
             attribute :>> phase = "ORR";
             attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AER-023'> stolAero : VehicleRequirement {
+            doc /* The aerodynamic model shall be valid for the STOL angle range, including rotor wake on the wing and ground effect. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Partial tilt blows the wing, adding lift.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'AER-024'> stolPerformance : VehicleRequirement {
+            doc /* The STOL takeoff and landing distances shall be computed and recorded as [TBD] m. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Input to the STOL roll requirements.";
+            attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
     }
 
@@ -1657,6 +1769,13 @@ package TiltrotorVehicleDecomposition {
             doc /* The structure shall limit the damage from a blade strike on the ground to a repairable level. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Probable event in early flight testing.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byAnalysis;
+        }
+        requirement <'STR-026'> flutterPartialTilt : VehicleRequirement {
+            doc /* The flutter analysis shall cover sustained operation at every nacelle angle in the STOL range, including the ground roll. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Partial tilt may be held for a long time, unlike conversion.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
@@ -2080,6 +2199,7 @@ package TiltrotorVehicleDecomposition {
     dependency from PropulsionReqs::rotorGuard to TiltrotorVehicleRequirements::vehicleReqs::part107;
     dependency from PropulsionReqs::noiseLimit to TiltrotorVehicleRequirements::vehicleReqs::part107;
     dependency from PropulsionReqs::windmill to TiltrotorVehicleRequirements::vehicleReqs::whirlFlutterFree;
+    dependency from PropulsionReqs::partialTiltOps to TiltrotorVehicleRequirements::vehicleReqs::conversion;
     dependency from TiltReqs::tiltRange to TiltrotorVehicleRequirements::vehicleReqs::conversion;
     dependency from TiltReqs::tiltAccuracy to TiltReqs::tiltRange;
     dependency from TiltReqs::tiltRate to TiltrotorVehicleRequirements::vehicleReqs::conversion;
@@ -2103,6 +2223,8 @@ package TiltrotorVehicleDecomposition {
     dependency from TiltReqs::tiltLife to TiltrotorVehicleRequirements::vehicleReqs::conversion;
     dependency from TiltReqs::conversionSchedule to TiltrotorVehicleRequirements::vehicleReqs::conversion;
     dependency from TiltReqs::conversionAbort to TiltReqs::conversionSchedule;
+    dependency from TiltReqs::tiltHoldAny to TiltReqs::tiltRange;
+    dependency from TiltReqs::tiltHoldLoad to TiltReqs::tiltHoldAny;
     dependency from PayloadReqs::payloadSensor to TiltrotorVehicleRequirements::vehicleReqs::configuration;
     dependency from PayloadReqs::mechInterface to PayloadReqs::payloadSensor;
     dependency from PayloadReqs::swapTime to PayloadReqs::payloadSensor;
@@ -2156,6 +2278,7 @@ package TiltrotorVehicleDecomposition {
     dependency from StabilityReqs::batteryUse to StabilityReqs::batteryPosition;
     dependency from StabilityReqs::lowConfidenceCaution to StabilityReqs::smConfidence;
     dependency from StabilityReqs::measuredCg to StabilityReqs::smConfirmBalance;
+    dependency from StabilityReqs::smStolLimits to StabilityReqs::smLimits;
     dependency from OperationsReqs::opModes to TiltrotorVehicleRequirements::vehicleReqs::configuration;
     dependency from OperationsReqs::ctolDef to OperationsReqs::opModes;
     dependency from OperationsReqs::vtolDef to OperationsReqs::opModes;
@@ -2183,6 +2306,15 @@ package TiltrotorVehicleDecomposition {
     dependency from OperationsReqs::chkRevision to OperationsReqs::preflightChecklist;
     dependency from OperationsReqs::modeLock to OperationsReqs::modeSelect;
     dependency from OperationsReqs::chkRevDisplay to OperationsReqs::chkRevision;
+    dependency from OperationsReqs::stolDef to OperationsReqs::opModes;
+    dependency from OperationsReqs::stolAngleRange to OperationsReqs::stolDef;
+    dependency from OperationsReqs::stolTakeoffRoll to OperationsReqs::stolDef;
+    dependency from OperationsReqs::stolLandingRoll to OperationsReqs::stolDef;
+    dependency from OperationsReqs::stolGearLoad to OperationsReqs::ctolGear;
+    dependency from OperationsReqs::stolRotorClear to OperationsReqs::stolDef;
+    dependency from OperationsReqs::stolSchedule to OperationsReqs::stolDef;
+    dependency from OperationsReqs::stolSpeeds to OperationsReqs::stolDef;
+    dependency from OperationsReqs::stolEnvelopeLimits to OperationsReqs::stolDef;
     dependency from ControlReqs::hoverControl to TiltrotorVehicleRequirements::vehicleReqs::conversion;
     dependency from ControlReqs::hoverPitchAuth to ControlReqs::hoverControl;
     dependency from ControlReqs::hoverRollAuth to ControlReqs::hoverControl;
@@ -2212,6 +2344,7 @@ package TiltrotorVehicleDecomposition {
     dependency from ControlReqs::loopRate to ControlReqs::hoverControl;
     dependency from ControlReqs::saturation to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
     dependency from ControlReqs::sourceFailDetect to ControlReqs::sensorRedundancy;
+    dependency from ControlReqs::stolControl to ControlReqs::hoverControl;
     dependency from AeroReqs::aeroModel to TiltrotorVehicleRequirements::vehicleReqs::conversion;
     dependency from AeroReqs::aeroModelSource to AeroReqs::aeroModel;
     dependency from AeroReqs::aeroUncertainty to AeroReqs::aeroModel;
@@ -2234,6 +2367,8 @@ package TiltrotorVehicleDecomposition {
     dependency from AeroReqs::conversionPower to AeroReqs::hoverPower;
     dependency from AeroReqs::missionProfile to TiltrotorVehicleRequirements::vehicleReqs::endurance;
     dependency from AeroReqs::windEnvelope to TiltrotorVehicleRequirements::vehicleReqs::part107::envelope;
+    dependency from AeroReqs::stolAero to AeroReqs::aeroModel;
+    dependency from AeroReqs::stolPerformance to AeroReqs::stolAero;
     dependency from StructureReqs::loadCases to TiltrotorVehicleRequirements::vehicleReqs::strength;
     dependency from StructureReqs::limitFactor to StructureReqs::loadCases;
     dependency from StructureReqs::safetyFactor to TiltrotorVehicleRequirements::vehicleReqs::strength;
@@ -2259,6 +2394,7 @@ package TiltrotorVehicleDecomposition {
     dependency from StructureReqs::massProperties to StructureReqs::massBudget;
     dependency from StructureReqs::impactLanding to TiltrotorVehicleRequirements::vehicleReqs::strength;
     dependency from StructureReqs::rotorStrike to TiltrotorVehicleRequirements::vehicleReqs::strength;
+    dependency from StructureReqs::flutterPartialTilt to StructureReqs::flutterMargin;
     dependency from AvionicsReqs::controlLink to TiltrotorVehicleRequirements::vehicleReqs::part107::lineOfSight;
     dependency from AvionicsReqs::linkRange to AvionicsReqs::controlLink;
     dependency from AvionicsReqs::linkLatency to AvionicsReqs::controlLink;

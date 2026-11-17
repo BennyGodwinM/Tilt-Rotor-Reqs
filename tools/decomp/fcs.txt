@@ -27,3 +27,4 @@ FCS-026|FCS-001|controlLatency|The time from sensor sample to actuator command s
 FCS-027|FCS-001|loopRate|The attitude control loop shall run at a rate of at least [TBD] Hz.|T|CDR|placeholder|Sampling delay affects stability.
 FCS-028|VEH-8|saturation|The flight controller shall prevent integrator windup when any effector is saturated.|T|CDR|adoptedDefault|Windup causes overshoot after saturation.
 FCS-029|FCS-025|sourceFailDetect|The flight controller shall detect a failed attitude source within [TBD] ms.|T|CDR|placeholder|Needed to switch to the healthy source.
+FCS-030|FCS-001|stolControl|The flight controller shall control attitude with the nacelles held at any angle in the STOL range.|T|CDR|projectChoice|STOL flies with partial tilt for the whole takeoff and landing.

@@ -21,3 +21,6 @@ TLT-020|VEH-7|tiltCalibrate|The flight controller shall verify nacelle angle aga
 TLT-021|VEH-4|tiltLife|The tilt mechanism shall complete at least [TBD] conversion cycles without maintenance.|T|CDR|placeholder|Sets maintenance interval and testing wear.
 TLT-022|VEH-4|conversionSchedule|The flight controller shall schedule nacelle angle as a function of airspeed within the conversion corridor, to be defined.|A|CDR|placeholder|Corridor definition is still open (VEH-4).
 TLT-023|TLT-022|conversionAbort|The flight controller shall return the nacelles to the hover position when the conversion leaves the corridor.|D|CDR|projectChoice|Hover is the known safe state.
+
+TLT-024|TLT-001|tiltHoldAny|Each nacelle shall hold any commanded angle between 0 and 90 deg continuously for at least [TBD] minutes.|T|CDR|placeholder|STOL and conversion need steady operation at partial tilt.
+TLT-025|TLT-024|tiltHoldLoad|Each tilt mechanism shall carry the rotor loads at every angle in the STOL range for the full mission duration.|A|CDR|placeholder|Holding at partial tilt is a sustained load case.

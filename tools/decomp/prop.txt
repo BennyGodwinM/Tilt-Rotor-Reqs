@@ -26,3 +26,4 @@ PRP-025|VEH-8|thrustTelemetry|The speed controller shall report rpm, current and
 PRP-026|VEH-3|rotorGuard|The vehicle shall have a means of keeping persons away from the rotors during ground handling, to be selected.|I|SIR|placeholder|Ground crew safety.
 PRP-027|VEH-3|noiseLimit|The vehicle sound level at 15 m in hover shall not exceed [TBD] dBA.|T|ORR|placeholder|Public acceptance and local rules.
 PRP-028|VEH-5|windmill|The rotor shall not windmill into an unstable condition when the motor is unpowered in cruise.|A|CDR|adoptedDefault|An unpowered rotor in forward flight can excite whirl flutter.
+PRP-029|VEH-4|partialTiltOps|Each rotor shall operate continuously at every nacelle angle in the STOL range with the in-plane inflow of that condition.|T|CDR|placeholder|Edgewise flow loads the rotor and hub.

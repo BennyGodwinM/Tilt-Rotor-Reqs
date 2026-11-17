@@ -35,6 +35,15 @@ Generated from `tools/decomp/checklists.csv`. Every item traces to a requirement
 | [ ] | Rotor clearance | Rotors clear of ground at takeoff attitude | OPS-008 |
 | [ ] | Nacelle angle | Nacelles set to the CTOL angle | OPS-002 |
 
+## Preflight: STOL
+
+| Done | Item | Check | Traces to |
+|---|---|---|---|
+| [ ] | Surface | Runway length and surface suit the STOL ground roll; clear of obstacles | OPS-021, OPS-022 |
+| [ ] | Nacelle angle | Nacelles set to the selected STOL angle within the allowed range | OPS-020 |
+| [ ] | Rotor clearance | Rotors clear of ground at the STOL angle and takeoff attitude | OPS-024 |
+| [ ] | Static margin | Static margin inside limits for the selected STOL angle | STB-022 |
+
 ## Preflight: VTOL
 
 | Done | Item | Check | Traces to |
@@ -72,6 +81,13 @@ Generated from `tools/decomp/checklists.csv`. Every item traces to a requirement
 |---|---|---|---|
 | [ ] | Gear | Inspect gear, tires, struts and brakes after the ground roll | OPS-010 |
 | [ ] | Rotor strike | Inspect rotors and underside for ground contact | OPS-008 |
+
+## Postflight: STOL
+
+| Done | Item | Check | Traces to |
+|---|---|---|---|
+| [ ] | Gear | Inspect gear, tires, struts and brakes after the STOL landing | OPS-023 |
+| [ ] | Rotors and nacelles | Inspect rotors and tilt mechanism after sustained partial-tilt operation | TLT-025, STR-026 |
 
 ## Postflight: VTOL
 

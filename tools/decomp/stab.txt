@@ -19,3 +19,4 @@ STB-018|STB-001|smRateDisplay|The ground station shall display static margin, it
 STB-019|STB-004|batteryUse|The flight controller shall use the battery position in the center of gravity estimate.|T|CDR|adoptedDefault|Closes the loop on STB-004.
 STB-020|STB-014|lowConfidenceCaution|The flight controller shall give a caution when the static margin confidence is low.|D|CDR|projectChoice|Low confidence must be visible.
 STB-021|STB-015|measuredCg|The flight controller shall accept a measured center of gravity as an input to the estimate.|D|ORR|projectChoice|Ground measurement overrides the stored model.
+STB-022|STB-009|smStolLimits|The static margin limits shall be defined for each nacelle angle in the STOL range.|A|PDR|placeholder|Partial tilt changes the neutral point.

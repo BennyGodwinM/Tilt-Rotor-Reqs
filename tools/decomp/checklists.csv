@@ -42,3 +42,9 @@ Post,CTOL,Gear,"Inspect gear, tires, struts and brakes after the ground roll",OP
 Post,CTOL,Rotor strike,"Inspect rotors and underside for ground contact",OPS-008
 Post,VTOL,Pad,"Inspect pad surface for heat or debris and recover loose items",OPS-011
 Post,C/VTOL,Both sets,"Complete the post-flight items for both the takeoff mode and the landing mode used",OPS-004
+Pre,STOL,Surface,"Runway length and surface suit the STOL ground roll; clear of obstacles",OPS-021;OPS-022
+Pre,STOL,Nacelle angle,"Nacelles set to the selected STOL angle within the allowed range",OPS-020
+Pre,STOL,Rotor clearance,"Rotors clear of ground at the STOL angle and takeoff attitude",OPS-024
+Pre,STOL,Static margin,"Static margin inside limits for the selected STOL angle",STB-022
+Post,STOL,Gear,"Inspect gear, tires, struts and brakes after the STOL landing",OPS-023
+Post,STOL,Rotors and nacelles,"Inspect rotors and tilt mechanism after sustained partial-tilt operation",TLT-025;STR-026
