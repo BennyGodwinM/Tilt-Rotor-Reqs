@@ -4,7 +4,9 @@ classDiagram
   class Motor
   class Rotor
   class TiltActuator
-  class Camera
+  class PayloadSensor
+  class FpvCamera
+  class LandingGear
   class Battery {
     port powerOut : PowerOut
   }
@@ -37,6 +39,8 @@ classDiagram
   }
   class Tiltrotor
   Tiltrotor *-- Airframe : airframe
+  Tiltrotor *-- LandingGear : landingGear
+  Tiltrotor *-- FpvCamera : fpvCamera
   Tiltrotor *-- Nacelle : leftRotorNacelle
   Tiltrotor *-- Nacelle : rightRotorNacelle
   Tiltrotor *-- Gimbal : noseGimbal
@@ -47,4 +51,4 @@ classDiagram
   Nacelle *-- Motor : motor
   Nacelle *-- Rotor : rotor
   Nacelle *-- TiltActuator : tiltActuator
-  Gimbal *-- Camera : camera
+  Gimbal *-- PayloadSensor : payloadSensor

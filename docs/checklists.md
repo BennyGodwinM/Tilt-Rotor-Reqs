@@ -30,7 +30,7 @@ Generated from `tools/decomp/checklists.csv`. Every item traces to a requirement
 
 | Done | Item | Check | Traces to |
 |---|---|---|---|
-| [ ] | Gear | Gear or skids secure, tires or skids in good state | OPS-005 |
+| [ ] | Gear | Gear secure, tires and struts in good state | OPS-005 |
 | [ ] | Runway | Runway length and surface suit the ground roll; clear of obstacles | OPS-006, OPS-007 |
 | [ ] | Rotor clearance | Rotors clear of ground at takeoff attitude | OPS-008 |
 | [ ] | Nacelle angle | Nacelles set to the CTOL angle | OPS-002 |
@@ -70,7 +70,7 @@ Generated from `tools/decomp/checklists.csv`. Every item traces to a requirement
 
 | Done | Item | Check | Traces to |
 |---|---|---|---|
-| [ ] | Gear | Inspect gear, tires or skids and brakes after the ground roll | OPS-010 |
+| [ ] | Gear | Inspect gear, tires, struts and brakes after the ground roll | OPS-010 |
 | [ ] | Rotor strike | Inspect rotors and underside for ground contact | OPS-008 |
 
 ## Postflight: VTOL

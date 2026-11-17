@@ -980,10 +980,10 @@
   [
    "3.1",
    "VEH-1",
-   "The vehicle shall be a twin-rotor tiltrotor with a GoPro camera on a gimbal in the nose.",
+   "The vehicle shall be a twin-rotor tiltrotor with a gimbal in the nose that carries a replaceable payload sensor, and a separate FPV camera.",
    "byInspection",
    "projectChoice",
-   "Built aircraft matches the configuration drawing: two tilting rotors and a gimbal in the nose.",
+   "Built aircraft matches the configuration drawing: two tilting rotors, a nose gimbal with a replaceable sensor, an FPV camera and landing gear.",
    "Hangar",
    "SIR"
   ],

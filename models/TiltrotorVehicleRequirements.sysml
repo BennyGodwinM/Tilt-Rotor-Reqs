@@ -40,7 +40,9 @@ package TiltrotorVehicleRequirements {
     part def Motor;
     part def Rotor;
     part def TiltActuator;
-    part def Camera;
+    part def PayloadSensor;
+    part def FpvCamera;
+    part def LandingGear;
     part def Battery { port powerOut : PowerOut; }
     part def PowerDistribution {
         port powerIn : PowerIn;
@@ -71,13 +73,15 @@ package TiltrotorVehicleRequirements {
     part def Gimbal {
         port powerIn : PowerIn;
         port gimbalCommand : CommandIn;
-        part camera : Camera;
+        part payloadSensor : PayloadSensor;
     }
 
     part def Vehicle;
 
     part tiltrotor : Vehicle {
         part airframe : Airframe;
+        part landingGear : LandingGear;
+        part fpvCamera : FpvCamera;
         part leftRotorNacelle : Nacelle;
         part rightRotorNacelle : Nacelle;
         part noseGimbal : Gimbal;
@@ -111,10 +115,10 @@ package TiltrotorVehicleRequirements {
         doc /* Top-level requirements for the twin-rotor tiltrotor UAV. */
 
         requirement <'VEH-1'> configuration : VehicleRequirement {
-            doc /* The vehicle shall be a twin-rotor tiltrotor with a GoPro camera on a gimbal in the nose. */
+            doc /* The vehicle shall be a twin-rotor tiltrotor with a gimbal in the nose that carries a replaceable payload sensor, and a separate FPV camera. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Fixes the configuration every other requirement refers to.";
-            attribute :>> successCriteria = "Built aircraft matches the configuration drawing: two tilting rotors and a gimbal in the nose.";
+            attribute :>> successCriteria = "Built aircraft matches the configuration drawing: two tilting rotors, a nose gimbal with a replaceable sensor, an FPV camera and landing gear.";
             attribute :>> facility = "Hangar";
             attribute :>> phase = "SIR";
             attribute :>> verifyBy = VerificationMethod::byInspection;

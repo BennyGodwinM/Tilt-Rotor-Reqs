@@ -1,6 +1,8 @@
 flowchart LR
   subgraph tiltrotor["tiltrotor : Vehicle"]
     airframe["airframe : Airframe"]
+    landingGear["landingGear : LandingGear"]
+    fpvCamera["fpvCamera : FpvCamera"]
     subgraph leftRotorNacelle["leftRotorNacelle : Nacelle"]
       leftRotorNacelle_motor["motor : Motor"]
       leftRotorNacelle_rotor["rotor : Rotor"]
@@ -12,7 +14,7 @@ flowchart LR
       rightRotorNacelle_tiltActuator["tiltActuator : TiltActuator"]
     end
     subgraph noseGimbal["noseGimbal : Gimbal"]
-      noseGimbal_camera["camera : Camera"]
+      noseGimbal_payloadSensor["payloadSensor : PayloadSensor"]
     end
     battery["battery : Battery"]
     powerDistribution["powerDistribution : PowerDistribution"]

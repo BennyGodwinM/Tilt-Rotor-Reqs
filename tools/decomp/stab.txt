@@ -1,7 +1,7 @@
 STB-001|VEH-4|staticMarginEstimate|The flight controller shall estimate the longitudinal static margin, expressed as a fraction of mean aerodynamic chord, before takeoff and during flight.|T|CDR|projectChoice|Pitch stability depends on center of gravity and neutral point, both of which change with payload and tilt.
 STB-002|STB-001|cgEstimate|The flight controller shall estimate the aircraft center of gravity from the stored component masses and positions, including the battery position and the installed sensor profile.|A|CDR|projectChoice|Payload swaps and battery position move the center of gravity.
 STB-003|STB-002|cgAccuracy|The center of gravity estimate shall be accurate to within [TBD] percent of mean aerodynamic chord.|T|CDR|placeholder|Estimate error is a direct error in static margin.
-STB-004|STB-002|batteryPosition|The aircraft shall detect the battery position in its tray, or the operator shall record it before flight, and the result shall be used in the estimate.|D|CDR|projectChoice|Battery is the largest movable mass.
+STB-004|STB-002|batteryPosition|The aircraft shall detect the battery position in its tray or accept a position entered by the operator.|D|CDR|projectChoice|Battery is the largest movable mass.
 STB-005|STB-001|neutralPoint|The flight controller shall estimate the neutral point from an aerodynamic model scheduled with nacelle tilt angle and airspeed.|A|CDR|projectChoice|Tilting rotors change the neutral point strongly during conversion.
 STB-006|STB-005|neutralPointAccuracy|The neutral point estimate shall be accurate to within [TBD] percent of mean aerodynamic chord.|T|CDR|placeholder|Estimate error is a direct error in static margin.
 STB-007|STB-001|smInflight|The flight controller shall refine the static margin estimate in flight from measured trim and pitch response.|T|CDR|projectChoice|Checks the model against the real aircraft.
@@ -11,8 +11,11 @@ STB-010|STB-009|smWarnPre|The flight controller shall inhibit takeoff when the e
 STB-011|STB-009|smWarnCaution|The flight controller shall give the remote pilot a caution when the estimated static margin comes within [TBD] of a limit.|D|CDR|placeholder|Early warning before the limit is reached.
 STB-012|STB-009|smWarnAlert|The flight controller shall give the remote pilot an alert within [TBD] s when the estimated static margin is outside a limit in flight.|D|CDR|placeholder|The pilot needs time to react.
 STB-013|STB-012|smAlertAction|The flight controller shall command the landing mode when an alert persists for more than [TBD] s.|D|CDR|placeholder|Gives the pilot time to act first, then lands.
-STB-014|STB-001|smConfidence|The flight controller shall report a confidence level with each static margin estimate and shall treat a low confidence as a caution.|T|CDR|projectChoice|A poor estimate must not look like a good one.
-STB-015|STB-001|smConfirmBalance|The operator shall be able to confirm the estimate by a balance check on the ground, and the aircraft shall accept the measured center of gravity as an input.|D|ORR|projectChoice|Ground check catches errors in stored masses.
+STB-014|STB-001|smConfidence|The flight controller shall report a confidence level with each static margin estimate.|T|CDR|projectChoice|A poor estimate must not look like a good one.
+STB-015|STB-001|smConfirmBalance|The operator shall be able to confirm the estimate by a ground balance check.|D|ORR|projectChoice|Ground check catches errors in stored masses.
 STB-016|STB-001|smRecord|The aircraft shall log the static margin estimate, its confidence and its inputs throughout every flight.|I|ORR|adoptedDefault|Supports review and model correction.
 STB-017|STB-001|smFlightTest|The static margin estimate shall be compared with flight test results at [TBD] configurations before release.|T|ORR|placeholder|Validates the estimator.
 STB-018|STB-001|smRateDisplay|The ground station shall display static margin, its limits and its confidence to the remote pilot.|D|CDR|adoptedDefault|The pilot needs to see the number.
+STB-019|STB-004|batteryUse|The flight controller shall use the battery position in the center of gravity estimate.|T|CDR|adoptedDefault|Closes the loop on STB-004.
+STB-020|STB-014|lowConfidenceCaution|The flight controller shall give a caution when the static margin confidence is low.|D|CDR|projectChoice|Low confidence must be visible.
+STB-021|STB-015|measuredCg|The flight controller shall accept a measured center of gravity as an input to the estimate.|D|ORR|projectChoice|Ground measurement overrides the stored model.

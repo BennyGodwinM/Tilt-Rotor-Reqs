@@ -2,7 +2,7 @@
  "nodes": {
   "VEH-1": {
    "kind": "vehicle requirement",
-   "label": "The vehicle shall be a twin-rotor tiltrotor with a GoPro camera on a gimbal in the nose."
+   "label": "The vehicle shall be a twin-rotor tiltrotor with a gimbal in the nose that carries a replaceable payload sensor, and a separate FPV camera."
   },
   "VEH-2": {
    "kind": "vehicle requirement",
@@ -428,6 +428,14 @@
    "kind": "part",
    "label": "airframe : Airframe"
   },
+  "part:landingGear": {
+   "kind": "part",
+   "label": "landingGear : LandingGear"
+  },
+  "part:fpvCamera": {
+   "kind": "part",
+   "label": "fpvCamera : FpvCamera"
+  },
   "part:leftRotorNacelle": {
    "kind": "part",
    "label": "leftRotorNacelle : Nacelle"
@@ -480,9 +488,9 @@
    "kind": "part",
    "label": "rightRotorNacelle.tiltActuator : TiltActuator"
   },
-  "part:noseGimbal.camera": {
+  "part:noseGimbal.payloadSensor": {
    "kind": "part",
-   "label": "noseGimbal.camera : Camera"
+   "label": "noseGimbal.payloadSensor : PayloadSensor"
   },
   "part:tiltrotor": {
    "kind": "part",
@@ -542,7 +550,7 @@
   ],
   [
    "part:noseGimbal",
-   "part:noseGimbal.camera",
+   "part:noseGimbal.payloadSensor",
    "contains"
   ],
   [

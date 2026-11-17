@@ -38,6 +38,9 @@ for f, pk in GROUPS:
 o.append('    // Derivation: each requirement depends on the parent it refines')
 for r in rows:
     o.append('    dependency from %s to %s;' % (q[r['id']], q[r['parent']]))
+o += ['', '    // Allocation of new requirements to the design']
+for a, b in (('OPS-005','tiltrotor::landingGear'),('FPV-001','tiltrotor::fpvCamera'),('PLD-001','tiltrotor::noseGimbal::payloadSensor'),('STB-001','tiltrotor::flightController'),('AVN-001','tiltrotor::radioLink')):
+    o.append('    satisfy %s by TiltrotorVehicleRequirements::%s;' % (q[a], b))
 o.append('}')
 open(os.path.join(R, 'models', 'TiltrotorVehicleDecomposition.sysml'), 'w').write('\n'.join(o) + '\n')
 ck = list(csv.DictReader(open(os.path.join(D, 'decomp', 'checklists.csv'))))

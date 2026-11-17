@@ -13,7 +13,9 @@ classDiagram
   class Motor
   class Rotor
   class TiltActuator
-  class Camera
+  class PayloadSensor
+  class FpvCamera
+  class LandingGear
   class Battery {
     port powerOut : PowerOut
   }
@@ -46,6 +48,8 @@ classDiagram
   }
   class Tiltrotor
   Tiltrotor *-- Airframe : airframe
+  Tiltrotor *-- LandingGear : landingGear
+  Tiltrotor *-- FpvCamera : fpvCamera
   Tiltrotor *-- Nacelle : leftRotorNacelle
   Tiltrotor *-- Nacelle : rightRotorNacelle
   Tiltrotor *-- Gimbal : noseGimbal
@@ -56,7 +60,7 @@ classDiagram
   Nacelle *-- Motor : motor
   Nacelle *-- Rotor : rotor
   Nacelle *-- TiltActuator : tiltActuator
-  Gimbal *-- Camera : camera
+  Gimbal *-- PayloadSensor : payloadSensor
 ```
 
 ## Internal block diagram
@@ -67,6 +71,8 @@ Parts of the tiltrotor and the connections between their ports. Thick arrows car
 flowchart LR
   subgraph tiltrotor["tiltrotor : Vehicle"]
     airframe["airframe : Airframe"]
+    landingGear["landingGear : LandingGear"]
+    fpvCamera["fpvCamera : FpvCamera"]
     subgraph leftRotorNacelle["leftRotorNacelle : Nacelle"]
       leftRotorNacelle_motor["motor : Motor"]
       leftRotorNacelle_rotor["rotor : Rotor"]
@@ -78,7 +84,7 @@ flowchart LR
       rightRotorNacelle_tiltActuator["tiltActuator : TiltActuator"]
     end
     subgraph noseGimbal["noseGimbal : Gimbal"]
-      noseGimbal_camera["camera : Camera"]
+      noseGimbal_payloadSensor["payloadSensor : PayloadSensor"]
     end
     battery["battery : Battery"]
     powerDistribution["powerDistribution : PowerDistribution"]
@@ -103,7 +109,7 @@ Vehicle requirements with decomposition (solid), allocation to parts (satisfy) a
 
 ```mermaid
 flowchart LR
-  VEH_1["VEH-1<br/>The vehicle shall be a twin-rotor tiltrotor with a GoPro c..."]
+  VEH_1["VEH-1<br/>The vehicle shall be a twin-rotor tiltrotor with a gimbal ..."]
   VEH_2["VEH-2<br/>The vehicle shall have at least 30 minutes of flight time...."]
   VEH_3["VEH-3<br/>The vehicle shall be operable under 14 CFR Part 107."]
   VEH_3_1["VEH-3.1<br/>Takeoff mass including payload shall be less than the limi..."]

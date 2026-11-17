@@ -23,4 +23,5 @@ PWR-021|PWR-020|armIndication|The vehicle shall indicate the propulsion armed st
 PWR-022|VEH-3.1|connectors|Every power connector shall be keyed so that it cannot be mated with reverse polarity.|I|SIR|adoptedDefault|Reverse polarity damages the electronics.
 PWR-023|VEH-6|packRetention|The battery pack retention shall hold the pack against the limit load factors in the strength requirements without release.|A|CDR|adoptedDefault|A loose pack shifts the center of gravity and can short.
 PWR-024|PWR-001|storageTransport|The battery pack shall be transported and stored in a container that limits the effect of a cell fire, to be selected.|I|ORR|placeholder|Lithium cells are a fire hazard on the ground.
-PWR-025|VEH-2|chargeRecord|Each pack shall carry a logged cycle count, and packs beyond [TBD] cycles shall not be flown.|I|ORR|placeholder|Capacity falls with age and breaks the endurance margin.
+PWR-025|VEH-2|chargeRecord|Each battery pack shall carry a logged cycle count.|I|ORR|placeholder|Capacity falls with age.
+PWR-026|PWR-025|packLife|Battery packs beyond [TBD] cycles shall not be flown.|I|ORR|placeholder|Aged packs break the endurance margin.

@@ -18,7 +18,7 @@ Pre,All,Balance,"Optional balance check done and center of gravity entered if av
 Pre,All,Flight controller,"All sensors healthy, mode logic starts in the hover state, checklist items marked",CHK-006;VEH-7
 Pre,All,Mode select,"Takeoff and landing mode selected and shown on the ground station",OPS-014;OPS-015
 Pre,All,Arming,"Arm indicator works; people clear of rotors",PWR-021;PRP-026
-Pre,CTOL,Gear,"Gear or skids secure, tires or skids in good state",OPS-005
+Pre,CTOL,Gear,"Gear secure, tires and struts in good state",OPS-005
 Pre,CTOL,Runway,"Runway length and surface suit the ground roll; clear of obstacles",OPS-006;OPS-007
 Pre,CTOL,Rotor clearance,"Rotors clear of ground at takeoff attitude",OPS-008
 Pre,CTOL,Nacelle angle,"Nacelles set to the CTOL angle",OPS-002
@@ -38,7 +38,7 @@ Post,All,Airframe,"Inspect for cracks, loose fasteners, hard landing damage",VEH
 Post,All,Payload,"Remove or secure sensor; record sensor identifier and data",PLD-021
 Post,All,Flight log,"Download flight log, static margin record, faults and checklist; file them",STB-016;CHK-005
 Post,All,Anomalies,"Record every anomaly, caution and alert; assign actions",STB-012
-Post,CTOL,Gear,"Inspect gear, tires or skids and brakes after the ground roll",OPS-010
+Post,CTOL,Gear,"Inspect gear, tires, struts and brakes after the ground roll",OPS-010
 Post,CTOL,Rotor strike,"Inspect rotors and underside for ground contact",OPS-008
 Post,VTOL,Pad,"Inspect pad surface for heat or debris and recover loose items",OPS-011
 Post,C/VTOL,Both sets,"Complete the post-flight items for both the takeoff mode and the landing mode used",OPS-004

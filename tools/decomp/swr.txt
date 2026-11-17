@@ -8,7 +8,7 @@ SWR-007|SWR-001|hil|The flight software shall pass a hardware-in-the-loop test o
 SWR-008|SWR-007|simulation|A simulation with the aerodynamic model shall test each mode transition and each failure response.|A|CDR|projectChoice|Cheaper than flight tests.
 SWR-009|SWR-001|buildControl|Each flight software build shall carry a version identifier and a hash that the ground station displays.|I|ORR|adoptedDefault|Know what is flying.
 SWR-010|SWR-009|buildMatch|The preflight checklist shall confirm the software version matches the approved release.|D|ORR|adoptedDefault|Prevents the wrong version.
-SWR-011|SWR-001|parameters|Flight parameters shall be stored with a checksum and the flight controller shall refuse to arm with an invalid checksum.|T|CDR|projectChoice|Prevents corrupt parameters.
+SWR-011|SWR-001|parameters|Flight parameters shall be stored with a checksum.|T|CDR|projectChoice|Detects corrupt parameters.
 SWR-012|SWR-011|parameterRecord|The parameter set used shall be recorded in the flight log.|I|ORR|adoptedDefault|Reproducibility.
 SWR-013|VEH-7|timing|The flight control task shall complete within its period with a margin of [TBD] percent.|T|CDR|placeholder|Missed deadlines add latency.
 SWR-014|SWR-013|cpuLoad|The processor load shall not exceed [TBD] percent in any flight mode.|T|CDR|placeholder|Leaves headroom.
@@ -18,5 +18,7 @@ SWR-017|VEH-7|alerting|The ground station shall show faults, cautions and alerts
 SWR-018|VEH-7|modeAnnunciation|The ground station shall display the flight mode and nacelle angle at all times.|D|CDR|adoptedDefault|Pilot situational awareness.
 SWR-019|VEH-7|preflightEnforce|The software shall implement the preflight checks defined in CHK-006 and prevent arming if any failed.|T|CDR|projectChoice|Implements automatic checks.
 SWR-020|VEH-8|boundaryDefaults|The software shall use only boundary variable values defined in the vehicle model for its limits.|I|CDR|adoptedDefault|Single source for limits.
-SWR-021|SWR-001|regression|The test suite shall run after each software change and shall pass before release.|T|CDR|adoptedDefault|Prevents regressions.
+SWR-021|SWR-001|regression|The test suite shall run after each software change.|T|CDR|adoptedDefault|Prevents regressions.
 SWR-022|SWR-001|dataLink|The ground station software shall be developed under the same process as the flight software or a recorded equivalent.|I|PDR|placeholder|Ground station errors can mislead the pilot.
+SWR-023|SWR-011|parameterGate|The flight controller shall refuse to arm with an invalid parameter checksum.|T|CDR|projectChoice|Stops a flight with corrupt parameters.
+SWR-024|SWR-021|regressionGate|The test suite shall pass before a flight software release.|I|CDR|adoptedDefault|Release gate.

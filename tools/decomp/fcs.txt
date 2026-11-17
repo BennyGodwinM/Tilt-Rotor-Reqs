@@ -22,7 +22,8 @@ FCS-021|VEH-3.3|losRange|The flight controller shall warn the pilot when the air
 FCS-022|VEH-8|stateEstimate|The flight controller shall estimate attitude, position, velocity and airspeed with the accuracies in the boundary variable table.|T|CDR|placeholder|Estimates feed every control loop.
 FCS-023|FCS-022|attitudeAccuracy|The attitude estimate shall be accurate to within [TBD] deg.|T|CDR|placeholder|Sets control accuracy.
 FCS-024|FCS-022|airspeedSensing|The aircraft shall measure airspeed using a sensor that works in hover and cruise.|T|CDR|projectChoice|Pitot-tube sensors do not work in hover.
-FCS-025|FCS-022|sensorRedundancy|The flight controller shall use at least [TBD] independent sources for attitude and shall detect a failed source.|T|CDR|placeholder|Single sensor failure must not lose attitude.
+FCS-025|FCS-022|sensorRedundancy|The flight controller shall use at least [TBD] independent sources for attitude.|T|CDR|placeholder|Single sensor failure must not lose attitude.
 FCS-026|FCS-001|controlLatency|The time from sensor sample to actuator command shall not exceed [TBD] ms.|T|CDR|placeholder|Latency reduces phase margin.
 FCS-027|FCS-001|loopRate|The attitude control loop shall run at a rate of at least [TBD] Hz.|T|CDR|placeholder|Sampling delay affects stability.
 FCS-028|VEH-8|saturation|The flight controller shall prevent integrator windup when any effector is saturated.|T|CDR|adoptedDefault|Windup causes overshoot after saturation.
+FCS-029|FCS-025|sourceFailDetect|The flight controller shall detect a failed attitude source within [TBD] ms.|T|CDR|placeholder|Needed to switch to the healthy source.

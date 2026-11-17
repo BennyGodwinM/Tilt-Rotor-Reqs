@@ -174,9 +174,16 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
         requirement <'PWR-025'> chargeRecord : VehicleRequirement {
-            doc /* Each pack shall carry a logged cycle count, and packs beyond [TBD] cycles shall not be flown. */
+            doc /* Each battery pack shall carry a logged cycle count. */
             attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Capacity falls with age and breaks the endurance margin.";
+            attribute :>> rationale = "Capacity falls with age.";
+            attribute :>> phase = "ORR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'PWR-026'> packLife : VehicleRequirement {
+            doc /* Battery packs beyond [TBD] cycles shall not be flown. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Aged packs break the endurance margin.";
             attribute :>> phase = "ORR";
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
@@ -795,7 +802,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'STB-004'> batteryPosition : VehicleRequirement {
-            doc /* The aircraft shall detect the battery position in its tray, or the operator shall record it before flight, and the result shall be used in the estimate. */
+            doc /* The aircraft shall detect the battery position in its tray or accept a position entered by the operator. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Battery is the largest movable mass.";
             attribute :>> phase = "CDR";
@@ -865,14 +872,14 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byDemonstration;
         }
         requirement <'STB-014'> smConfidence : VehicleRequirement {
-            doc /* The flight controller shall report a confidence level with each static margin estimate and shall treat a low confidence as a caution. */
+            doc /* The flight controller shall report a confidence level with each static margin estimate. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "A poor estimate must not look like a good one.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'STB-015'> smConfirmBalance : VehicleRequirement {
-            doc /* The operator shall be able to confirm the estimate by a balance check on the ground, and the aircraft shall accept the measured center of gravity as an input. */
+            doc /* The operator shall be able to confirm the estimate by a ground balance check. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Ground check catches errors in stored masses.";
             attribute :>> phase = "ORR";
@@ -897,6 +904,27 @@ package TiltrotorVehicleDecomposition {
             attribute :>> basis = Basis::adoptedDefault;
             attribute :>> rationale = "The pilot needs to see the number.";
             attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'STB-019'> batteryUse : VehicleRequirement {
+            doc /* The flight controller shall use the battery position in the center of gravity estimate. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Closes the loop on STB-004.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'STB-020'> lowConfidenceCaution : VehicleRequirement {
+            doc /* The flight controller shall give a caution when the static margin confidence is low. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Low confidence must be visible.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
+        }
+        requirement <'STB-021'> measuredCg : VehicleRequirement {
+            doc /* The flight controller shall accept a measured center of gravity as an input to the estimate. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Ground measurement overrides the stored model.";
+            attribute :>> phase = "ORR";
             attribute :>> verifyBy = VerificationMethod::byDemonstration;
         }
     }
@@ -924,16 +952,16 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
         requirement <'OPS-004'> cvtolDef : VehicleRequirement {
-            doc /* C/VTOL shall mean a flight that takes off in one of CTOL or VTOL and lands in the other. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Defines the mixed mode; confirm the intent with the program owner.";
+            doc /* C/VTOL shall mean a flight that includes transition between hover and cruise and that can take off in one of CTOL or VTOL and land in the other. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Defined by the program owner: transition, with takeoff and landing possible in alternate modes.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
         requirement <'OPS-005'> ctolGear : VehicleRequirement {
-            doc /* The vehicle shall have landing gear or skids that support the aircraft on the ground in CTOL mode. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "The present architecture has no gear; this is a design decision to confirm.";
+            doc /* The vehicle shall have landing gear that supports the aircraft on the ground in CTOL mode. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Program owner chose landing gear for CTOL.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
@@ -994,7 +1022,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byDemonstration;
         }
         requirement <'OPS-014'> modeSelect : VehicleRequirement {
-            doc /* The remote pilot shall select CTOL, VTOL or C/VTOL before takeoff, and the flight controller shall not change the selection during the flight except as in OPS-013. */
+            doc /* The remote pilot shall select CTOL, VTOL or C/VTOL before takeoff. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Mode drives the checklist and limits.";
             attribute :>> phase = "CDR";
@@ -1071,11 +1099,25 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
         requirement <'CHK-008'> chkRevision : VehicleRequirement {
-            doc /* Each checklist shall carry a revision identifier, and the ground station shall show the revision in use. */
+            doc /* Each checklist shall carry a revision identifier. */
             attribute :>> basis = Basis::adoptedDefault;
             attribute :>> rationale = "Prevents use of an old version.";
             attribute :>> phase = "ORR";
             attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'OPS-018'> modeLock : VehicleRequirement {
+            doc /* The flight controller shall not change the takeoff and landing selection during flight except as in OPS-013. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Prevents unplanned mode change.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'CHK-009'> chkRevDisplay : VehicleRequirement {
+            doc /* The ground station shall show the revision of the checklist in use. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "The user can see which revision is in use.";
+            attribute :>> phase = "ORR";
+            attribute :>> verifyBy = VerificationMethod::byDemonstration;
         }
     }
 
@@ -1249,7 +1291,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'FCS-025'> sensorRedundancy : VehicleRequirement {
-            doc /* The flight controller shall use at least [TBD] independent sources for attitude and shall detect a failed source. */
+            doc /* The flight controller shall use at least [TBD] independent sources for attitude. */
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Single sensor failure must not lose attitude.";
             attribute :>> phase = "CDR";
@@ -1273,6 +1315,13 @@ package TiltrotorVehicleDecomposition {
             doc /* The flight controller shall prevent integrator windup when any effector is saturated. */
             attribute :>> basis = Basis::adoptedDefault;
             attribute :>> rationale = "Windup causes overshoot after saturation.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'FCS-029'> sourceFailDetect : VehicleRequirement {
+            doc /* The flight controller shall detect a failed attitude source within [TBD] ms. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Needed to switch to the healthy source.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
@@ -1678,7 +1727,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'AVN-010'> gpsLoss : VehicleRequirement {
-            doc /* The flight controller shall continue to fly attitude control when the satellite navigation is lost and shall alert the pilot. */
+            doc /* The flight controller shall continue attitude control when the satellite navigation is lost. */
             attribute :>> basis = Basis::projectChoice;
             attribute :>> rationale = "Attitude control must not depend on GPS.";
             attribute :>> phase = "CDR";
@@ -1699,9 +1748,9 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'AVN-013'> magnetometer : VehicleRequirement {
-            doc /* The aircraft shall measure heading and shall tolerate magnetic interference from the motors by [TBD]. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Motors disturb magnetometers.";
+            doc /* The aircraft shall measure heading. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Heading for navigation and landing.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
@@ -1789,6 +1838,20 @@ package TiltrotorVehicleDecomposition {
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
+        requirement <'AVN-026'> gpsLossAlert : VehicleRequirement {
+            doc /* The flight controller shall alert the remote pilot within [TBD] s of satellite navigation loss. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "The pilot must know navigation is lost.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'AVN-027'> magInterference : VehicleRequirement {
+            doc /* The heading measurement shall stay accurate to within [TBD] deg with the motors at full power. */
+            attribute :>> basis = Basis::placeholder;
+            attribute :>> rationale = "Motors disturb magnetometers.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
     }
 
     package SoftwareReqs {
@@ -1863,9 +1926,9 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byDemonstration;
         }
         requirement <'SWR-011'> parameters : VehicleRequirement {
-            doc /* Flight parameters shall be stored with a checksum and the flight controller shall refuse to arm with an invalid checksum. */
+            doc /* Flight parameters shall be stored with a checksum. */
             attribute :>> basis = Basis::projectChoice;
-            attribute :>> rationale = "Prevents corrupt parameters.";
+            attribute :>> rationale = "Detects corrupt parameters.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
@@ -1933,7 +1996,7 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
         requirement <'SWR-021'> regression : VehicleRequirement {
-            doc /* The test suite shall run after each software change and shall pass before release. */
+            doc /* The test suite shall run after each software change. */
             attribute :>> basis = Basis::adoptedDefault;
             attribute :>> rationale = "Prevents regressions.";
             attribute :>> phase = "CDR";
@@ -1944,6 +2007,20 @@ package TiltrotorVehicleDecomposition {
             attribute :>> basis = Basis::placeholder;
             attribute :>> rationale = "Ground station errors can mislead the pilot.";
             attribute :>> phase = "PDR";
+            attribute :>> verifyBy = VerificationMethod::byInspection;
+        }
+        requirement <'SWR-023'> parameterGate : VehicleRequirement {
+            doc /* The flight controller shall refuse to arm with an invalid parameter checksum. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Stops a flight with corrupt parameters.";
+            attribute :>> phase = "CDR";
+            attribute :>> verifyBy = VerificationMethod::byTest;
+        }
+        requirement <'SWR-024'> regressionGate : VehicleRequirement {
+            doc /* The test suite shall pass before a flight software release. */
+            attribute :>> basis = Basis::adoptedDefault;
+            attribute :>> rationale = "Release gate.";
+            attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
     }
@@ -1974,6 +2051,7 @@ package TiltrotorVehicleDecomposition {
     dependency from PowerReqs::packRetention to TiltrotorVehicleRequirements::vehicleReqs::strength;
     dependency from PowerReqs::storageTransport to PowerReqs::usableEnergy;
     dependency from PowerReqs::chargeRecord to TiltrotorVehicleRequirements::vehicleReqs::endurance;
+    dependency from PowerReqs::packLife to PowerReqs::chargeRecord;
     dependency from PropulsionReqs::rotorCount to TiltrotorVehicleRequirements::vehicleReqs::configuration;
     dependency from PropulsionReqs::hoverThrust to TiltrotorVehicleRequirements::vehicleReqs::endurance;
     dependency from PropulsionReqs::perRotorThrust to PropulsionReqs::hoverThrust;
@@ -2075,6 +2153,9 @@ package TiltrotorVehicleDecomposition {
     dependency from StabilityReqs::smRecord to StabilityReqs::staticMarginEstimate;
     dependency from StabilityReqs::smFlightTest to StabilityReqs::staticMarginEstimate;
     dependency from StabilityReqs::smRateDisplay to StabilityReqs::staticMarginEstimate;
+    dependency from StabilityReqs::batteryUse to StabilityReqs::batteryPosition;
+    dependency from StabilityReqs::lowConfidenceCaution to StabilityReqs::smConfidence;
+    dependency from StabilityReqs::measuredCg to StabilityReqs::smConfirmBalance;
     dependency from OperationsReqs::opModes to TiltrotorVehicleRequirements::vehicleReqs::configuration;
     dependency from OperationsReqs::ctolDef to OperationsReqs::opModes;
     dependency from OperationsReqs::vtolDef to OperationsReqs::opModes;
@@ -2100,6 +2181,8 @@ package TiltrotorVehicleDecomposition {
     dependency from OperationsReqs::chkAutoItems to OperationsReqs::preflightChecklist;
     dependency from OperationsReqs::chkPaper to OperationsReqs::preflightChecklist;
     dependency from OperationsReqs::chkRevision to OperationsReqs::preflightChecklist;
+    dependency from OperationsReqs::modeLock to OperationsReqs::modeSelect;
+    dependency from OperationsReqs::chkRevDisplay to OperationsReqs::chkRevision;
     dependency from ControlReqs::hoverControl to TiltrotorVehicleRequirements::vehicleReqs::conversion;
     dependency from ControlReqs::hoverPitchAuth to ControlReqs::hoverControl;
     dependency from ControlReqs::hoverRollAuth to ControlReqs::hoverControl;
@@ -2128,6 +2211,7 @@ package TiltrotorVehicleDecomposition {
     dependency from ControlReqs::controlLatency to ControlReqs::hoverControl;
     dependency from ControlReqs::loopRate to ControlReqs::hoverControl;
     dependency from ControlReqs::saturation to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from ControlReqs::sourceFailDetect to ControlReqs::sensorRedundancy;
     dependency from AeroReqs::aeroModel to TiltrotorVehicleRequirements::vehicleReqs::conversion;
     dependency from AeroReqs::aeroModelSource to AeroReqs::aeroModel;
     dependency from AeroReqs::aeroUncertainty to AeroReqs::aeroModel;
@@ -2200,6 +2284,8 @@ package TiltrotorVehicleDecomposition {
     dependency from AvionicsReqs::avionicsMass to TiltrotorVehicleRequirements::vehicleReqs::part107::maxMass;
     dependency from AvionicsReqs::avionicsPower to TiltrotorVehicleRequirements::vehicleReqs::endurance;
     dependency from AvionicsReqs::emc to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
+    dependency from AvionicsReqs::gpsLossAlert to AvionicsReqs::gpsLoss;
+    dependency from AvionicsReqs::magInterference to AvionicsReqs::magnetometer;
     dependency from SoftwareReqs::softwareStandard to TiltrotorVehicleRequirements::vehicleReqs::modeLogic;
     dependency from SoftwareReqs::softwareLevel to SoftwareReqs::softwareStandard;
     dependency from SoftwareReqs::softwareReq to SoftwareReqs::softwareStandard;
@@ -2222,4 +2308,13 @@ package TiltrotorVehicleDecomposition {
     dependency from SoftwareReqs::boundaryDefaults to TiltrotorVehicleRequirements::vehicleReqs::boundaryComplete;
     dependency from SoftwareReqs::regression to SoftwareReqs::softwareStandard;
     dependency from SoftwareReqs::dataLink to SoftwareReqs::softwareStandard;
+    dependency from SoftwareReqs::parameterGate to SoftwareReqs::parameters;
+    dependency from SoftwareReqs::regressionGate to SoftwareReqs::regression;
+
+    // Allocation of new requirements to the design
+    satisfy OperationsReqs::ctolGear by TiltrotorVehicleRequirements::tiltrotor::landingGear;
+    satisfy PayloadReqs::fpvCamera by TiltrotorVehicleRequirements::tiltrotor::fpvCamera;
+    satisfy PayloadReqs::payloadSensor by TiltrotorVehicleRequirements::tiltrotor::noseGimbal::payloadSensor;
+    satisfy StabilityReqs::staticMarginEstimate by TiltrotorVehicleRequirements::tiltrotor::flightController;
+    satisfy AvionicsReqs::controlLink by TiltrotorVehicleRequirements::tiltrotor::radioLink;
 }
