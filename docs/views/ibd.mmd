@@ -20,6 +20,7 @@ flowchart LR
     powerDistribution["powerDistribution : PowerDistribution"]
     flightController["flightController : FlightController"]
     radioLink["radioLink : RadioLink"]
+    videoTx["videoTx : VideoTransmitter"]
   end
   battery ==>|"powerOut to powerIn"| powerDistribution
   powerDistribution ==>|"toLeftNacelle to powerIn"| leftRotorNacelle
@@ -27,6 +28,14 @@ flowchart LR
   powerDistribution ==>|"toFlightController to powerIn"| flightController
   powerDistribution ==>|"toRadioLink to powerIn"| radioLink
   powerDistribution ==>|"toGimbal to powerIn"| noseGimbal
+  powerDistribution ==>|"toFpvCamera to powerIn"| fpvCamera
+  powerDistribution ==>|"toVideoTx to powerIn"| videoTx
+  fpvCamera -->|"videoOut to videoIn"| videoTx
+  battery -->|"statusOut to batteryStatus"| flightController
+  landingGear -->|"groundContact to gearStatus"| flightController
+  leftRotorNacelle -->|"tiltAngle to tiltAngleLeft"| flightController
+  rightRotorNacelle -->|"tiltAngle to tiltAngleRight"| flightController
+  noseGimbal -->|"dataOut to payloadData"| flightController
   radioLink -->|"pilotCommand to pilotCommand"| flightController
   flightController -->|"tiltCommandLeft to tiltCommand"| leftRotorNacelle
   flightController -->|"tiltCommandRight to tiltCommand"| rightRotorNacelle

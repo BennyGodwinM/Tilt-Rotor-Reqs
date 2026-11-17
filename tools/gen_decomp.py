@@ -59,7 +59,7 @@ o.append('    // Derivation of each root requirement from a vehicle or other-dis
 for r in rows:
     if isroot(r): o.append('    dependency from %s to %s;' % (q[r['id']], q[r['parent']]))
 o += ['', '    // Allocation of new requirements to the design']
-for a, b in (('OPS-005','tiltrotor::landingGear'),('FPV-001','tiltrotor::fpvCamera'),('PLD-001','tiltrotor::noseGimbal::payloadSensor'),('STB-001','tiltrotor::flightController'),('AVN-001','tiltrotor::radioLink')):
+for a, b in (('OPS-005','tiltrotor::landingGear'),('FPV-001','tiltrotor::fpvCamera'),('PLD-001','tiltrotor::noseGimbal::payloadSensor'),('STB-001','tiltrotor::flightController'),('AVN-001','tiltrotor::radioLink'),('INT-025','tiltrotor::noseGimbal'),('INT-030','tiltrotor::fpvCamera'),('INT-039','tiltrotor::landingGear'),('INT-001','tiltrotor::battery'),('INT-005','tiltrotor::leftRotorNacelle'),('INT-006','tiltrotor::rightRotorNacelle')):
     o.append('    satisfy %s by TiltrotorVehicleRequirements::%s;' % (q[a], b))
 o.append('}')
 open(os.path.join(R, 'models', 'TiltrotorVehicleDecomposition.sysml'), 'w').write('\n'.join(o) + '\n')

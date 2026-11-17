@@ -13,11 +13,24 @@ classDiagram
   class Motor
   class Rotor
   class TiltActuator
-  class PayloadSensor
-  class FpvCamera
-  class LandingGear
+  class PayloadSensor {
+    port powerIn : PowerIn
+    port dataOut : DataOut
+  }
+  class FpvCamera {
+    port powerIn : PowerIn
+    port videoOut : VideoOut
+  }
+  class VideoTransmitter {
+    port powerIn : PowerIn
+    port videoIn : VideoIn
+  }
+  class LandingGear {
+    port groundContact : StatusOut
+  }
   class Battery {
     port powerOut : PowerOut
+    port statusOut : StatusOut
   }
   class PowerDistribution {
     port powerIn : PowerIn
@@ -26,6 +39,8 @@ classDiagram
     port toFlightController : PowerOut
     port toRadioLink : PowerOut
     port toGimbal : PowerOut
+    port toFpvCamera : PowerOut
+    port toVideoTx : PowerOut
   }
   class FlightController {
     port powerIn : PowerIn
@@ -33,6 +48,11 @@ classDiagram
     port tiltCommandLeft : CommandOut
     port tiltCommandRight : CommandOut
     port gimbalCommand : CommandOut
+    port batteryStatus : StatusIn
+    port gearStatus : StatusIn
+    port tiltAngleLeft : StatusIn
+    port tiltAngleRight : StatusIn
+    port payloadData : DataIn
   }
   class RadioLink {
     port powerIn : PowerIn
@@ -41,10 +61,13 @@ classDiagram
   class Nacelle {
     port powerIn : PowerIn
     port tiltCommand : CommandIn
+    port tiltAngle : StatusOut
   }
   class Gimbal {
     port powerIn : PowerIn
     port gimbalCommand : CommandIn
+    port sensorPower : PowerOut
+    port dataOut : DataOut
   }
   class Tiltrotor
   Tiltrotor *-- Airframe : airframe
@@ -57,6 +80,7 @@ classDiagram
   Tiltrotor *-- PowerDistribution : powerDistribution
   Tiltrotor *-- FlightController : flightController
   Tiltrotor *-- RadioLink : radioLink
+  Tiltrotor *-- VideoTransmitter : videoTx
   Nacelle *-- Motor : motor
   Nacelle *-- Rotor : rotor
   Nacelle *-- TiltActuator : tiltActuator
@@ -90,6 +114,7 @@ flowchart LR
     powerDistribution["powerDistribution : PowerDistribution"]
     flightController["flightController : FlightController"]
     radioLink["radioLink : RadioLink"]
+    videoTx["videoTx : VideoTransmitter"]
   end
   battery ==>|"powerOut to powerIn"| powerDistribution
   powerDistribution ==>|"toLeftNacelle to powerIn"| leftRotorNacelle
@@ -97,6 +122,14 @@ flowchart LR
   powerDistribution ==>|"toFlightController to powerIn"| flightController
   powerDistribution ==>|"toRadioLink to powerIn"| radioLink
   powerDistribution ==>|"toGimbal to powerIn"| noseGimbal
+  powerDistribution ==>|"toFpvCamera to powerIn"| fpvCamera
+  powerDistribution ==>|"toVideoTx to powerIn"| videoTx
+  fpvCamera -->|"videoOut to videoIn"| videoTx
+  battery -->|"statusOut to batteryStatus"| flightController
+  landingGear -->|"groundContact to gearStatus"| flightController
+  leftRotorNacelle -->|"tiltAngle to tiltAngleLeft"| flightController
+  rightRotorNacelle -->|"tiltAngle to tiltAngleRight"| flightController
+  noseGimbal -->|"dataOut to payloadData"| flightController
   radioLink -->|"pilotCommand to pilotCommand"| flightController
   flightController -->|"tiltCommandLeft to tiltCommand"| leftRotorNacelle
   flightController -->|"tiltCommandRight to tiltCommand"| rightRotorNacelle

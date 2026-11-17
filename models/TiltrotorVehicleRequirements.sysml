@@ -31,19 +31,41 @@ package TiltrotorVehicleRequirements {
     // the parts, ports and connections below are not yet from a trade study.
     item def Power;
     item def Command;
+    item def Status;
+    item def Data;
+    item def Video;
     port def PowerOut { out item power : Power; }
     port def PowerIn { in item power : Power; }
     port def CommandOut { out item command : Command; }
     port def CommandIn { in item command : Command; }
+    port def StatusOut { out item status : Status; }
+    port def StatusIn { in item status : Status; }
+    port def DataOut { out item data : Data; }
+    port def DataIn { in item data : Data; }
+    port def VideoOut { out item video : Video; }
+    port def VideoIn { in item video : Video; }
 
     part def Airframe;
     part def Motor;
     part def Rotor;
     part def TiltActuator;
-    part def PayloadSensor;
-    part def FpvCamera;
-    part def LandingGear;
-    part def Battery { port powerOut : PowerOut; }
+    part def PayloadSensor {
+        port powerIn : PowerIn;
+        port dataOut : DataOut;
+    }
+    part def FpvCamera {
+        port powerIn : PowerIn;
+        port videoOut : VideoOut;
+    }
+    part def VideoTransmitter {
+        port powerIn : PowerIn;
+        port videoIn : VideoIn;
+    }
+    part def LandingGear { port groundContact : StatusOut; }
+    part def Battery {
+        port powerOut : PowerOut;
+        port statusOut : StatusOut;
+    }
     part def PowerDistribution {
         port powerIn : PowerIn;
         port toLeftNacelle : PowerOut;
@@ -51,6 +73,8 @@ package TiltrotorVehicleRequirements {
         port toFlightController : PowerOut;
         port toRadioLink : PowerOut;
         port toGimbal : PowerOut;
+        port toFpvCamera : PowerOut;
+        port toVideoTx : PowerOut;
     }
     part def FlightController {
         port powerIn : PowerIn;
@@ -58,6 +82,11 @@ package TiltrotorVehicleRequirements {
         port tiltCommandLeft : CommandOut;
         port tiltCommandRight : CommandOut;
         port gimbalCommand : CommandOut;
+        port batteryStatus : StatusIn;
+        port gearStatus : StatusIn;
+        port tiltAngleLeft : StatusIn;
+        port tiltAngleRight : StatusIn;
+        port payloadData : DataIn;
     }
     part def RadioLink {
         port powerIn : PowerIn;
@@ -66,6 +95,7 @@ package TiltrotorVehicleRequirements {
     part def Nacelle {
         port powerIn : PowerIn;
         port tiltCommand : CommandIn;
+        port tiltAngle : StatusOut;
         part motor : Motor;
         part rotor : Rotor;
         part tiltActuator : TiltActuator;
@@ -73,7 +103,11 @@ package TiltrotorVehicleRequirements {
     part def Gimbal {
         port powerIn : PowerIn;
         port gimbalCommand : CommandIn;
+        port sensorPower : PowerOut;
+        port dataOut : DataOut;
         part payloadSensor : PayloadSensor;
+        connect sensorPower to payloadSensor.powerIn;
+        connect payloadSensor.dataOut to dataOut;
     }
 
     part def Vehicle;
@@ -89,6 +123,7 @@ package TiltrotorVehicleRequirements {
         part powerDistribution : PowerDistribution;
         part flightController : FlightController;
         part radioLink : RadioLink;
+        part videoTx : VideoTransmitter;
 
         connect battery.powerOut to powerDistribution.powerIn;
         connect powerDistribution.toLeftNacelle to leftRotorNacelle.powerIn;
@@ -96,6 +131,14 @@ package TiltrotorVehicleRequirements {
         connect powerDistribution.toFlightController to flightController.powerIn;
         connect powerDistribution.toRadioLink to radioLink.powerIn;
         connect powerDistribution.toGimbal to noseGimbal.powerIn;
+        connect powerDistribution.toFpvCamera to fpvCamera.powerIn;
+        connect powerDistribution.toVideoTx to videoTx.powerIn;
+        connect fpvCamera.videoOut to videoTx.videoIn;
+        connect battery.statusOut to flightController.batteryStatus;
+        connect landingGear.groundContact to flightController.gearStatus;
+        connect leftRotorNacelle.tiltAngle to flightController.tiltAngleLeft;
+        connect rightRotorNacelle.tiltAngle to flightController.tiltAngleRight;
+        connect noseGimbal.dataOut to flightController.payloadData;
         connect radioLink.pilotCommand to flightController.pilotCommand;
         connect flightController.tiltCommandLeft to leftRotorNacelle.tiltCommand;
         connect flightController.tiltCommandRight to rightRotorNacelle.tiltCommand;

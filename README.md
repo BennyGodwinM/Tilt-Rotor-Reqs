@@ -47,3 +47,7 @@ Status: the stack starts and its project API answers, but I could not load the m
 3. Run `python3 tools/derive_decomp.py` to write `docs/decomposition_matrix.md`, `decomposition_tbd.md`, `decomposition_outline.md` and `decomposition_summary.json`.
 
 Rules: one "shall" per row; a number you cannot derive is written `[TBD]` with basis `placeholder`; a row's parent must exist. Checklist items in `tools/decomp/checklists.csv` must trace to a requirement ID.
+
+## Loading into SysON
+
+`docker compose up -d`, then `python3 tools/load_syson.py` creates a fresh project, loads the four models in order and removes older projects. SysON starts with an empty database each time the stack is recreated. Expect three unresolved-name warnings from `EnduranceConstraint`; they do not affect the requirements.

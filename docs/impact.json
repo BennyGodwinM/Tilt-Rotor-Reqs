@@ -464,6 +464,10 @@
    "kind": "part",
    "label": "radioLink : RadioLink"
   },
+  "part:videoTx": {
+   "kind": "part",
+   "label": "videoTx : VideoTransmitter"
+  },
   "part:leftRotorNacelle.motor": {
    "kind": "part",
    "label": "leftRotorNacelle.motor : Motor"
@@ -697,6 +701,46 @@
    "part:powerDistribution",
    "part:noseGimbal",
    "toGimbal to powerIn"
+  ],
+  [
+   "part:powerDistribution",
+   "part:fpvCamera",
+   "toFpvCamera to powerIn"
+  ],
+  [
+   "part:powerDistribution",
+   "part:videoTx",
+   "toVideoTx to powerIn"
+  ],
+  [
+   "part:fpvCamera",
+   "part:videoTx",
+   "videoOut to videoIn"
+  ],
+  [
+   "part:battery",
+   "part:flightController",
+   "statusOut to batteryStatus"
+  ],
+  [
+   "part:landingGear",
+   "part:flightController",
+   "groundContact to gearStatus"
+  ],
+  [
+   "part:leftRotorNacelle",
+   "part:flightController",
+   "tiltAngle to tiltAngleLeft"
+  ],
+  [
+   "part:rightRotorNacelle",
+   "part:flightController",
+   "tiltAngle to tiltAngleRight"
+  ],
+  [
+   "part:noseGimbal",
+   "part:flightController",
+   "dataOut to payloadData"
   ],
   [
    "part:radioLink",

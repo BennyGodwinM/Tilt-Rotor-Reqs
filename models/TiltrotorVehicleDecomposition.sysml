@@ -2989,4 +2989,10 @@ package TiltrotorVehicleDecomposition {
     satisfy PayloadReqs::payloadSensor by TiltrotorVehicleRequirements::tiltrotor::noseGimbal::payloadSensor;
     satisfy StabilityReqs::staticMarginEstimate by TiltrotorVehicleRequirements::tiltrotor::flightController;
     satisfy AvionicsReqs::controlLink by TiltrotorVehicleRequirements::tiltrotor::radioLink;
+    satisfy InterfaceReqs::sensorConnector by TiltrotorVehicleRequirements::tiltrotor::noseGimbal;
+    satisfy InterfaceReqs::fpvToTx by TiltrotorVehicleRequirements::tiltrotor::fpvCamera;
+    satisfy InterfaceReqs::gearSensor by TiltrotorVehicleRequirements::tiltrotor::landingGear;
+    satisfy InterfaceReqs::battToPdu by TiltrotorVehicleRequirements::tiltrotor::battery;
+    satisfy InterfaceReqs::pduToNacelleL by TiltrotorVehicleRequirements::tiltrotor::leftRotorNacelle;
+    satisfy InterfaceReqs::pduToNacelleL::pduToNacelleR by TiltrotorVehicleRequirements::tiltrotor::rightRotorNacelle;
 }
