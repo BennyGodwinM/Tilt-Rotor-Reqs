@@ -72,6 +72,33 @@ package TiltrotorVehicleRequirements {
     // Allocation to the design
     satisfy vehicleReqs by tiltrotor;
     satisfy vehicleReqs::strength by tiltrotor::airframe;
+    satisfy vehicleReqs::configuration by tiltrotor;
+    satisfy vehicleReqs::endurance by tiltrotor::battery;
+    satisfy vehicleReqs::part107 by tiltrotor;
+    satisfy vehicleReqs::conversion by tiltrotor::leftRotorNacelle;
+    satisfy vehicleReqs::conversion by tiltrotor::rightRotorNacelle;
+    satisfy vehicleReqs::whirlFlutterFree by tiltrotor::leftRotorNacelle;
+    satisfy vehicleReqs::whirlFlutterFree by tiltrotor::rightRotorNacelle;
+
+    // Behavior view: flight modes and the legal transitions between them
+    state def FlightModes {
+        entry; then hover;
+        state hover;
+        state conversion;
+        state cruise;
+        transition hoverToConversion first hover then conversion;
+        transition conversionToCruise first conversion then cruise;
+        transition cruiseToConversion first cruise then conversion;
+        transition conversionToHover first conversion then hover;
+    }
+
+    // Parametric view: endurance follows from battery energy and average power
+    constraint def EnduranceConstraint {
+        in batteryEnergyWh : Real;
+        in averagePowerW : Real;
+        in enduranceMin : Real;
+        enduranceMin == batteryEnergyWh / averagePowerW * 60
+    }
 
     // Trace to the program requirement that proves each one
     dependency from vehicleReqs::endurance to TiltrotorProgramModel::programReqs::flightTestReqs;
