@@ -1,7 +1,7 @@
 {
  "total": 394,
- "withTbd": 199,
- "openValues": 233,
+ "withTbd": 185,
+ "openValues": 219,
  "maxDepth": 5,
  "byPackage": {
   "PowerReqs": 25,
@@ -26,8 +26,8 @@
   "byDemonstration": 53
  },
  "byBasis": {
-  "projectChoice": 94,
-  "placeholder": 225,
+  "projectChoice": 108,
+  "placeholder": 211,
   "adoptedDefault": 70,
   "directive": 5
  },

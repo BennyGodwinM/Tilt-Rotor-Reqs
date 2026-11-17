@@ -21,9 +21,9 @@ package TiltrotorVehicleDecomposition {
                 attribute :>> verifyBy = VerificationMethod::byInspection;
             }
             requirement <'PWR-004'> specificEnergy : VehicleRequirement {
-                doc /* The battery pack shall have a pack-level specific energy of at least [TBD] Wh/kg. */
-                attribute :>> basis = Basis::placeholder;
-                attribute :>> rationale = "Pack mass must fit inside the takeoff mass limit.";
+                doc /* The battery pack shall have a pack-level specific energy of at least 160 Wh/kg. */
+                attribute :>> basis = Basis::projectChoice;
+                attribute :>> rationale = "Pack mass must fit inside the takeoff mass limit. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
                 attribute :>> phase = "CDR";
                 attribute :>> verifyBy = VerificationMethod::byTest;
             }
@@ -64,16 +64,16 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'PWR-002'> energyReserve : VehicleRequirement {
-            doc /* The mission energy budget shall hold a landing reserve of [TBD] percent of pack usable energy. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Reserve policy is not yet chosen.";
+            doc /* The mission energy budget shall hold a landing reserve of 20 percent of pack usable energy. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Reserve policy is not yet chosen. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'PWR-005'> packMass : VehicleRequirement {
-            doc /* The battery pack mass, including wiring and enclosure, shall not exceed [TBD] kg. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Pack mass is the largest single item in the mass budget.";
+            doc /* The battery pack mass, including wiring and enclosure, shall not exceed 4.1 kg. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Pack mass is the largest single item in the mass budget. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "SIR";
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
@@ -193,9 +193,9 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byInspection;
         }
         requirement <'PRP-002'> hoverThrust : VehicleRequirement {
-            doc /* The propulsion system shall produce a total thrust of at least [TBD] times the maximum takeoff weight in hover. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Thrust margin sets climb and control authority in hover.";
+            doc /* The propulsion system shall produce a total thrust of at least 1.3 times the maximum takeoff weight in hover. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Thrust margin sets climb and control authority in hover. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
             requirement <'PRP-003'> perRotorThrust : VehicleRequirement {
@@ -214,9 +214,9 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'PRP-005'> cruiseThrust : VehicleRequirement {
-            doc /* The propulsion system shall produce thrust at least equal to cruise drag at the cruise speed [TBD] kt with the nacelles at 0 deg. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Cruise thrust sets the cruise power and endurance.";
+            doc /* The propulsion system shall produce thrust at least equal to cruise drag at the cruise speed 49 kt with the nacelles at 0 deg. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Cruise thrust sets the cruise power and endurance. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
@@ -228,16 +228,16 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'PRP-007'> diskLoading : VehicleRequirement {
-            doc /* The rotor disk loading at maximum takeoff weight shall not exceed [TBD] N/m2. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Disk loading drives hover power and wake effects.";
+            doc /* The rotor disk loading at maximum takeoff weight shall not exceed 250 N/m2. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Disk loading drives hover power and wake effects. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'PRP-008'> rotorDiameter : VehicleRequirement {
-            doc /* The rotor diameter shall be [TBD] m. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Diameter sets disk loading and whirl flutter margin.";
+            doc /* The rotor diameter shall be 0.76 m. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Diameter sets disk loading and whirl flutter margin. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byInspection;
             requirement <'PRP-009'> rotorBlades : VehicleRequirement {
@@ -291,15 +291,15 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byTest;
         }
         requirement <'PRP-016'> motorEfficiency : VehicleRequirement {
-            doc /* The motor and speed controller together shall have an efficiency of at least [TBD] percent at the hover operating point. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Hover power dominates the energy budget.";
+            doc /* The motor and speed controller together shall have an efficiency of at least 80 percent at the hover operating point. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Hover power dominates the energy budget. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "CDR";
             attribute :>> verifyBy = VerificationMethod::byTest;
             requirement <'PRP-017'> motorEfficiencyCruise : VehicleRequirement {
-                doc /* The motor and speed controller together shall have an efficiency of at least [TBD] percent at the cruise operating point. */
-                attribute :>> basis = Basis::placeholder;
-                attribute :>> rationale = "Cruise is the longest segment of the mission.";
+                doc /* The motor and speed controller together shall have an efficiency of at least 85 percent at the cruise operating point. */
+                attribute :>> basis = Basis::projectChoice;
+                attribute :>> rationale = "Cruise is the longest segment of the mission. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
                 attribute :>> phase = "CDR";
                 attribute :>> verifyBy = VerificationMethod::byTest;
             }
@@ -1450,9 +1450,9 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'AER-004'> cruiseLD : VehicleRequirement {
-            doc /* The vehicle lift-to-drag ratio at the cruise point shall be at least [TBD]. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Cruise efficiency drives endurance.";
+            doc /* The vehicle lift-to-drag ratio at the cruise point shall be at least 10. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Cruise efficiency drives endurance. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
@@ -1548,16 +1548,16 @@ package TiltrotorVehicleDecomposition {
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'AER-018'> cruisePower : VehicleRequirement {
-            doc /* The electrical power in cruise shall be computed and recorded as [TBD] W. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Input to the endurance constraint.";
+            doc /* The electrical power in cruise shall be computed and recorded as 824 W. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Input to the endurance constraint. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
         requirement <'AER-019'> hoverPower : VehicleRequirement {
-            doc /* The electrical power in hover shall be computed and recorded as [TBD] W. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Input to the endurance constraint.";
+            doc /* The electrical power in hover shall be computed and recorded as 3545 W. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Input to the endurance constraint. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
             requirement <'AER-020'> conversionPower : VehicleRequirement {
@@ -1569,9 +1569,9 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'AER-021'> missionProfile : VehicleRequirement {
-            doc /* The mission profile used for endurance shall be defined by hover, conversion and cruise durations of [TBD]. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Endurance depends on the time in each phase.";
+            doc /* The mission profile used for endurance shall be defined by 2 minutes of hover and conversion and 28 minutes of cruise. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Endurance depends on the time in each phase. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
         }
@@ -1740,9 +1740,9 @@ package TiltrotorVehicleDecomposition {
             }
         }
         requirement <'STR-022'> massBudget : VehicleRequirement {
-            doc /* The program shall maintain a mass budget with a margin of [TBD] percent at PDR, reduced at later reviews. */
-            attribute :>> basis = Basis::placeholder;
-            attribute :>> rationale = "Mass margin policy is open.";
+            doc /* The program shall maintain a mass budget with a margin of 15 percent at PDR, reduced at later reviews. */
+            attribute :>> basis = Basis::projectChoice;
+            attribute :>> rationale = "Mass margin policy is open. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.";
             attribute :>> phase = "PDR";
             attribute :>> verifyBy = VerificationMethod::byAnalysis;
             requirement <'STR-023'> massProperties : VehicleRequirement {

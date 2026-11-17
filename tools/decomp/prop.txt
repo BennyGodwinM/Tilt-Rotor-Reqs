@@ -1,11 +1,11 @@
 PRP-001|VEH-1|rotorCount|The vehicle shall have exactly two rotors, one on each side of the fuselage.|I|SIR|projectChoice|Defines the twin-rotor configuration.
-PRP-002|VEH-2|hoverThrust|The propulsion system shall produce a total thrust of at least [TBD] times the maximum takeoff weight in hover.|T|CDR|placeholder|Thrust margin sets climb and control authority in hover.
+PRP-002|VEH-2|hoverThrust|The propulsion system shall produce a total thrust of at least 1.3 times the maximum takeoff weight in hover.|T|CDR|projectChoice|Thrust margin sets climb and control authority in hover. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.
 PRP-003|PRP-002|perRotorThrust|Each rotor shall produce at least half of the total thrust in PRP-002 at the rotor operating point.|T|CDR|adoptedDefault|Symmetric twin rotors must each carry half.
 PRP-004|PRP-002|thrustMargin|The sum of both rotor thrusts shall exceed hover weight by the control-authority margin of [TBD] percent.|A|PDR|placeholder|Keeps thrust available for control inputs.
-PRP-005|VEH-4|cruiseThrust|The propulsion system shall produce thrust at least equal to cruise drag at the cruise speed [TBD] kt with the nacelles at 0 deg.|A|CDR|placeholder|Cruise thrust sets the cruise power and endurance.
+PRP-005|VEH-4|cruiseThrust|The propulsion system shall produce thrust at least equal to cruise drag at the cruise speed 49 kt with the nacelles at 0 deg.|A|CDR|projectChoice|Cruise thrust sets the cruise power and endurance. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.
 PRP-006|VEH-3.2|maxSpeedLimit|The flight controller shall limit commanded groundspeed to no more than 87 kt.|T|CDR|directive|Part 107 groundspeed limit, applied in software.
-PRP-007|VEH-5|diskLoading|The rotor disk loading at maximum takeoff weight shall not exceed [TBD] N/m2.|A|PDR|placeholder|Disk loading drives hover power and wake effects.
-PRP-008|VEH-5|rotorDiameter|The rotor diameter shall be [TBD] m.|I|PDR|placeholder|Diameter sets disk loading and whirl flutter margin.
+PRP-007|VEH-5|diskLoading|The rotor disk loading at maximum takeoff weight shall not exceed 250 N/m2.|A|PDR|projectChoice|Disk loading drives hover power and wake effects. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.
+PRP-008|VEH-5|rotorDiameter|The rotor diameter shall be 0.76 m.|I|PDR|projectChoice|Diameter sets disk loading and whirl flutter margin. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.
 PRP-009|PRP-008|rotorBlades|Each rotor shall have [TBD] blades.|I|PDR|placeholder|Blade number affects whirl flutter and noise.
 PRP-010|VEH-5|tipSpeed|The rotor tip speed shall not exceed [TBD] m/s in any flight condition.|A|PDR|placeholder|Limits compressibility loss and noise.
 PRP-011|VEH-5|rotorFreq|The rotor first-flap and in-plane natural frequencies shall differ from 1P, 2P and 3P by at least [TBD] percent across the operating rpm range.|A|CDR|placeholder|Avoids resonance with the rotor rotation harmonics.
@@ -13,8 +13,8 @@ PRP-012|VEH-5|rotorBalance|Each rotor shall be balanced so that residual hub vib
 PRP-013|VEH-6|rotorRetention|The rotor hub and blade retention shall carry centrifugal load at [TBD] percent overspeed with ultimate factor of safety.|A|CDR|placeholder|A thrown blade is a flight safety hazard.
 PRP-014|PRP-013|overspeedDef|The overspeed condition shall be defined as [TBD] percent above maximum rotor speed.|A|PDR|placeholder|Defines the case PRP-013 checks.
 PRP-015|VEH-6|bladeProof|Each rotor blade shall be proof tested to [TBD] times its design centrifugal load before first flight.|T|SIR|placeholder|Screens manufacturing defects.
-PRP-016|VEH-2|motorEfficiency|The motor and speed controller together shall have an efficiency of at least [TBD] percent at the hover operating point.|T|CDR|placeholder|Hover power dominates the energy budget.
-PRP-017|PRP-016|motorEfficiencyCruise|The motor and speed controller together shall have an efficiency of at least [TBD] percent at the cruise operating point.|T|CDR|placeholder|Cruise is the longest segment of the mission.
+PRP-016|VEH-2|motorEfficiency|The motor and speed controller together shall have an efficiency of at least 80 percent at the hover operating point.|T|CDR|projectChoice|Hover power dominates the energy budget. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.
+PRP-017|PRP-016|motorEfficiencyCruise|The motor and speed controller together shall have an efficiency of at least 85 percent at the cruise operating point.|T|CDR|projectChoice|Cruise is the longest segment of the mission. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.
 PRP-018|VEH-3.1|motorMass|Each motor, mount and speed controller shall have a combined mass not exceeding [TBD] kg.|T|SIR|placeholder|Motor mass is in the mass budget and moves the nacelle center of gravity.
 PRP-019|VEH-7|motorTemp|The motor winding temperature shall not exceed [TBD] degC during the mission profile.|T|CDR|placeholder|Winding insulation fails above its class rating.
 PRP-020|PRP-019|escTemp|The speed controller temperature shall not exceed [TBD] degC during the mission profile.|T|CDR|placeholder|Power electronics derate when hot.

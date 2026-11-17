@@ -1,7 +1,7 @@
 AER-001|VEH-4|aeroModel|The program shall maintain an aerodynamic model of the vehicle valid over the nacelle angle range of 0 to 90 deg and the full flight envelope.|A|PDR|projectChoice|The control, stability and flutter work all use it.
 AER-002|AER-001|aeroModelSource|The aerodynamic model shall be built from computational analysis and corrected with wind tunnel or flight test data.|A|CDR|projectChoice|Models must be tied to measurements.
 AER-003|AER-001|aeroUncertainty|The aerodynamic model shall state an uncertainty for every coefficient used in control design.|A|CDR|adoptedDefault|Control margins need the uncertainty.
-AER-004|VEH-2|cruiseLD|The vehicle lift-to-drag ratio at the cruise point shall be at least [TBD].|A|PDR|placeholder|Cruise efficiency drives endurance.
+AER-004|VEH-2|cruiseLD|The vehicle lift-to-drag ratio at the cruise point shall be at least 10.|A|PDR|projectChoice|Cruise efficiency drives endurance. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.
 AER-005|VEH-2|wingArea|The wing area shall be [TBD] m2.|I|PDR|placeholder|Sizes the stall speed and cruise efficiency.
 AER-006|AER-005|wingSpan|The wing span shall be [TBD] m.|I|PDR|placeholder|Sets induced drag and storage.
 AER-007|AER-005|stallSpeed|The stall speed at maximum takeoff weight shall not exceed [TBD] kt.|T|CDR|placeholder|Sets the CTOL speeds and the conversion corridor floor.
@@ -15,10 +15,10 @@ AER-014|AER-013|trim|The aircraft shall be trimmable in pitch at every nacelle a
 AER-015|AER-013|controlSurfaces|Each control surface shall provide at least [TBD] of the control power needed for FCS-012.|A|PDR|placeholder|Sizes the surfaces.
 AER-016|VEH-4|ctolAero|The vehicle shall meet its stall and takeoff requirements in CTOL mode with the nacelles at the CTOL angle.|A|CDR|placeholder|CTOL mode needs lift from the wing.
 AER-017|VEH-4|dragCount|The program shall maintain a drag build-up for the vehicle with each supported payload sensor.|A|PDR|projectChoice|Sensors change the drag and the endurance.
-AER-018|VEH-2|cruisePower|The electrical power in cruise shall be computed and recorded as [TBD] W.|A|PDR|placeholder|Input to the endurance constraint.
-AER-019|VEH-2|hoverPower|The electrical power in hover shall be computed and recorded as [TBD] W.|A|PDR|placeholder|Input to the endurance constraint.
+AER-018|VEH-2|cruisePower|The electrical power in cruise shall be computed and recorded as 824 W.|A|PDR|projectChoice|Input to the endurance constraint. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.
+AER-019|VEH-2|hoverPower|The electrical power in hover shall be computed and recorded as 3545 W.|A|PDR|projectChoice|Input to the endurance constraint. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.
 AER-020|AER-019|conversionPower|The electrical power in conversion shall be computed and recorded as [TBD] W.|A|PDR|placeholder|Input to the endurance constraint.
-AER-021|VEH-2|missionProfile|The mission profile used for endurance shall be defined by hover, conversion and cruise durations of [TBD].|A|PDR|placeholder|Endurance depends on the time in each phase.
+AER-021|VEH-2|missionProfile|The mission profile used for endurance shall be defined by 2 minutes of hover and conversion and 28 minutes of cruise.|A|PDR|projectChoice|Endurance depends on the time in each phase. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.
 AER-022|VEH-3.2|windEnvelope|The vehicle shall remain controllable in winds up to [TBD] kt in cruise.|T|ORR|placeholder|Sets the wind limit for flight.
 AER-023|AER-001|stolAero|The aerodynamic model shall be valid for the STOL angle range, including rotor wake on the wing and ground effect.|A|PDR|projectChoice|Partial tilt blows the wing, adding lift.
 AER-024|AER-023|stolPerformance|The STOL takeoff and landing distances shall be computed and recorded as [TBD] m.|A|PDR|placeholder|Input to the STOL roll requirements.

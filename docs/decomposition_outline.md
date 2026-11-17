@@ -7,14 +7,14 @@ Nested as in the model: each requirement sits under the requirement it refines.
 
 - **PWR-001** The battery pack shall deliver at least the usable energy computed by EnduranceConstraint for a 30-minute mission plus the reserve in PWR-002.
   - **PWR-003** The battery pack shall use lithium-polymer or lithium-ion cells [TBD chemistry].
-  - **PWR-004** The battery pack shall have a pack-level specific energy of at least [TBD] Wh/kg.
+  - **PWR-004** The battery pack shall have a pack-level specific energy of at least 160 Wh/kg.
   - **PWR-006** The battery pack shall supply the peak electrical power demand of hover at maximum takeoff mass without cell voltage falling below the cell minimum voltage.
   - **PWR-008** The battery management system shall command landing when any cell voltage falls to [TBD] V under load.
   - **PWR-009** The battery management system shall command landing when any cell temperature reaches [TBD] degC.
     - **PWR-010** The battery pack shall provide at least one temperature sensor per [TBD] cells.
   - **PWR-024** The battery pack shall be transported and stored in a container that limits the effect of a cell fire, to be selected.
-- **PWR-002** The mission energy budget shall hold a landing reserve of [TBD] percent of pack usable energy.
-- **PWR-005** The battery pack mass, including wiring and enclosure, shall not exceed [TBD] kg.
+- **PWR-002** The mission energy budget shall hold a landing reserve of 20 percent of pack usable energy.
+- **PWR-005** The battery pack mass, including wiring and enclosure, shall not exceed 4.1 kg.
 - **PWR-011** The battery management system shall report pack voltage, current and the lowest cell voltage to the flight controller at a rate of at least [TBD] Hz.
   - **PWR-012** The flight controller shall compute remaining usable energy and display it to the remote pilot.
     - **PWR-013** The ground station shall alert the remote pilot when remaining usable energy falls to the reserve in PWR-002.
@@ -34,13 +34,13 @@ Nested as in the model: each requirement sits under the requirement it refines.
 ## PropulsionReqs
 
 - **PRP-001** The vehicle shall have exactly two rotors, one on each side of the fuselage.
-- **PRP-002** The propulsion system shall produce a total thrust of at least [TBD] times the maximum takeoff weight in hover.
+- **PRP-002** The propulsion system shall produce a total thrust of at least 1.3 times the maximum takeoff weight in hover.
   - **PRP-003** Each rotor shall produce at least half of the total thrust in PRP-002 at the rotor operating point.
   - **PRP-004** The sum of both rotor thrusts shall exceed hover weight by the control-authority margin of [TBD] percent.
-- **PRP-005** The propulsion system shall produce thrust at least equal to cruise drag at the cruise speed [TBD] kt with the nacelles at 0 deg.
+- **PRP-005** The propulsion system shall produce thrust at least equal to cruise drag at the cruise speed 49 kt with the nacelles at 0 deg.
 - **PRP-006** The flight controller shall limit commanded groundspeed to no more than 87 kt.
-- **PRP-007** The rotor disk loading at maximum takeoff weight shall not exceed [TBD] N/m2.
-- **PRP-008** The rotor diameter shall be [TBD] m.
+- **PRP-007** The rotor disk loading at maximum takeoff weight shall not exceed 250 N/m2.
+- **PRP-008** The rotor diameter shall be 0.76 m.
   - **PRP-009** Each rotor shall have [TBD] blades.
 - **PRP-010** The rotor tip speed shall not exceed [TBD] m/s in any flight condition.
 - **PRP-011** The rotor first-flap and in-plane natural frequencies shall differ from 1P, 2P and 3P by at least [TBD] percent across the operating rpm range.
@@ -48,8 +48,8 @@ Nested as in the model: each requirement sits under the requirement it refines.
 - **PRP-013** The rotor hub and blade retention shall carry centrifugal load at [TBD] percent overspeed with ultimate factor of safety.
   - **PRP-014** The overspeed condition shall be defined as [TBD] percent above maximum rotor speed.
 - **PRP-015** Each rotor blade shall be proof tested to [TBD] times its design centrifugal load before first flight.
-- **PRP-016** The motor and speed controller together shall have an efficiency of at least [TBD] percent at the hover operating point.
-  - **PRP-017** The motor and speed controller together shall have an efficiency of at least [TBD] percent at the cruise operating point.
+- **PRP-016** The motor and speed controller together shall have an efficiency of at least 80 percent at the hover operating point.
+  - **PRP-017** The motor and speed controller together shall have an efficiency of at least 85 percent at the cruise operating point.
 - **PRP-018** Each motor, mount and speed controller shall have a combined mass not exceeding [TBD] kg.
 - **PRP-019** The motor winding temperature shall not exceed [TBD] degC during the mission profile.
   - **PRP-020** The speed controller temperature shall not exceed [TBD] degC during the mission profile.
@@ -229,7 +229,7 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **AER-003** The aerodynamic model shall state an uncertainty for every coefficient used in control design.
   - **AER-023** The aerodynamic model shall be valid for the STOL angle range, including rotor wake on the wing and ground effect.
     - **AER-024** The STOL takeoff and landing distances shall be computed and recorded as [TBD] m.
-- **AER-004** The vehicle lift-to-drag ratio at the cruise point shall be at least [TBD].
+- **AER-004** The vehicle lift-to-drag ratio at the cruise point shall be at least 10.
 - **AER-005** The wing area shall be [TBD] m2.
   - **AER-006** The wing span shall be [TBD] m.
   - **AER-007** The stall speed at maximum takeoff weight shall not exceed [TBD] kt.
@@ -243,10 +243,10 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **AER-015** Each control surface shall provide at least [TBD] of the control power needed for FCS-012.
 - **AER-016** The vehicle shall meet its stall and takeoff requirements in CTOL mode with the nacelles at the CTOL angle.
 - **AER-017** The program shall maintain a drag build-up for the vehicle with each supported payload sensor.
-- **AER-018** The electrical power in cruise shall be computed and recorded as [TBD] W.
-- **AER-019** The electrical power in hover shall be computed and recorded as [TBD] W.
+- **AER-018** The electrical power in cruise shall be computed and recorded as 824 W.
+- **AER-019** The electrical power in hover shall be computed and recorded as 3545 W.
   - **AER-020** The electrical power in conversion shall be computed and recorded as [TBD] W.
-- **AER-021** The mission profile used for endurance shall be defined by hover, conversion and cruise durations of [TBD].
+- **AER-021** The mission profile used for endurance shall be defined by 2 minutes of hover and conversion and 28 minutes of cruise.
 - **AER-022** The vehicle shall remain controllable in winds up to [TBD] kt in cruise.
 
 ## StructureReqs
@@ -273,7 +273,7 @@ Nested as in the model: each requirement sits under the requirement it refines.
   - **STR-020** The flutter analysis shall cover every nacelle tilt angle from 0 to 90 deg.
   - **STR-021** The flutter analysis shall cover the lightest and heaviest supported payload sensor.
   - **STR-026** The flutter analysis shall cover sustained operation at every nacelle angle in the STOL range, including the ground roll.
-- **STR-022** The program shall maintain a mass budget with a margin of [TBD] percent at PDR, reduced at later reviews.
+- **STR-022** The program shall maintain a mass budget with a margin of 15 percent at PDR, reduced at later reviews.
   - **STR-023** The program shall record the mass, center of gravity and inertia of each component.
 - **STR-024** The structure shall withstand a landing at a descent rate of [TBD] m/s in VTOL mode without damage to the battery or sensor.
 - **STR-025** The structure shall limit the damage from a blade strike on the ground to a repairable level.

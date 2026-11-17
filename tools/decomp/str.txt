@@ -19,7 +19,7 @@ STR-018|STR-017|flutterModel|The flutter analysis model shall include the stiffn
 STR-019|STR-017|flutterModelUpdate|The flutter analysis model shall be updated with the ground vibration test results before flight.|A|SIR|adoptedDefault|Test data corrects the model.
 STR-020|STR-017|flutterAllAngles|The flutter analysis shall cover every nacelle tilt angle from 0 to 90 deg.|A|CDR|adoptedDefault|Stiffness and rotor axis change with tilt.
 STR-021|STR-017|flutterPayload|The flutter analysis shall cover the lightest and heaviest supported payload sensor.|A|CDR|projectChoice|Payload changes nose mass and the modes.
-STR-022|VEH-3.1|massBudget|The program shall maintain a mass budget with a margin of [TBD] percent at PDR, reduced at later reviews.|A|PDR|placeholder|Mass margin policy is open.
+STR-022|VEH-3.1|massBudget|The program shall maintain a mass budget with a margin of 15 percent at PDR, reduced at later reviews.|A|PDR|projectChoice|Mass margin policy is open. Value from the first sizing pass (docs/sizing.md); inputs are assumptions to confirm.
 STR-023|STR-022|massProperties|The program shall record the mass, center of gravity and inertia of each component.|I|CDR|adoptedDefault|Input to the stability and control analyses.
 STR-024|VEH-6|impactLanding|The structure shall withstand a landing at a descent rate of [TBD] m/s in VTOL mode without damage to the battery or sensor.|T|CDR|placeholder|Hard landing is a likely event.
 STR-025|VEH-6|rotorStrike|The structure shall limit the damage from a blade strike on the ground to a repairable level.|A|CDR|placeholder|Probable event in early flight testing.
